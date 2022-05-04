@@ -1,4 +1,5 @@
 <?php
+
 //tên class giống tên file
 class CategoriesController extends BaseController
 {
