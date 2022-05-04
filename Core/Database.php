@@ -1,0 +1,18 @@
+<?php
+class Database
+{
+    const Host = 'localhost';
+    const USERNAME = 'root';
+    const PASSWORD = 'ngoclinh741';
+    const DB_NAME = 'db_qltv';
+    private $connect;
+    public function connect()
+    {
+        $connect = mysqli_connect(self::Host, self::USERNAME, self::PASSWORD, self::DB_NAME);
+        mysqli_set_charset($connect, "utf8");
+        if (mysqli_connect_errno() === 0) {
+            return $connect;
+        }
+        return false;
+    }
+}
