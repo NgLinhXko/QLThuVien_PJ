@@ -46,6 +46,9 @@ class  AdminController extends BaseController{
 
     public function delete_all(){
         $table = $_POST['table'];
+        if($table == "categories"){
+            
+        }
     }
 
 }
