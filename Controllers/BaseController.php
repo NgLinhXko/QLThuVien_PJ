@@ -4,27 +4,21 @@
 //mọi controller đều kế thừa từ basecontroller
 class BaseController
 {
-    const VIEW_FOLDER = 'Views';
-    const MODEL_FOLDER ='Models';
-    /*
-     Description : path name :" folder.file.name
-     lấy từ sau thư mục view 
-    */
-    protected function view($viewPath , array $data = []) 
+    const VIEW_FOLDER_NAME = 'Views';
+    const MODEL_FOLDER_NAME = 'Models';
+    protected function view($viewPath, array $data = [])
     {
-        foreach ($data as $key => $value)
-        {
-            $$key  = $value;
+        foreach ($data as $key => $data) {
+            $$key = $data;
         }
-        // echo '<pre>';
-        // print_r($categories);
-        // die;
-      
-
-       require (self::VIEW_FOLDER .'/' . str_replace('.','/',$viewPath) . '.php');
+        $viewPath = self::VIEW_FOLDER_NAME . '/'
+            . str_replace('.', '/', $viewPath) . '.php';
+        require($viewPath);
     }
     protected function loadModel($modelPath)
     {
-        require (self::MODEL_FOLDER .'/' . $modelPath . '.php');
+        $modelPath = self::MODEL_FOLDER_NAME . '/'
+            . $modelPath . '.php';
+        require($modelPath);
     }
 }

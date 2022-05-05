@@ -125,8 +125,8 @@
                 $("#wrapper").toggleClass("toggled");
             });
         </script>
-        <script src="http://localhost:88/QLTV/Public/js/book.js"></script>
+        <script src="http://localhost:88/QLThuVien_PJ/Public/js/admin/book.js"></script>
 
-        <script src="http://localhost:88/QLTV/Public/js/category.js"></script>
+        <script src="http://localhost:88/QLThuVien_PJ/Public/js/admin/category.js"></script>
 
 </body>

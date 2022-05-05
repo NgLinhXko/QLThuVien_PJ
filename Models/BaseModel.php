@@ -31,6 +31,17 @@ class BaseModel extends Database
         }
         return $data;
     }
+    public function get_all($table)
+    {
+  
+      $sql = "SELect * from $table ";
+      $query = $this->_query($sql);
+      $ar = [];
+      while ($row = mysqli_fetch_assoc($query)) {
+        array_push($ar, $row);
+      }
+      return  $ar;
+    }
     // public function all($table)
     // {
     //   
