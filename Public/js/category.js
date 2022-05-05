@@ -7,7 +7,7 @@ $(document).ready(function() {
     Insert_cate();
     
     $(document).on('click', '#qlTheLoai', function() {
-        url = "http://localhost:8080/QLTV/index.php?controller=categories";
+        url = "http://localhost:88/QLTV/index.php?controller=categories";
         action = "get_cate";
         load_data(action);
     })

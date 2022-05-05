@@ -3,7 +3,7 @@
  * Copyright 2013-2016 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
- .row>* {
+.row>* {
     padding : 0;
 }
  body {
@@ -172,10 +172,4 @@ h1.count{
 }
 .nav-link{
     color: aqua;
-}
-.show_sp_lh:hover{
-    color: yellow;
-}
-.card{
-    float: left;
 }

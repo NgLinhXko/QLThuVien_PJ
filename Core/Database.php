@@ -3,8 +3,10 @@ class Database
 {
     const Host = 'localhost';
     const USERNAME = 'root';
-    const PASSWORD = 'ngoclinh741';
-    const DB_NAME = 'db_qltv';
+    // const PASSWORD = 'ngoclinh741';
+      // const DB_NAME = 'db_qltv';
+    const PASSWORD = '';
+    const DB_NAME = 'qltv';
     private $connect;
     public function connect()
     {

@@ -3,7 +3,7 @@ $(document).ready(function() {
     url = "";
     
     $(document).on('click', '#qlSach', function() {
-        url = "http://localhost:8080/QLTV/index.php?controller=book";
+        url = "http://localhost:88/QLTV/index.php?controller=book";
         action = "get_book";
         load_data(action);
     })
