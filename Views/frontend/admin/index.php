@@ -246,7 +246,8 @@
                 })
                 $(document).on("click", '.btn_delete', function() {
                     id = $(this).attr("id_get")
-                    alert(table + id)
+                    // alert(table + id)
+                    delete_dt(table,id)
                 })
                 //delete data 
                 function delete_dt(table,id) {
@@ -255,12 +256,12 @@
                         method: "POST",
                         data: {
                             table : table,
-                            id_cate: id,
-                            id_b :id
+                            id: id,
+                          
                         },
                         success: function(dt) {
                             load_data(action, table)
-                            // console.log(dt);
+                             console.log(dt);
                             $('#message').html(dt)
                         }
                     })

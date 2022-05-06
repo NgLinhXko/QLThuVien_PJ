@@ -40,31 +40,34 @@
                     <!-- 2 column grid layout with text inputs for the first and last names -->
                     <div class="mb-1">
                         <label for="exampleInputEmail1" class="form-label">Họ Tên</label>
-                        <input required type="text" name="HoTen" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input required type="text" name="name_u" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-1">
                         <label for="exampleInputEmail1" class="form-label">Ngày sinh</label>
-                        <input required type="date" name="GioiTinh"  id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input required type="date" name="date_u"  id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-1">
                         <label for="exampleInputEmail1" class="form-label">Địa chỉ</label>
-                        <input required type="text" name="DiaChi" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input required type="text" name="address_u" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Số Điện Thoại</label>
-                        <input required type="text" name="SoDienThoai" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input required type="text" name="phone_u" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-1">
                         <label for="exampleInputEmail1" class="form-label">Email</label>
-                        <input required type="email" id="ipEmail" name="Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    </div>
-                    <span id="msgThongBao"></span>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input required type="password" name="password" class="form-control" id="exampleInputPassword1">
+                        <span style="font-size: 12px;" id="msgThongBao"></span>
+
+                        <input required type="email" id="email_u" name="email_u" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     
-                    <button type="button" id="btn_dangky" class="btn btn-primary">Đăng ký</button>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <span style="font-size: 12px;" id="msgThongBao_pass"></span>
+                        <input required type="password" name="pass_u" class="form-control" id="pass_u">
+                    </div>
+                    
+                    <button type="submit" id="btn_dangky" disabled  class="btn btn-primary">Đăng ký</button>
                 </form>
             </div>
         </div>

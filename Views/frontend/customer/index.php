@@ -1807,7 +1807,9 @@
 
 	<script>
 		$(document).ready(function() {
-			url1 = "http://localhost:88/qlthuVien/index.php?"
+			url = "http://localhost:88/QLthuVien_PJ/index.php?"
+			check_email = false;
+			check_pass = false;
 			$('#btn_login').click(function() {
 				// jQuery.noConflict();
 				$('#modalLogin').modal('show')
@@ -1816,10 +1818,54 @@
 				$('#modalLogin').modal('hide')
 				$('#modalResign').modal('show')
 			})
+			$('#email_u').blur(function() {
+				email = $(this).val()
+				if (email != "") {
+					$.ajax({
+						url: url + "controller=login&action=check_mail",
+						method: "POST",
+						data: {
+							email_u: email
+						},
+						success: function(dt) {
+							if (dt == 0) {
+								$('#msgThongBao').css("color", "green")
+								$('#msgThongBao').html("Tài khoản sẵn sàng")
+								check_email = true
+							} else {
+								$('#msgThongBao').css("color", "red")
+								$('#msgThongBao').html("Tài khoản đã tồn tại!")
+								check_email = false
+							}
+
+						}
+					})
+				}
+
+			})
+			$('#pass_u').blur(function() {
+				passwd = $(this).val();
+				strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})')
+				if (passwd != '') {
+					if (!strongPassword.test(passwd)) {
+						$('#msgThongBao_pass').css("color", "red")
+						$('#msgThongBao_pass').html("Mật khẩu dài ít nhất 8 ký tự , có chữ hoa , chữ thường ,số và ký tự đặc biệt!")
+						check_pass = false
+					} else {
+						check_pass = true
+					}
+				}
+
+			})
+			$(window).click(function() {
+				if (check_email == true && check_pass == true) {
+					$('#btn_dangky').prop("disabled", false)
+				}
+			})
 			$('#btn_dangky').click(function() {
 				form = new FormData(formResign)
 				$.ajax({
-					url: url1+"controller=login&action=addUser",
+					url: url + "controller=login&action=addUser",
 					method: "POST",
 					data: form,
 					mimeType: "multipart/form-data",

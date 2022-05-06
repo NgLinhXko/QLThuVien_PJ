@@ -57,17 +57,19 @@ class BaseModel extends Database
   // //     return $data;
   // // }
   // //lay ra ban ghi theo id
-  // public function find($table, $id)
-  // {
-  //     $sql = "SELECT * FROM ${table} WHERE id_cate = ${id}";
-  //     $query = $this->_query($sql);
-
-  //     $data = [];
-  //     while ($row = mysqli_fetch_assoc($query)) {
-  //         array_push($data, $row);
-  //     }
-  //     return $data;
-  // }
+  public function find($table, $ar)
+  {
+    foreach ($ar as $key => $val) {
+      $where = $key . '=' . "'$val'";
+    }
+    $sql = "SELECT * FROM ${table} WHERE $where";
+    $query = $this->query($sql);
+    $data = [];
+    while ($row = mysqli_fetch_assoc($query)) {
+      array_push($data, $row);
+    }
+    return $data;
+  }
   // //them data
   public function create($table, $data = [])
   {
@@ -111,27 +113,10 @@ class BaseModel extends Database
   //     $sql = "UPDATE ${table} SET ${dataSetString} WHERE id_cate = ${id}";
   //     $this->_query($sql);
   // }
-  // //xoa data book
-  // public function delete($table, $id)
-  // {
-  //     $sql = "DELETE FROM ${table} where id_b = ${id}";
-  //     $this->_query($sql);
-  // }
-  // //xoa data cate
-  // public function deleteCate($table, $id)
-  // {
-  //     foreach ($id as $key => $val) {
-  //         $where = $key . '=' . "'$val'";
-  //     }
-  //     $sql = "DELETE from $table where $where ";
-  //     print_r($sql);
-  //     $this->_query($sql);
-  // }
-  // ////4----sau khi có được câu sql thì phải thực hiện truy vấn 
-  // private function _query($sql)
-  // {
-  //     return mysqli_query($this->connect, $sql);
-  // }
+
+
+
+
   public function __construct()
   {
     $this->connect = $this->connect();
