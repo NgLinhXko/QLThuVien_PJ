@@ -30,7 +30,7 @@ if ($check_act == "categories") {
                         <td><?= $cate['name_cate']  ?></td>
                         <td><?= 5  ?></td>
                         <td>
-                            <button id_get="<?= $cate['id_cate'] ?>" id="btn_update1" class="btn btn-secondary">Sửa</button>
+                            <button id_get="<?= $cate['id_cate'] ?>" id="btn_update1" class="btn btn-secondary btn_update1">Sửa</button>
                             <button id_get="<?= $cate['id_cate'] ?>" id="btn_delete" class="btn btn-danger btn_delete">Xóa</button>
                         </td>
                     </tr>
@@ -75,7 +75,7 @@ if ($check_act == "books") {
                     <tr>
                         <th scope="row"><?= $i ?></th>
                         <td>
-                            <img width="100px" style="float: left;" src="./public/images/<?= $book['img_b']?>" class="img-fluid" alt="...">
+                            <img width="100px" style="float: left;" src="./public/images/<?= $book['img_b'] ?>" class="img-fluid" alt="...">
                             <?= $book['name_b']  ?>
                         </td>
                         <td><?= $book['nxb_b']  ?></td>

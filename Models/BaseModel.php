@@ -56,18 +56,23 @@ class BaseModel extends Database
   // //     }
   // //     return $data;
   // // }
-  // //lay ra ban ghi theo id
-  // public function find($table, $id)
-  // {
-  //     $sql = "SELECT * FROM ${table} WHERE id_cate = ${id}";
-  //     $query = $this->_query($sql);
+  //lay ra ban ghi theo id loadupdate
+  public function find($table, $id)
+  {
+    foreach ($id as $key => $val) {
+      $where = $key . '=' . "'$val'";
+    }
+    $sql = "SELECT * FROM ${table} WHERE ${where}";
+    $query = $this->query($sql);
 
-  //     $data = [];
-  //     while ($row = mysqli_fetch_assoc($query)) {
-  //         array_push($data, $row);
-  //     }
-  //     return $data;
-  // }
+    $data = [];
+    while ($row = mysqli_fetch_assoc($query)) {
+      array_push($data, $row);
+    }
+    return $data;
+  }
+
+
   // //them data
   public function create($table, $data = [])
   {
@@ -86,19 +91,22 @@ class BaseModel extends Database
       "Thêm thất bại";
     }
   }
-  // //sua data book
-  // public function update($table, $id, $data)
-  // {
-  //     $dataSets = [];
-  //     foreach ($data as $key => $val) {
-  //         array_push($dataSets, "${key} = '" . $val . "'");
-  //     }
-  //     //nối các phần tử mảng thành một chuỗi kết quả
-  //     $dataSetString = implode(',', $dataSets);
-  //     $sql = "UPDATE ${table} SET ${dataSetString} WHERE id_b = ${id}";
-  //     print_r($sql);
-  //     $this->_query($sql);
-  // }
+  //sua data book
+  public function update($table, $data = [], $id)
+  {
+    foreach ($id as $key => $val) {
+      $where = $key . '=' . "'$val'";
+    }
+    $dataSets = [];
+    foreach ($data as $key => $val) {
+      array_push($dataSets, "${key} = '" . $val . "'");
+    }
+    //nối các phần tử mảng thành một chuỗi kết quả
+    $dataSetString = implode(',', $dataSets);
+    $sql = "UPDATE ${table} SET ${dataSetString} WHERE $where";
+    print_r($sql);
+    $this->query($sql);
+  }
   // //sua data cate
   // public function updateCate($table, $id, $data)
   // {
@@ -114,24 +122,25 @@ class BaseModel extends Database
   // //xoa data book
   // public function delete($table, $id)
   // {
-  //     $sql = "DELETE FROM ${table} where id_b = ${id}";
-  //     $this->_query($sql);
+  //   $sql = "DELETE FROM ${table} where id_b = ${id}";
+  //   $this->query($sql);
   // }
-  // //xoa data cate
-  // public function deleteCate($table, $id)
-  // {
-  //     foreach ($id as $key => $val) {
-  //         $where = $key . '=' . "'$val'";
-  //     }
-  //     $sql = "DELETE from $table where $where ";
-  //     print_r($sql);
-  //     $this->_query($sql);
-  // }
-  // ////4----sau khi có được câu sql thì phải thực hiện truy vấn 
-  // private function _query($sql)
-  // {
-  //     return mysqli_query($this->connect, $sql);
-  // }
+  //xoa data cate
+  public function deleteAll($table, $id)
+  {
+    foreach ($id as $key => $val) {
+      $where = $key . '=' . "'$val'";
+    }
+    $sql = "DELETE from $table where $where ";
+    print_r($sql);
+    $query = $this->query($sql);
+    if ($query) {
+      return "Xóa thành công";
+    } else {
+      "Xóa thất bại";
+    }
+  }
+  ////4----sau khi có được câu sql thì phải thực hiện truy vấn 
   public function __construct()
   {
     $this->connect = $this->connect();

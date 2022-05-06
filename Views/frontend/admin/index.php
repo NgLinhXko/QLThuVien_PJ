@@ -70,7 +70,7 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Hủy</button>
 
-                                        <button type="button" name_form="add_cate" class="btn btn-success btn_add_suces" style="width: 100px;">Thêm</button>
+                                        <button type="button" name_form="add_cate" class="btn btn-success btn_add_suces" id="update" style="width: 100px;">Thêm</button>
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +100,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <p id="up-message" class="text-success"></p>
-                                        <form class="mt-4" action="" method="POST">
+                                        <form class="mt-4" action="" enctype="multipart/form-data" method="POST" id="form_update_cate">
                                             <input type="hidden" class="form-control" id="txtIdTL" name="txtIdTL" value="">
                                             <div class="col-mb-3">
                                                 <label for="txtTL" class="col-sm-2 col-form-label">Tên Thể Loại</label>
@@ -108,17 +108,18 @@
                                                     <input type="text" class="form-control" id="txtTL" name="txtTL" value="">
                                                 </div>
                                             </div>
+                                            <input type="text" hidden name="table" value="categories">
 
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-success" style="width: 100px;" id="btn_update">Update</button>
+                                        <button type="button" class="btn btn-success btn-updatee" style="width: 100px;" id="btn_update">Update</button>
                                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Close</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- Modal -->
+                        <!-- Modal add book-->
                         <div class="modal fade" id="modalAddSP" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -213,15 +214,14 @@
                 $("#wrapper").toggleClass("toggled");
             });
         </script>
-        <script src="http://localhost:88/QLThuVien_PJ/Public/js/admin/index.js"></script>
+        <script src="http://localhost:8080/QLThuVien_PJ/Public/js/admin/index.js"></script>
 
-        <!-- <script src="http://localhost:88/QLThuVien_PJ/Public/js/admin/category.js"></script> -->
+        <!-- <script src="http://localhost:8080/QLThuVien_PJ/Public/js/admin/category.js"></script> -->
         <script>
             $(document).ready(function() {
-                url = "http://localhost:88/QLThuVien_Pj/index.php?controller=admin&action="
+                url = "http://localhost:8080/QLThuVien_Pj/index.php?controller=admin&action="
                 let action = "",
                     table = "";
-
                 // click quản lý
                 $('.quanly').click(function() {
                     table = $(this).attr("table");
@@ -241,26 +241,83 @@
                         add(form)
                     }
                     // alert(name_form)
-
-
                 })
                 $(document).on("click", '.btn_delete', function() {
+                    $('#delete_cate').modal('show')
                     id = $(this).attr("id_get")
-                    alert(table + id)
+                    $('#btn_delete_cate').click(function(dt) {
+                        delete_dt(table, id)
+
+                    })
                 })
+                //loadupdate
+                $(document).on("click", '.btn_update1', function() {
+                    $('#update_cate').modal('show')
+                    id = $(this).attr("id_get")
+                    load_update(table, id)
+                })
+                //function loadupdate
+                function load_update(table, id) {
+                    $.ajax({
+                        url: url + "load_update",
+                        method: 'post',
+                        data: {
+                            table: table,
+                            id: id,
+                        },
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#txtIdTL').val(data[0]['id_cate']);
+                            $('#txtTL').val(data[0]['name_cate']);
+
+                        },
+                    })
+                }
+                //update
+
+                $('#btn_update').click(function(dt) {
+                    id = $('#txtIdTL').val();
+                    name = $('#txtTL').val();
+                    if (table == "categories") {
+                        form = new FormData(form_update_cate)
+                        update(form, table, id)
+                    }
+                    if (table == "books") {
+                        form = new FormData(form_add_book)
+                        update(form, table, id)
+                    }
+                })
+
+                function update(form, table, id) {
+                    $.ajax({
+                        url: url + "update_all",
+                        method: "POST",
+                        data: {
+                            form: form,
+                            table: table,
+                            id: id
+                        },
+                        mimeType: "multipart/form-data",
+                        processData: false,
+                        contentType: false,
+                        success: function(dt) {
+                            console.log(dt);
+                            $('#message').html(dt)
+                        }
+                    })
+                }
                 //delete data 
-                function delete_dt(table,id) {
+                function delete_dt(table, id) {
                     $.ajax({
                         url: url + "delete_all",
                         method: "POST",
                         data: {
-                            table : table,
-                            id_cate: id,
-                            id_b :id
+                            table: table,
+                            id: id,
                         },
                         success: function(dt) {
                             load_data(action, table)
-                            // console.log(dt);
+                            console.log(dt);
                             $('#message').html(dt)
                         }
                     })
@@ -292,8 +349,9 @@
                         success: function(dt) {
                             $('#data').html(dt)
                         }
-
                     })
+
+
                 }
             })
         </script>
