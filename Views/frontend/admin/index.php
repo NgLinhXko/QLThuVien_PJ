@@ -118,6 +118,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <!-- Modal add book-->
                         <div class="modal fade" id="modalAddSP" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -218,7 +219,73 @@
                                 </div>
                             </div>
                         </div>
+                        <!--Add Modal user -->
+                        <div class="modal" id="modalAddUS">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="text-info">Thêm Người Dùng</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p id="message" class="text-success"></p>
+                                        <form class="mt-4" action="" method="POST" id="form_add_user">
+                                            <div class="col-mb-3">
+                                                <label for="name_u" class="col-sm-3 col-form-label">Tên Người Dùng</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="name_u" name="name_u">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Ngày Sinh</label>
+                                                <input type="datetime-local" class="form-control" id="date_u" name="date_u" aria-describedby="emailHelp">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Địa Chỉ</label>
+                                                <input require type="text" class="form-control" id="address_u" name="address_u" aria-describedby="emailHelp">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Số Điện Thoại</label>
+                                                <input require type="text" class="form-control" id="phone_u" name="phone_u" aria-describedby="emailHelp">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Email</label>
+                                                <input require type="text" class="form-control" id="email_u" name="email_u" aria-describedby="emailHelp">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Số Dư</label>
+                                                <input require type="text" class="form-control" id="money" name="money" aria-describedby="emailHelp">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Ảnh</label>
+                                                <input require type="file" class="form-control" name="avatar_u" aria-describedby="emailHelp">
+                                            </div>
+                                            <input type="text" hidden name="table" value="users">
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Hủy</button>
 
+                                        <button type="button" name_form="add_users" class="btn btn-success btn_add_suces" id="update" style="width: 100px;">Thêm</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Delete Modal-->
+                        <div class="modal" id="delete_user">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="text-success">Xóa Người Dùng</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p id="delete-message1" class="text-danger"></p>
+                                        <p> Bạn có chắc chắn muốn xóa người dùng này không ?</p>
+                                        <button type="button" class="btn btn-success" style="width: 100px;" id="btn_delete_user">Delete</button>
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_save2" style="width: 100px;">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -255,6 +322,10 @@
                         form = new FormData(form_add_book)
                         add(form)
                     }
+                    if (table == "users") {
+                        form = new FormData(form_add_user)
+                        add(form)
+                    }
                     // alert(name_form)
                 })
                 $(document).on("click", '.btn_delete', function() {
@@ -269,6 +340,13 @@
                         $('#delete_book').modal('show')
                         id = $(this).attr("id_get")
                         $('#btn_delete_book').click(function(dt) {
+                            delete_dt(table, id)
+                        })
+                    }
+                    if (table == "users") {
+                        $('#delete_user').modal('show')
+                        id = $(this).attr("id_get")
+                        $('#btn_delete_user').click(function(dt) {
                             delete_dt(table, id)
                         })
                     }

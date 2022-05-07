@@ -104,7 +104,7 @@ if ($check_act == "users") {
 ?>
     <div class="container main-content">
         <div class="col-4" style="margin-top: 20px;">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAddSP">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAddUS">
                 Thêm Người Dùng
             </button>
         </div>
@@ -132,7 +132,7 @@ if ($check_act == "users") {
                     <tr>
                         <th scope="row"><?= $i ?></th>
                         <td>
-                            <img width="100px" style="float: left;" src=<?= $user['avatar_u'] ?> class="img-fluid" alt="...">
+                            <img width="100px" style="float: left;" src="./public/images/<?= $user['avatar_u'] ?>" class="img-fluid" alt="...">
                             <?= $user['name_u']  ?>
                         </td>
 

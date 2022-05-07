@@ -34,16 +34,30 @@ class  AdminController extends BaseController
     public function add_all()
     {
         $data_get = $_POST;
-        if (isset($_FILES['img_b']['name'])) {
-            $anhchinh = $_FILES['img_b']['name']; //tên file ảnh
-            $tempname = $_FILES["img_b"]["tmp_name"]; //ổ ảo
-            $folder = $_SERVER['DOCUMENT_ROOT'] . "/QLThuVien_PJ/public/images/" . $anhchinh; //thư mục chuyển ảnh vào
-            move_uploaded_file($tempname, $folder); //chuyển file vào ổ(tên ổ,thư mục chuyển)
-            array_pop($data_get); //xóa phần tử cuối cùng của mảng
-            $data_get['img_b'] = $anhchinh;
-            $data_get['table'] = "books";
+        $table1 = $_POST['table'];
+        if ($table1 == "books") {
+            if (isset($_FILES['img_b']['name'])) {
+                $anhchinh = $_FILES['img_b']['name']; //tên file ảnh
+                $tempname = $_FILES["img_b"]["tmp_name"]; //ổ ảo
+                $folder = $_SERVER['DOCUMENT_ROOT'] . "/QLThuVien_PJ/public/images/" . $anhchinh; //thư mục chuyển ảnh vào
+                move_uploaded_file($tempname, $folder); //chuyển file vào ổ(tên ổ,thư mục chuyển)
+                array_pop($data_get); //xóa phần tử cuối cùng của mảng
+                $data_get['img_b'] = $anhchinh;
+                $data_get['table'] = "books";
+            }
         }
-        // print_r($data_get);
+        if ($table1 == "users") {
+            print_r("ok");
+            if (isset($_FILES['avatar_u']['name'])) {
+                $anhchinh = $_FILES['avatar_u']['name']; //tên file ảnh
+                $tempname = $_FILES["avatar_u"]["tmp_name"]; //ổ ảo
+                $folder = $_SERVER['DOCUMENT_ROOT'] . "/QLThuVien_PJ/public/images/" . $anhchinh; //thư mục chuyển ảnh vào
+                move_uploaded_file($tempname, $folder); //chuyển file vào ổ(tên ổ,thư mục chuyển)
+                array_pop($data_get); //xóa phần tử cuối cùng của mảng
+                $data_get['avatar_u'] = $anhchinh;
+                $data_get['table'] = "users";
+            }
+        }
         $table = array_pop($data_get); //xóa tên bảng
         $data = $this->AdminModel->add_data($table, $data_get);
         echo $data;
@@ -68,6 +82,9 @@ class  AdminController extends BaseController
         }
         if ($table == "books") {
             $data['id_b'] = $_POST['id'];
+        }
+        if ($table == "users") {
+            $data['id_u'] = $_POST['id'];
         }
         $datas = $this->AdminModel->deleteByID($table, $data);
         print_r($datas);
