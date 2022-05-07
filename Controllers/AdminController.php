@@ -22,9 +22,11 @@ class  AdminController extends BaseController
     {
         $table = $_POST['table'];
         $datas = $this->AdminModel->getALL($table);
+        // $count = $this->AdminModel->(,...)
         return $this->view("frontend.admin.table_data", [
             "check_act" =>  $table,
             "datas" => $datas
+
         ]);
     }
 
@@ -51,18 +53,11 @@ class  AdminController extends BaseController
     {
         $data_get = $_POST;
         $table = array_pop($data_get); //xóa tên bảng
-        $data = [];
-        if ($table == "categories") {
-            $data['id_cate'] = $_POST['id'];
-        }
-        if ($table == "book") {
-            $data['id_b'] = $_POST['id'];
-        }
-        $data = $this->AdminModel->update_data($table, $data, $data_get);
-        print_r($data);
+        $id = reset($data_get);
+        $ar = [];
+        $ar[array_keys($data_get)[0]] = $id;
+        $data = $this->AdminModel->update_data($table, $ar, $data_get);
     }
-
-
     public function delete_all()
     {
         $data = [];

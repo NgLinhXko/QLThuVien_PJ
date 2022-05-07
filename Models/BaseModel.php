@@ -92,7 +92,7 @@ class BaseModel extends Database
     }
   }
   //sua data book
-  public function update($table, $data = [], $id)
+  public function update($table, $id, $data = [])
   {
     foreach ($id as $key => $val) {
       $where = $key . '=' . "'$val'";

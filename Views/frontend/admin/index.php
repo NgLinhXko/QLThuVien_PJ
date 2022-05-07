@@ -42,7 +42,7 @@
                             <br>
                             <button type="button" class="btn btn-success quanly" table="books" id="qlSach">Quản lý Sách</button>
                             <button type="button" style="margin-left: 20%" table="categories" class="btn btn-success quanly" id="qlTheLoai">Quản lý thể loại</button>
-
+                            <button type="button" style="margin-left: 20%" table="users" class="btn btn-success quanly" id="qlUser">Quản lý Users</button>
                             <div id="data">
 
                             </div>
@@ -101,11 +101,11 @@
                                     <div class="modal-body">
                                         <p id="up-message" class="text-success"></p>
                                         <form class="mt-4" action="" enctype="multipart/form-data" method="POST" id="form_update_cate">
-                                            <input type="hidden" class="form-control" id="txtIdTL" name="txtIdTL" value="">
+                                            <input type="hidden" class="form-control" id="txtIdTL" name="id_cate" value="">
                                             <div class="col-mb-3">
                                                 <label for="txtTL" class="col-sm-2 col-form-label">Tên Thể Loại</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="txtTL" name="txtTL" value="">
+                                                    <input type="text" class="form-control" id="txtTL" name="name_cate" value="">
                                                 </div>
                                             </div>
                                             <input type="text" hidden name="table" value="categories">
@@ -203,6 +203,22 @@
                                 </div>
                             </div>
                         </div>
+                        <!--Delete Modal-->
+                        <div class="modal" id="delete_book">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="text-success">Xóa sách</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p id="delete-message1" class="text-danger"></p>
+                                        <p> Bạn có chắc chắn muốn xóa sách này không ?</p>
+                                        <button type="button" class="btn btn-success" style="width: 100px;" id="btn_delete_book">Delete</button>
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_save2" style="width: 100px;">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -243,12 +259,21 @@
                     // alert(name_form)
                 })
                 $(document).on("click", '.btn_delete', function() {
-                    $('#delete_cate').modal('show')
-                    id = $(this).attr("id_get")
-                    $('#btn_delete_cate').click(function(dt) {
-                        delete_dt(table, id)
+                    if (table == "categories") {
+                        $('#delete_cate').modal('show')
+                        id = $(this).attr("id_get")
+                        $('#btn_delete_cate').click(function(dt) {
+                            delete_dt(table, id)
+                        })
+                    }
+                    if (table == "books") {
+                        $('#delete_book').modal('show')
+                        id = $(this).attr("id_get")
+                        $('#btn_delete_book').click(function(dt) {
+                            delete_dt(table, id)
+                        })
+                    }
 
-                    })
                 })
                 //loadupdate
                 $(document).on("click", '.btn_update1', function() {
@@ -274,29 +299,23 @@
                     })
                 }
                 //update
-
                 $('#btn_update').click(function(dt) {
-                    id = $('#txtIdTL').val();
-                    name = $('#txtTL').val();
                     if (table == "categories") {
                         form = new FormData(form_update_cate)
-                        update(form, table, id)
+                        update(form)
                     }
                     if (table == "books") {
                         form = new FormData(form_add_book)
-                        update(form, table, id)
+                        update(form)
                     }
                 })
 
-                function update(form, table, id) {
+                function update(form) {
                     $.ajax({
                         url: url + "update_all",
                         method: "POST",
-                        data: {
-                            form: form,
-                            table: table,
-                            id: id
-                        },
+                        data: form,
+
                         mimeType: "multipart/form-data",
                         processData: false,
                         contentType: false,
