@@ -161,7 +161,7 @@
                                             <div class="col-6" style="float: left;">
                                                 <div class="mb-3">
                                                     <label for="exampleInputEmail1" class="form-label">Năm xuất bản</label>
-                                                    <input require type="number" id="year_b" class="form-control" name="year_b" aria-describedby="emailHelp">
+                                                    <input type="datetime-local" id="year_b" class="form-control" name="year_b" aria-describedby="emailHelp">
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="exampleInputEmail1" class="form-label">Số trang</label>
