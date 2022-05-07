@@ -46,7 +46,6 @@
                             <div id="data">
 
                             </div>
-
                         </div>
                         <!--Add Modal -->
                         <div class="modal" id="add-cate">

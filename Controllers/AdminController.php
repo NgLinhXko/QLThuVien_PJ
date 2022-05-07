@@ -63,9 +63,10 @@ class  AdminController extends BaseController
         $data = [];
         $table = $_POST['table'];
         if ($table == "categories") {
+            print_r($_POST['id']);
             $data['id_cate'] = $_POST['id'];
         }
-        if ($table == "book") {
+        if ($table == "books") {
             $data['id_b'] = $_POST['id'];
         }
         $datas = $this->AdminModel->deleteByID($table, $data);

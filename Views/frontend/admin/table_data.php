@@ -86,7 +86,7 @@ if ($check_act == "books") {
 
                         <td>
                             <button id_get="<?= $book['id_b'] ?>" id="btn_detail" class="btn btn-warning btn_detail">Chi Tiết</button>
-                            <button id_get="<?= $book['id_b'] ?>" id="btn_update1" class="btn btn-secondary">Sửa</button>
+                            <button id_get="<?= $book['id_b'] ?>" id="btn_update1" class="btn btn-secondary btn_update1">Sửa</button>
                             <button id_get="<?= $book['id_b'] ?>" id="btn_delete" class="btn btn-danger btn_delete">Xóa</button>
                         </td>
                     </tr>
@@ -135,6 +135,7 @@ if ($check_act == "users") {
                             <img width="100px" style="float: left;" src=<?= $user['avatar_u'] ?> class="img-fluid" alt="...">
                             <?= $user['name_u']  ?>
                         </td>
+
                         <td><?= $user['date_u']  ?></td>
                         <td><?= $user['address_u']  ?></td>
                         <td><?= $user['phone_u']  ?></td>
