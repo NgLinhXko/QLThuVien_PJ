@@ -3,7 +3,17 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content ">
             <div style="margin: 40px;">
+          
                 <h4 style="text-align: center;">Đăng nhập</h4>
+                <h5 id="check_resign" >
+                <?php
+                    if(isset($_SESSION['check_resign'])){
+                        echo $_SESSION['check_resign'];
+                        session_destroy($_SESSION['check_resign']);
+                    }
+                ?>
+                </h5>
+               
                 <form method="POST" action="http://localhost:88/QlBanHang/index.php?controller=Login&action=checkLogin" id="formLogin">
                     <span id="msgThongBaoLG"></span>
                     <div class="mb-3">
@@ -36,23 +46,19 @@
         <div class="modal-content ">
             <div style="margin: 40px;">
                 <h4 style="text-align: center;">Đăng Ký</h4>
-                <form method="POST" id="formResign">
+                <form method="POST" id="formResign" >
                     <!-- 2 column grid layout with text inputs for the first and last names -->
                     <div class="mb-1">
                         <label for="exampleInputEmail1" class="form-label">Họ Tên</label>
-                        <input required type="text" name="name_u" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    </div>
-                    <div class="mb-1">
-                        <label for="exampleInputEmail1" class="form-label">Ngày sinh</label>
-                        <input required type="date" name="date_u"  id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input required type="text" name="name_u" class="form-control" id="name_u" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-1">
                         <label for="exampleInputEmail1" class="form-label">Địa chỉ</label>
-                        <input required type="text" name="address_u" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input required type="text" name="address_u" class="form-control" id="address_u" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Số Điện Thoại</label>
-                        <input required type="text" name="phone_u" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input required type="text" name="phone_u" class="form-control" id="phone_u" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-1">
                         <label for="exampleInputEmail1" class="form-label">Email</label>
@@ -62,12 +68,17 @@
                     </div>
                     
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <label for="exampleInputPassword1" class="form-label">Mật khẩu</label>
                         <span style="font-size: 12px;" id="msgThongBao_pass"></span>
                         <input required type="password" name="pass_u" class="form-control" id="pass_u">
                     </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Xác nhận Mật khẩu</label>
+                        <span style="font-size: 12px;" id="msgThongBao_pass_again"></span>
+                        <input required type="password" name="pass_u_again" class="form-control" id="pass_u_again">
+                    </div>
                     
-                    <button type="submit" id="btn_dangky" disabled  class="btn btn-primary">Đăng ký</button>
+                    <button type="button" id="btn_dangky" disabled   class="btn btn-primary">Đăng ký</button>
                 </form>
             </div>
         </div>

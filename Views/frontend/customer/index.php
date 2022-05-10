@@ -1810,14 +1810,47 @@
 			url = "http://localhost:88/QLthuVien_PJ/index.php?"
 			check_email = false;
 			check_pass = false;
+			check_pass_again = false;
+			passwd = 1;
+			passwd_again = 2;
 			$('#btn_login').click(function() {
-				// jQuery.noConflict();
 				$('#modalLogin').modal('show')
 			})
 			$('#Register').click(function() {
 				$('#modalLogin').modal('hide')
 				$('#modalResign').modal('show')
 			})
+			$('#btn_dangky').click(function() {
+				name_u = $('#name_u').val();
+				address_u = $('#address_u').val();
+				phone_u = $('#phone_u').val();
+				email_u = $('#email_u').val();
+				pass_u = $('#pass_u').val();
+				pass_u_again = $('#pass_u_again').val();
+				if (name_u != '' && address_u != "" && phone_u != "" && email_u != "" && pass_u != "" && pass_u_again != "") {
+					if (check_email == true && check_pass == true && check_pass_again == true) {
+						form = new FormData(formResign)
+						// alert('123')
+						$.ajax({
+							url: url + "controller=Login&action=addUser",
+							method: "POST",
+							data: form,
+							mimeType: "multipart/form-data",
+							processData: false,
+							contentType: false,
+							success: function(dt) {
+								console.log(dt)
+								//console.log('12331241')
+							}
+						})
+					}
+
+				} else {
+					alert("Vui lòng nhập đầy đủ thông tin !")
+				}
+
+			})
+			//check email
 			$('#email_u').blur(function() {
 				email = $(this).val()
 				if (email != "") {
@@ -1828,10 +1861,12 @@
 							email_u: email
 						},
 						success: function(dt) {
+							console.log(dt)
 							if (dt == 0) {
 								$('#msgThongBao').css("color", "green")
 								$('#msgThongBao').html("Tài khoản sẵn sàng")
 								check_email = true
+								disb_dky()
 							} else {
 								$('#msgThongBao').css("color", "red")
 								$('#msgThongBao').html("Tài khoản đã tồn tại!")
@@ -1852,33 +1887,34 @@
 						$('#msgThongBao_pass').html("Mật khẩu dài ít nhất 8 ký tự , có chữ hoa , chữ thường ,số và ký tự đặc biệt!")
 						check_pass = false
 					} else {
-						check_pass = true
+						$('#msgThongBao_pass').html("")
+						check_pass = true;
+						disb_dky()
 					}
 				}
+			})
+			$('#pass_u_again').blur(function() {
+				passwd_again = $(this).val();
+				if (passwd == passwd_again) {
+					$('#msgThongBao_pass_again').html("");
+					check_pass_again = true
+					disb_dky()
+				} else {
+					check_pass_again = false;
+					$('#msgThongBao_pass_again').css("color", "red")
+					$('#msgThongBao_pass_again').html("Mật khẩu xác nhận không chính xác!")
+				}
+			})
 
-			})
-			$(window).click(function() {
-				if (check_email == true && check_pass == true) {
-					$('#btn_dangky').prop("disabled", false)
-				}
-			})
-			$('#btn_dangky').click(function() {
-				form = new FormData(formResign)
-				$.ajax({
-					url: url + "controller=login&action=addUser",
-					method: "POST",
-					data: form,
-					mimeType: "multipart/form-data",
-					processData: false,
-					contentType: false,
-					success: function(dt) {
-						// msg(dt)
-						// load(types)
-						// $('#modalAddSP').modal('hide')
-						console.log(dt)
+			function disb_dky() {
+					if (check_email == true && check_pass == true && check_pass_again == true) {
+						$('#btn_dangky').prop("disabled",false)
+					}else{
+						$('#btn_dangky').prop("disabled",true)
 					}
-				})
-			})
+
+				
+			}
 		})
 	</script>
 
