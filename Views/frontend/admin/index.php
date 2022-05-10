@@ -42,11 +42,10 @@
                             <br>
                             <button type="button" class="btn btn-success quanly" table="books" id="qlSach">Quản lý Sách</button>
                             <button type="button" style="margin-left: 20%" table="categories" class="btn btn-success quanly" id="qlTheLoai">Quản lý thể loại</button>
-
+                            <button type="button" style="margin-left: 20%" table="users" class="btn btn-success quanly" id="qlUser">Quản lý Users</button>
                             <div id="data">
 
                             </div>
-
                         </div>
                         <!--Add Modal -->
                         <div class="modal" id="add-cate">
@@ -70,7 +69,7 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Hủy</button>
 
-                                        <button type="button" name_form="add_cate" class="btn btn-success btn_add_suces" style="width: 100px;">Thêm</button>
+                                        <button type="button" name_form="add_cate" class="btn btn-success btn_add_suces" id="update" style="width: 100px;">Thêm</button>
                                     </div>
                                 </div>
                             </div>
@@ -100,25 +99,27 @@
                                     </div>
                                     <div class="modal-body">
                                         <p id="up-message" class="text-success"></p>
-                                        <form class="mt-4" action="" method="POST">
-                                            <input type="hidden" class="form-control" id="txtIdTL" name="txtIdTL" value="">
+                                        <form class="mt-4" action="" enctype="multipart/form-data" method="POST" id="form_update_cate">
+                                            <input type="hidden" class="form-control" id="txtIdTL" name="id_cate" value="">
                                             <div class="col-mb-3">
                                                 <label for="txtTL" class="col-sm-2 col-form-label">Tên Thể Loại</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="txtTL" name="txtTL" value="">
+                                                    <input type="text" class="form-control" id="txtTL" name="name_cate" value="">
                                                 </div>
                                             </div>
+                                            <input type="text" hidden name="table" value="categories">
 
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-success" style="width: 100px;" id="btn_update">Update</button>
+                                        <button type="button" class="btn btn-success btn-updatee" style="width: 100px;" id="btn_update">Update</button>
                                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Close</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- Modal -->
+
+                        <!-- Modal add book-->
                         <div class="modal fade" id="modalAddSP" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -161,7 +162,7 @@
                                             <div class="col-6" style="float: left;">
                                                 <div class="mb-3">
                                                     <label for="exampleInputEmail1" class="form-label">Năm xuất bản</label>
-                                                    <input require type="number" id="year_b" class="form-control" name="year_b" aria-describedby="emailHelp">
+                                                    <input type="datetime-local" id="year_b" class="form-control" name="year_b" aria-describedby="emailHelp">
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="exampleInputEmail1" class="form-label">Số trang</label>
@@ -202,7 +203,89 @@
                                 </div>
                             </div>
                         </div>
+                        <!--Delete Modal-->
+                        <div class="modal" id="delete_book">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="text-success">Xóa sách</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p id="delete-message1" class="text-danger"></p>
+                                        <p> Bạn có chắc chắn muốn xóa sách này không ?</p>
+                                        <button type="button" class="btn btn-success" style="width: 100px;" id="btn_delete_book">Delete</button>
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_save2" style="width: 100px;">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Add Modal user -->
+                        <div class="modal" id="modalAddUS">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="text-info">Thêm Người Dùng</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p id="message" class="text-success"></p>
+                                        <form class="mt-4" action="" method="POST" id="form_add_user">
+                                            <div class="col-mb-3">
+                                                <label for="name_u" class="col-sm-3 col-form-label">Tên Người Dùng</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="name_u" name="name_u">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Ngày Sinh</label>
+                                                <input type="datetime-local" class="form-control" id="date_u" name="date_u" aria-describedby="emailHelp">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Địa Chỉ</label>
+                                                <input require type="text" class="form-control" id="address_u" name="address_u" aria-describedby="emailHelp">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Số Điện Thoại</label>
+                                                <input require type="text" class="form-control" id="phone_u" name="phone_u" aria-describedby="emailHelp">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Email</label>
+                                                <input require type="text" class="form-control" id="email_u" name="email_u" aria-describedby="emailHelp">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Số Dư</label>
+                                                <input require type="text" class="form-control" id="money" name="money" aria-describedby="emailHelp">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Ảnh</label>
+                                                <input require type="file" class="form-control" name="avatar_u" aria-describedby="emailHelp">
+                                            </div>
+                                            <input type="text" hidden name="table" value="users">
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Hủy</button>
 
+                                        <button type="button" name_form="add_users" class="btn btn-success btn_add_suces" id="update" style="width: 100px;">Thêm</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Delete Modal-->
+                        <div class="modal" id="delete_user">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="text-success">Xóa Người Dùng</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p id="delete-message1" class="text-danger"></p>
+                                        <p> Bạn có chắc chắn muốn xóa người dùng này không ?</p>
+                                        <button type="button" class="btn btn-success" style="width: 100px;" id="btn_delete_user">Delete</button>
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_save2" style="width: 100px;">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -213,15 +296,14 @@
                 $("#wrapper").toggleClass("toggled");
             });
         </script>
-        <script src="http://localhost:88/QLThuVien_PJ/Public/js/admin/index.js"></script>
+        <script src="http://localhost:8080/QLThuVien_PJ/Public/js/admin/index.js"></script>
 
-        <!-- <script src="http://localhost:88/QLThuVien_PJ/Public/js/admin/category.js"></script> -->
+        <!-- <script src="http://localhost:8080/QLThuVien_PJ/Public/js/admin/category.js"></script> -->
         <script>
             $(document).ready(function() {
-                url = "http://localhost:88/QLThuVien_Pj/index.php?controller=admin&action="
+                url = "http://localhost:8080/QLThuVien_Pj/index.php?controller=admin&action="
                 let action = "",
                     table = "";
-
                 // click quản lý
                 $('.quanly').click(function() {
                     table = $(this).attr("table");
@@ -240,28 +322,98 @@
                         form = new FormData(form_add_book)
                         add(form)
                     }
+                    if (table == "users") {
+                        form = new FormData(form_add_user)
+                        add(form)
+                    }
                     // alert(name_form)
-
-
                 })
                 $(document).on("click", '.btn_delete', function() {
-                    id = $(this).attr("id_get")
-                    // alert(table + id)
-                    delete_dt(table,id)
+                    if (table == "categories") {
+                        $('#delete_cate').modal('show')
+                        id = $(this).attr("id_get")
+                        $('#btn_delete_cate').click(function(dt) {
+                            delete_dt(table, id)
+                        })
+                    }
+                    if (table == "books") {
+                        $('#delete_book').modal('show')
+                        id = $(this).attr("id_get")
+                        $('#btn_delete_book').click(function(dt) {
+                            delete_dt(table, id)
+                        })
+                    }
+                    if (table == "users") {
+                        $('#delete_user').modal('show')
+                        id = $(this).attr("id_get")
+                        $('#btn_delete_user').click(function(dt) {
+                            delete_dt(table, id)
+                        })
+                    }
+
                 })
+                //loadupdate
+                $(document).on("click", '.btn_update1', function() {
+                    $('#update_cate').modal('show')
+                    id = $(this).attr("id_get")
+                    load_update(table, id)
+                })
+                //function loadupdate
+                function load_update(table, id) {
+                    $.ajax({
+                        url: url + "load_update",
+                        method: 'post',
+                        data: {
+                            table: table,
+                            id: id,
+                        },
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#txtIdTL').val(data[0]['id_cate']);
+                            $('#txtTL').val(data[0]['name_cate']);
+
+                        },
+                    })
+                }
+                //update
+                $('#btn_update').click(function(dt) {
+                    if (table == "categories") {
+                        form = new FormData(form_update_cate)
+                        update(form)
+                    }
+                    if (table == "books") {
+                        form = new FormData(form_add_book)
+                        update(form)
+                    }
+                })
+
+                function update(form) {
+                    $.ajax({
+                        url: url + "update_all",
+                        method: "POST",
+                        data: form,
+
+                        mimeType: "multipart/form-data",
+                        processData: false,
+                        contentType: false,
+                        success: function(dt) {
+                            console.log(dt);
+                            $('#message').html(dt)
+                        }
+                    })
+                }
                 //delete data 
-                function delete_dt(table,id) {
+                function delete_dt(table, id) {
                     $.ajax({
                         url: url + "delete_all",
                         method: "POST",
                         data: {
-                            table : table,
+                            table: table,
                             id: id,
-                          
                         },
                         success: function(dt) {
                             load_data(action, table)
-                             console.log(dt);
+                            console.log(dt);
                             $('#message').html(dt)
                         }
                     })
@@ -293,8 +445,9 @@
                         success: function(dt) {
                             $('#data').html(dt)
                         }
-
                     })
+
+
                 }
             })
         </script>
