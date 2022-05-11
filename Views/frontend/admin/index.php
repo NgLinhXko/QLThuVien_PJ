@@ -203,7 +203,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!--Delete Modal-->
+                        <!--Delete Modal book-->
                         <div class="modal" id="delete_book">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -219,6 +219,88 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Update book modal -->
+                        <div class="modal" id="update_book">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="text-info">Cập Nhật Sách</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p id="up-message" class="text-success"></p>
+                                        <form class="mt-4" action="" enctype="multipart/form-data" method="POST" id="form_update_book">
+                                            <input type="hidden" class="form-control" id="id_b1" name="id_b" value="">
+                                            <div class="modal-body">
+                                                <div class="col-6" style="float: left;">
+                                                    <div class="mb-3">
+                                                        <label for="exampleInputEmail1" class="form-label">Tên Sách</label>
+                                                        <input require type="text" class="form-control" id="name_b1" name="name_b" aria-describedby="emailHelp">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="exampleInputEmail1" class="form-label">Thể Loại</label>
+                                                        <br>
+                                                        <select name="id_cate" id="id_cate">
+                                                            <?php
+                                                            foreach ($categories as $cate) {
+                                                            ?>
+                                                                <option value="<?= $cate['id_cate'] ?>"><?= $cate['name_cate'] ?></option>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="exampleInputEmail1" class="form-label">Giá </label>
+                                                        <input require type="number" id="price_b1" class="form-control" name="price_b" aria-describedby="emailHelp">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="exampleInputEmail1" class="form-label">Nhà xuất bản </label>
+                                                        <input require type="text" id="nxb_b1" class="form-control" name="nxb_b" aria-describedby="emailHelp">
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-6" style="float: left;">
+                                                    <!-- <div class="mb-3">
+                                                        <label for="exampleInputEmail1" class="form-label">Năm xuất bản</label>
+                                                        <input type="datetime-local" id="year_b1" class="form-control" name="year_b" aria-describedby="emailHelp">
+                                                    </div> -->
+                                                    <div class="mb-3">
+                                                        <label for="exampleInputEmail1" class="form-label">Số trang</label>
+                                                        <input require type="number" id="page_b1" class="form-control" name="page_b" aria-describedby="emailHelp">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="exampleInputEmail1" class="form-label">Số lượng còn</label>
+                                                        <input require type="number" id="quantity_b1" class="form-control" name="quantity_b" aria-describedby="emailHelp">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <div class="form-floating">
+                                                            <textarea id="des_b1" require class="form-control" placeholder="Leave a comment here" name="des_b" style="height: 100px"></textarea>
+                                                            <label for="floatingTextarea2">Mô tả</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <br>
+                                                    <div class="mb-3">
+                                                        <label for="exampleInputEmail1" class="form-label">Ảnh</label>
+                                                        <input id="img_b1" require type="file" class="form-control" name="img_b" aria-describedby="emailHelp">
+                                                    </div>
+
+
+                                                </div>
+
+                                            </div>
+                                            <input type="text" hidden name="table" value="books">
+
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-success btn-updatee" style="width: 100px;" id="btn_update">Update</button>
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!--Add Modal user -->
                         <div class="modal" id="modalAddUS">
                             <div class="modal-dialog">
@@ -286,6 +368,58 @@
                                 </div>
                             </div>
                         </div>
+                        <!--Update Modal user -->
+                        <div class="modal" id="update_user">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="text-info">Cập Nhật Người Dùng</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p id="message" class="text-success"></p>
+                                        <form class="mt-4" action="" method="POST" id="form_update_user">
+                                            <input type="hidden" class="form-control" id="id_u1" name="id_u" value="">
+                                            <div class="col-mb-3">
+                                                <label for="name_u" class="col-sm-3 col-form-label">Tên Người Dùng</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="name_u1" name="name_u">
+                                                </div>
+                                            </div>
+                                            <!-- <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Ngày Sinh</label>
+                                                <input type="datetime-local" class="form-control" id="date_u1" name="date_u" aria-describedby="emailHelp">
+                                            </div> -->
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Địa Chỉ</label>
+                                                <input require type="text" class="form-control" id="address_u1" name="address_u" aria-describedby="emailHelp">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Số Điện Thoại</label>
+                                                <input require type="text" class="form-control" id="phone_u1" name="phone_u" aria-describedby="emailHelp">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Email</label>
+                                                <input require type="text" class="form-control" id="email_u1" name="email_u" aria-describedby="emailHelp">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Số Dư</label>
+                                                <input require type="text" class="form-control" id="money1" name="money" aria-describedby="emailHelp">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Ảnh</label>
+                                                <input require type="file" id="avatar_u1" class="form-control" name="avatar_u" aria-describedby="emailHelp">
+                                            </div>
+                                            <input type="text" hidden name="table" value="users">
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Hủy</button>
+
+                                        <button type="button" name_form="add_users" class="btn btn-success btn-updatee" id="btn_update" style="width: 100px;">Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -310,10 +444,8 @@
                     action = "get_data";
                     load_data(action, table)
                 })
-
                 //click thêm thể loại , form hiện lân , nhấn save
                 $('.btn_add_suces').click(function(dt) {
-
                     if (table == "categories") {
                         form = new FormData(form_add_cate)
                         add(form)
@@ -329,6 +461,7 @@
                     // alert(name_form)
                 })
                 $(document).on("click", '.btn_delete', function() {
+                    action = "get_data";
                     if (table == "categories") {
                         $('#delete_cate').modal('show')
                         id = $(this).attr("id_get")
@@ -350,13 +483,24 @@
                             delete_dt(table, id)
                         })
                     }
-
                 })
                 //loadupdate
                 $(document).on("click", '.btn_update1', function() {
-                    $('#update_cate').modal('show')
-                    id = $(this).attr("id_get")
-                    load_update(table, id)
+                    if (table == "categories") {
+                        $('#update_cate').modal('show')
+                        id = $(this).attr("id_get")
+                        load_update(table, id)
+                    }
+                    if (table == "books") {
+                        $('#update_book').modal('show')
+                        id = $(this).attr("id_get")
+                        load_update2(table, id)
+                    }
+                    if (table == "users") {
+                        $('#update_user').modal('show')
+                        id = $(this).attr("id_get")
+                        load_update3(table, id)
+                    }
                 })
                 //function loadupdate
                 function load_update(table, id) {
@@ -371,18 +515,66 @@
                         success: function(data) {
                             $('#txtIdTL').val(data[0]['id_cate']);
                             $('#txtTL').val(data[0]['name_cate']);
-
+                        },
+                    })
+                }
+                //function loadupdate book
+                function load_update2(table, id) {
+                    $.ajax({
+                        url: url + "load_update",
+                        method: 'post',
+                        data: {
+                            table: table,
+                            id: id,
+                        },
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#id_b1').val(data[0]['id_b']);
+                            $('#name_b1').val(data[0]['name_b']);
+                            $('#id_cate').val(data[0]['id_cate']);
+                            $('#price_b1').val(data[0]['price_b']);
+                            $('#nxb_b1').val(data[0]['nxb_b']);
+                            $('#page_b1').val(data[0]['page_b']);
+                            $('#quantity_b1').val(data[0]['quantity_b']);
+                            $('#des_b1').val(data[0]['des_b']);
+                        },
+                    })
+                }
+                //function loadupdate user
+                function load_update3(table, id) {
+                    $.ajax({
+                        url: url + "load_update",
+                        method: 'post',
+                        data: {
+                            table: table,
+                            id: id,
+                        },
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#id_u1').val(data[0]['id_u']);
+                            $('#name_u1').val(data[0]['name_u']);
+                            $('#address_u1').val(data[0]['address_u']);
+                            $('#phone_u1').val(data[0]['phone_u']);
+                            $('#email_u1').val(data[0]['email_u']);
+                            $('#money1').val(data[0]['money']);
+                            $('#avatar_u1').val(data[0]['avatar_u']);
                         },
                     })
                 }
                 //update
-                $('#btn_update').click(function(dt) {
+                $('.btn-updatee').click(function(dt) {
+
                     if (table == "categories") {
                         form = new FormData(form_update_cate)
                         update(form)
                     }
                     if (table == "books") {
-                        form = new FormData(form_add_book)
+
+                        form = new FormData(form_update_book)
+                        update(form)
+                    }
+                    if (table == "users") {
+                        form = new FormData(form_update_user)
                         update(form)
                     }
                 })
@@ -397,8 +589,45 @@
                         processData: false,
                         contentType: false,
                         success: function(dt) {
+                            load_data(action, table)
                             console.log(dt);
                             $('#message').html(dt)
+                        }
+                    })
+                }
+                //search
+                $(document).on("click", '.btn_search', function() {
+                    // alert("ok")
+                    if ($('#txt_search').val() != "") {
+                        if (table == "categories") {
+                            var txt_search = $('#txt_search').val();
+                            search_fc(table, txt_search)
+                        }
+                        if (table == "books") {
+                            var txt_search = $('#txt_search').val();
+                            search_fc(table, txt_search)
+                        }
+                        if (table == "users") {
+                            var txt_search = $('#txt_search').val();
+                            search_fc(table, txt_search)
+                        }
+
+                    } else {
+                        alert("Mời nhập thông tin!")
+                    }
+
+                })
+
+                function search_fc(table, data) {
+                    $.ajax({
+                        url: url + "search_all",
+                        method: "POST",
+                        data: {
+                            table: table,
+                            data: data,
+                        },
+                        success: function(dt) {
+                            $('#data').html(dt)
                         }
                     })
                 }

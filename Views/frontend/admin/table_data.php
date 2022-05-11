@@ -4,11 +4,22 @@
 
 if ($check_act == "categories") {
 ?>
+
     <div class="container main-content">
         <div class="col-4" style="margin-top: 20px;">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-cate">
                 Thêm Thể Loại
             </button>
+        </div>
+        <div class="col-4" style="margin-top: 20px;" style="float:right;">
+            <div class="mb-4">
+                <form action="" class="">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control form-control-lg" id="txt_search" placeholder="Search Here">
+                        <button type="button" class="input-group-text btn-success btn_search"><i class="bi bi-search me-4"></i> Search</button>
+                    </div>
+                </form>
+            </div>
         </div>
         <table class="table">
             <thead>
@@ -48,11 +59,26 @@ if ($check_act == "categories") {
 if ($check_act == "books") {
 ?>
     <div class="container main-content">
-        <div class="col-4" style="margin-top: 20px;">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAddSP">
-                Thêm sách
-            </button>
+        <div class="col-4" style="margin-top: 20px;" style="float: left;">
+            <div class="mb-4">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAddSP">
+                    Thêm sách
+                </button>
+
+            </div>
         </div>
+        <div class="col-4" style="margin-top: 20px;" style="float:right;">
+            <div class="mb-4">
+
+                <form action="" class="">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control form-control-lg" id="txt_search" placeholder="Search Here">
+                        <button type="button" class="input-group-text btn-success btn_search"><i class="bi bi-search me-4"></i> Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <br><br>
         <table class="table">
             <thead>
@@ -108,6 +134,17 @@ if ($check_act == "users") {
                 Thêm Người Dùng
             </button>
         </div>
+        <div class="col-4" style="margin-top: 20px;" style="float:right;">
+            <div class="mb-4">
+
+                <form action="" class="">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control form-control-lg" id="txt_search" placeholder="Search Here">
+                        <button type="button" class="input-group-text btn-success btn_search"><i class="bi bi-search me-4"></i> Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <br><br>
         <table class="table">
             <thead>
@@ -143,7 +180,7 @@ if ($check_act == "users") {
                         <td><?= $user['money']  ?></td>
                         <td>
                             <button id_get="<?= $user['id_u'] ?>" id="btn_detail" class="btn btn-warning btn_detail">Chi Tiết</button>
-                            <button id_get="<?= $user['id_u'] ?>" id="btn_update1" class="btn btn-secondary">Sửa</button>
+                            <button id_get="<?= $user['id_u'] ?>" id="btn_update1" class="btn btn-secondary btn_update1">Sửa</button>
                             <button id_get="<?= $user['id_u'] ?>" id="btn_delete" class="btn btn-danger btn_delete">Xóa</button>
                         </td>
                     </tr>
