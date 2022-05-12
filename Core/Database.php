@@ -4,7 +4,7 @@ class Database
     const HOST = 'localhost';
     const USERNAME = 'root';
     const PASSWORD = '' ;
-    const DB_NAME = 'qltv';
+    const DB_NAME = 'db_qltv';
     const URL = "http://localhost:88/QLthuVien_PJ/index.php?";
     // URL: =
     private  $connect;

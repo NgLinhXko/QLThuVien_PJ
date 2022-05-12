@@ -1905,16 +1905,44 @@
 					$('#msgThongBao_pass_again').html("Mật khẩu xác nhận không chính xác!")
 				}
 			})
+			$('#btnLogin').click(function() {
+				email = $('#email_login').val();
+				pass = $('#pass_login').val();
+				if (email != "" && pass != "") {
+					$.ajax({
+						url: url + "controller=login&action=login",
+						method: "POST",
+						data: {
+							email: email,
+							pass: pass
+						},
+						success: function(dt) {
+							if (dt == 0) {
+								$('#check_resign').html("Tài khoản mật khẩu không chính xác !")
+								$('#check_resign').css("color","red")
+							} else if (dt == 1) {
+								window.location.href = "http://localhost:88/QLThuVien_Pj/index.php?controller=admin"
+							} else {
+								window.location.href = "http://localhost:88/QLThuVien_Pj/index.php"
+							}
+						}
+					})
+				} else if (email == "" || pass == "") {
+					alert("Vui lòng nhập đầy đủ thông tin  !")
+				}
+			})
 
 			function disb_dky() {
-					if (check_email == true && check_pass == true && check_pass_again == true) {
-						$('#btn_dangky').prop("disabled",false)
-					}else{
-						$('#btn_dangky').prop("disabled",true)
-					}
+				if (check_email == true && check_pass == true && check_pass_again == true) {
+					$('#btn_dangky').prop("disabled", false)
+				} else {
+					$('#btn_dangky').prop("disabled", true)
+				}
 
-				
+
 			}
+
+
 		})
 	</script>
 

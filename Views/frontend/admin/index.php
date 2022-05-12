@@ -296,12 +296,12 @@
                 $("#wrapper").toggleClass("toggled");
             });
         </script>
-        <script src="http://localhost:8080/QLThuVien_PJ/Public/js/admin/index.js"></script>
+        <script src="http://localhost:88/QLThuVien_PJ/Public/js/admin/index.js"></script>
 
         <!-- <script src="http://localhost:8080/QLThuVien_PJ/Public/js/admin/category.js"></script> -->
         <script>
             $(document).ready(function() {
-                url = "http://localhost:8080/QLThuVien_Pj/index.php?controller=admin&action="
+                url = "http://localhost:88/QLThuVien_Pj/index.php?controller=admin&action="
                 let action = "",
                     table = "";
                 // click quản lý

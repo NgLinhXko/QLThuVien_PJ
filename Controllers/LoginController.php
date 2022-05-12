@@ -7,17 +7,15 @@ use PHPMailer\PHPMailer\Exception;
 require 'Email/Exception.php';
 require 'Email/PHPMailer.php';
 require 'Email/SMTP.php';
-// $_SESSION['code'] = "";
-// $_SESSION['data_addUser'] = [];
-
 class LoginController extends BaseController
 {
-    public $data1 = [], $code = "";
+    const USERS = "USERS";
     public function __construct()
     {
         $this->loadModel('LoginModel');
-        // khởi tạo đối tượng
         $this->LoginModel = new LoginModel;
+        $this->loadModel('AdminModel');
+        $this->AdminModel = new AdminModel;
     }
     public function addUser()
     {
@@ -27,9 +25,8 @@ class LoginController extends BaseController
         // $datas = $this->LoginModel->add_user($data);
         $code = mt_rand(1000, 9999);
         $code_k = password_hash($code, PASSWORD_DEFAULT);
-        $GLOBALS['z'] = $code;
-        $_SESSION['code']= $code;
-        $_SESSION['data_addUser'] = $data;
+        $data['code'] = $code;
+        $datas = $this->LoginModel->add_user($data);
         $mail = new PHPMailer(true);
         try {
             //Server settings
@@ -67,10 +64,7 @@ class LoginController extends BaseController
             $mail->Body = $bodyContent;
             // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
             if ($mail->send()) {
-                echo 'Thư đã được gửi đi';
-                // print_r($data);
-                // print_r($_SESSION['data_addUser']);
-               
+                return "1";
             } else {
                 echo 'Lỗi. Thư chưa gửi được';
             }
@@ -86,13 +80,41 @@ class LoginController extends BaseController
     {
         $email = $_GET['email'];
         $code = $_GET['code'];
-        // if ($email == $_SESSION['data_addUser']['email_u'] && password_verify($_COOKIE['code'], $code)) {
-        //     $datas = $this->LoginModel->add_user($_SESSION['data_addUser']);
-        //     // echo $data1;
-        // }
-    //    print_r($_SESSION['data_addUser']) ;
-    
-        // echo  $_SESSION['code'];
+        $ar = [];
+        $ar['email_u'] = $email;
+        $datas = $this->AdminModel->load_update(self::USERS, $ar);
+        if (password_verify($datas[0]['code'], $code)) {
+            $data_update = [];
+            $data_update['status'] = 0;
+            $data_update['code'] = 0;
+            $value = $this->AdminModel->update_data(self::USERS, $ar, $data_update);
+            if ($value == true) {
+                return $this->view("frontend.customer.index");
+            }
+        } else {
+            echo 'fail';
+        }
+    }
+    public function login()
+    {
+        $email = $_POST['email'];
+        $pass = $_POST['pass'];
+        $arr_data = [];
+        $arr_data['email_u'] = $email;
+        $arr_data['pass_u'] = $pass;
+        $datas = $this->AdminModel->load_update(self::USERS, $arr_data);
+        // print_r($datas);
+        if (sizeof($datas) == 0) {
+            echo '0';
+        } else if ($datas[0]['status'] == 1) {
+            // header('Location: ');
+            $_SESSION['email'] = $email;
+            echo '1';
+            // echo 'http://localhost:88/QLThuVien_Pj/index.php?controller=admin';
+        } else {
+            echo '2';
+            // header('location:http://localhost:88/QLThuVien_Pj/index.php');
+        }
     }
     public function check_mail()
     {

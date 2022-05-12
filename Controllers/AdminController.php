@@ -4,9 +4,13 @@ class  AdminController extends BaseController
     public function __construct()
     {
         //requai  file
-        $this->loadModel('AdminModel');
-        // khởi tạo đối tượng
-        $this->AdminModel = new AdminModel;
+        if (isset($_SESSION['email'])) {
+            $this->loadModel('AdminModel');
+            // khởi tạo đối tượng
+            $this->AdminModel = new AdminModel;
+        }else{
+            header("Location: http://localhost:88/QLThuVien_Pj/index.php");
+        }
     }
     public function index()
     {

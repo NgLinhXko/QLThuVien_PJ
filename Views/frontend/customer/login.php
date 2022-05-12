@@ -6,29 +6,22 @@
           
                 <h4 style="text-align: center;">Đăng nhập</h4>
                 <h5 id="check_resign" >
-                <?php
-                    if(isset($_SESSION['check_resign'])){
-                        echo $_SESSION['check_resign'];
-                        session_destroy($_SESSION['check_resign']);
-                    }
-                ?>
                 </h5>
-               
-                <form method="POST" action="http://localhost:88/QlBanHang/index.php?controller=Login&action=checkLogin" id="formLogin">
+                <form method="POST" id="formLogin">
                     <span id="msgThongBaoLG"></span>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input type="email" name="Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="email" name="Email" class="form-control" id="email_login" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                        <input type="password" name="password" class="form-control" id="pass_login">
                     </div>
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">Check me out</label>
                     </div>
-                    <button style="width:100%" type="submit" id="btnLogin" class="btn btn-primary">Đăng nhập</button>
+                    <button style="width:100%" type="button" id="btnLogin" class="btn btn-primary">Đăng nhập</button>
                 </form>
                 <br>
                 <br>
@@ -66,7 +59,6 @@
 
                         <input required type="email" id="email_u" name="email_u" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
-                    
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Mật khẩu</label>
                         <span style="font-size: 12px;" id="msgThongBao_pass"></span>

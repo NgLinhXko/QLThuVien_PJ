@@ -104,8 +104,11 @@ class BaseModel extends Database
     //nối các phần tử mảng thành một chuỗi kết quả
     $dataSetString = implode(',', $dataSets);
     $sql = "UPDATE ${table} SET ${dataSetString} WHERE $where";
-    print_r($sql);
-    $this->query($sql);
+   
+    $query = $this->query($sql);
+    if ($query) {
+      return true;
+    }
   }
   // //sua data cate
   // public function updateCate($table, $id, $data)
