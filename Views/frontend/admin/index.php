@@ -34,19 +34,24 @@
                                 <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><i class="fas fa-bars"></i></a>
                                 <form class="d-flex">
                                     <a id="profile_tch" href="#" class="navbar-brand">Tài khoản</a>
-                                    <a href="../login/logout.php" class="navbar-brand">Đăng xuất</a>
+                                    <a href="http://localhost:88/QLThuVien_Pj/index.php?controller=login&action=logout" class="navbar-brand">Đăng xuất</a>
                                 </form>
                             </div>
                         </nav>
                         <div class="container main-content">
                             <br>
-                            <button type="button" class="btn btn-success quanly" table="books" id="qlSach">Quản lý Sách</button>
-                            <button type="button" style="margin-left: 20%" table="categories" class="btn btn-success quanly" id="qlTheLoai">Quản lý thể loại</button>
-                            <button type="button" style="margin-left: 20%" table="users" class="btn btn-success quanly" id="qlUser">Quản lý Users</button>
+                            <div class="row">
+                                <button type="button" class="btn btn-warning quanly col-3" table="books" id="qlSach">Quản lý Sách</button>
+                                <button type="button" style="margin-left: 10%" table="categories" class="btn btn-success quanly  col-3" id="qlTheLoai">Quản lý thể loại</button>
+                                <button type="button" style="margin-left: 10%" table="users" class="btn btn-info quanly  col-3" id="qlUser">Quản lý Users</button>
+
+                            </div>
+
                             <div id="data">
 
                             </div>
                         </div>
+
                         <!--Add Modal -->
                         <div class="modal" id="add-cate">
                             <div class="modal-dialog">
@@ -56,21 +61,22 @@
                                     </div>
                                     <div class="modal-body">
                                         <p id="message" class="text-success"></p>
-                                        <form class="mt-4" action="" method="POST" id="form_add_cate">
+                                        <form class="mt-4" method="POST" id="form_add_cate">
                                             <div class="col-mb-3">
                                                 <label for="txtTLoai_a" class="col-sm-3 col-form-label">Tên Thể Loại</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="txtTLoai_a" name="name_cate">
+                                                    <input require type="text" class="form-control" id="txtTLoai_a" name="name_cate">
                                                 </div>
                                             </div>
                                             <input type="text" hidden name="table" value="categories">
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Hủy</button>
+
+                                                <button type="submit" name_form="add_cate" class="btn btn-success btn_add_suces" id="update" style="width: 100px;">Thêm</button>
+                                            </div>
                                         </form>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Hủy</button>
 
-                                        <button type="button" name_form="add_cate" class="btn btn-success btn_add_suces" id="update" style="width: 100px;">Thêm</button>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -123,7 +129,7 @@
                         <div class="modal fade" id="modalAddSP" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <form action="" method="POST" enctype="multipart/form-data" id="form_add_book" name="myform_adds">
+                                    <form action="" method="POST" onsubmit="return false;" enctype="multipart/form-data" id="form_add_book" name="myform_adds">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="modalTitle">Thêm sản phẩm</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -198,7 +204,7 @@
                                         <br>
                                         <br>
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" name_form="add_book" class="btn btn-primary btn_add_suces">Thêm Sản Phẩm</button>
+                                        <button type="submit" name_form="add_book" class="btn btn-primary btn_add_suces">Thêm Sản Phẩm</button>
                                     </div>
                                 </div>
                             </div>
@@ -310,7 +316,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <p id="message" class="text-success"></p>
-                                        <form class="mt-4" action="" method="POST" id="form_add_user">
+                                        <form onsubmit="return false;" class="mt-4" action="" method="POST" id="form_add_user">
                                             <div class="col-mb-3">
                                                 <label for="name_u" class="col-sm-3 col-form-label">Tên Người Dùng</label>
                                                 <div class="col-sm-10">
@@ -347,7 +353,7 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Hủy</button>
 
-                                        <button type="button" name_form="add_users" class="btn btn-success btn_add_suces" id="update" style="width: 100px;">Thêm</button>
+                                        <button type="submit" name_form="add_users" class="btn btn-success btn_add_suces" id="update" style="width: 100px;">Thêm</button>
                                     </div>
                                 </div>
                             </div>
@@ -446,18 +452,18 @@
                 })
                 //click thêm thể loại , form hiện lân , nhấn save
                 $('.btn_add_suces').click(function(dt) {
-                    if (table == "categories") {
-                        form = new FormData(form_add_cate)
-                        add(form)
-                    }
-                    if (table == "books") {
-                        form = new FormData(form_add_book)
-                        add(form)
-                    }
-                    if (table == "users") {
-                        form = new FormData(form_add_user)
-                        add(form)
-                    }
+                    // if (table == "categories") {
+                    //     form = new FormData(form_add_cate)
+                    //     add(form)
+                    // }
+                    // if (table == "books") {
+                    //     form = new FormData(form_add_book)
+                    //     add(form)
+                    // }
+                    // if (table == "users") {
+                    //     form = new FormData(form_add_user)
+                    //     add(form)
+                    // }
                     // alert(name_form)
                 })
                 $(document).on("click", '.btn_delete', function() {

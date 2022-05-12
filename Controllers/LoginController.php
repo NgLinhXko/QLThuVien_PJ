@@ -106,7 +106,7 @@ class LoginController extends BaseController
         // print_r($datas);
         if (sizeof($datas) == 0) {
             echo '0';
-        } else if ($datas[0]['status'] == 1) {
+        } else if ($datas[0]['status'] == 2) {
             // header('Location: ');
             $_SESSION['email'] = $email;
             echo '1';
@@ -121,5 +121,9 @@ class LoginController extends BaseController
         $data = $_POST;
         $data = $this->LoginModel->checkEmail($data);
         echo sizeof($data);
+    }
+    public function logout(){
+        session_destroy();
+        header('location: '.self::URL);
     }
 }

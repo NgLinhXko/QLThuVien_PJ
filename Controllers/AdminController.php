@@ -25,7 +25,13 @@ class  AdminController extends BaseController
     public function get_data()
     {
         $table = $_POST['table'];
-        $datas = $this->AdminModel->getALL($table);
+        if($table == "categories"){
+            $datas = $this-> AdminModel -> get_cate();
+        }else{
+            $datas = $this->AdminModel->getALL($table);
+        }
+        
+
         // $count = $this->AdminModel->(,...)
         return $this->view("frontend.admin.table_data", [
             "check_act" =>  $table,

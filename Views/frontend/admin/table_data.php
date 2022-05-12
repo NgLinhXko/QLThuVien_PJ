@@ -11,7 +11,7 @@ if ($check_act == "categories") {
                 Thêm Thể Loại
             </button>
         </div>
-        <div class="col-4" style="margin-top: 20px;" style="float:right;">
+        <div class="col-4" style="margin-top: 20px;width:100%" >
             <div class="mb-4">
                 <form action="" class="">
                     <div class="input-group mb-3">
@@ -39,7 +39,7 @@ if ($check_act == "categories") {
                     <tr>
                         <th scope="row"><?= $i ?></th>
                         <td><?= $cate['name_cate']  ?></td>
-                        <td><?= 5  ?></td>
+                        <td><?= $cate['SLuong'] ?></td>
                         <td>
                             <button id_get="<?= $cate['id_cate'] ?>" id="btn_detail" class="btn btn-warning btn_detail">Chi Tiết</button>
                             <button id_get="<?= $cate['id_cate'] ?>" id="btn_update1" class="btn btn-secondary btn_update1">Sửa</button>
@@ -67,7 +67,7 @@ if ($check_act == "books") {
 
             </div>
         </div>
-        <div class="col-4" style="margin-top: 20px;" style="float:right;">
+        <div class="col-4" style="margin-top: 20px;width:100%" style="float:right;">
             <div class="mb-4">
 
                 <form action="" class="">
@@ -111,10 +111,13 @@ if ($check_act == "books") {
                         <td><?= $book['numBorr']  ?></td>
 
                         <td>
-                            <button id_get="<?= $book['id_b'] ?>" id="btn_detail" class="btn btn-warning btn_detail">Chi Tiết</button>
-                            <button id_get="<?= $book['id_b'] ?>" id="btn_update1" class="btn btn-secondary btn_update1">Sửa</button>
-                            <button id_get="<?= $book['id_b'] ?>" id="btn_delete" class="btn btn-danger btn_delete">Xóa</button>
+                        <div class="d-grid">
+                            <button id_get="<?= $book['id_b'] ?>" id="btn_detail" class="btn btn-sm btn-warning btn_detail">Chi Tiết</button><br>
+                            <button id_get="<?= $book['id_b'] ?>" id="btn_update1" class="btn btn-sm btn-secondary btn_update1">Sửa</button><br>
+                            <button id_get="<?= $book['id_b'] ?>" id="btn_delete" class="btn btn-sm btn-danger btn_delete">Xóa</button><br>
+                        </div>
                         </td>
+                        
                     </tr>
                 <?php
                 }
@@ -134,7 +137,7 @@ if ($check_act == "users") {
                 Thêm Người Dùng
             </button>
         </div>
-        <div class="col-4" style="margin-top: 20px;" style="float:right;">
+        <div class="col-4" style="margin-top: 20px;width:100%" style="float:right;">
             <div class="mb-4">
 
                 <form action="" class="">

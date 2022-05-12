@@ -173,3 +173,12 @@ h1.count{
 .nav-link{
     color: aqua;
 }
+.btn_delete{
+    width: 150px;
+}
+.btn_update1{
+    width: 150px;
+}
+.btn_detail{
+    width: 150px;
+}

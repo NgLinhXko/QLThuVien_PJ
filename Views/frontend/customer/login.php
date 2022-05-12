@@ -3,25 +3,25 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content ">
             <div style="margin: 40px;">
-          
+
                 <h4 style="text-align: center;">Đăng nhập</h4>
-                <h5 id="check_resign" >
+                <h5 id="check_resign">
                 </h5>
-                <form method="POST" id="formLogin">
+                <form method="POST" onsubmit="return false;" action="#" id="formLogin" >
                     <span id="msgThongBaoLG"></span>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input type="email" name="Email" class="form-control" id="email_login" aria-describedby="emailHelp">
+                        <input required type="email" name="Email" class="form-control" id="email_login" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" name="password" class="form-control" id="pass_login">
+                        <input required type="password" name="password" class="form-control" id="pass_login">
                     </div>
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">Check me out</label>
                     </div>
-                    <button style="width:100%" type="button" id="btnLogin" class="btn btn-primary">Đăng nhập</button>
+                    <button style="width:100%" type="submit" id="btnLogin" class="btn btn-primary">Đăng nhập</button>
                 </form>
                 <br>
                 <br>
@@ -39,7 +39,7 @@
         <div class="modal-content ">
             <div style="margin: 40px;">
                 <h4 style="text-align: center;">Đăng Ký</h4>
-                <form method="POST" id="formResign" >
+                <form method="POST" id="formResign">
                     <!-- 2 column grid layout with text inputs for the first and last names -->
                     <div class="mb-1">
                         <label for="exampleInputEmail1" class="form-label">Họ Tên</label>
@@ -69,8 +69,8 @@
                         <span style="font-size: 12px;" id="msgThongBao_pass_again"></span>
                         <input required type="password" name="pass_u_again" class="form-control" id="pass_u_again">
                     </div>
-                    
-                    <button type="button" id="btn_dangky" disabled   class="btn btn-primary">Đăng ký</button>
+
+                    <button type="button" id="btn_dangky" disabled class="btn btn-primary">Đăng ký</button>
                 </form>
             </div>
         </div>

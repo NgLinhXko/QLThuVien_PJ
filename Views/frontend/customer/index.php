@@ -1927,9 +1927,8 @@
 							}
 						}
 					})
-				} else if (email == "" || pass == "") {
-					alert("Vui lòng nhập đầy đủ thông tin  !")
-				}
+				} 
+				
 			})
 
 			function disb_dky() {

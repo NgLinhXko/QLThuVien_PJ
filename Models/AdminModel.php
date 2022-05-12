@@ -31,4 +31,15 @@ class AdminModel extends BaseModel
     {
         return $this->search_($table, $data);
     }
+    public function get_cate()
+    {
+        $sql = "SELECT COUNT(id_b) as SLuong  , categories.id_cate,name_cate FROM `categories`,books 
+        WHERE books.id_cate = categories.id_cate GROUP BY books.id_cate";
+        $query = $this->query($sql);
+        $datar = [];
+        while ($row = mysqli_fetch_assoc($query)) {
+            array_push($datar, $row);
+        }
+        return $datar;
+    }
 }
