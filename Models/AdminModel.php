@@ -27,4 +27,8 @@ class AdminModel extends BaseModel
     {
         return $this->update($table, $ar, $data);
     }
+    public function search_data($table, $data)
+    {
+        return $this->search_($table, $data);
+    }
 }

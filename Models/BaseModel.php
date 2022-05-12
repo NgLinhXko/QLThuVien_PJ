@@ -110,6 +110,19 @@ class BaseModel extends Database
       return true;
     }
   }
+  public function search_($table, $data)
+  {
+    foreach ($data as $key => $val) {
+      $where = $key . ' like ' . "'%$val%'";
+    }
+    $sql = "SELECT * FROM ${table} WHERE ${where}";
+    $query = $this->query($sql);
+    $datar = [];
+    while ($row = mysqli_fetch_assoc($query)) {
+      array_push($datar, $row);
+    }
+    return $datar;
+  }
   // //sua data cate
   // public function updateCate($table, $id, $data)
   // {
