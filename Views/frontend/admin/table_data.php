@@ -21,7 +21,7 @@ if ($check_act == "categories") {
                 </form>
             </div>
         </div>
-        <table class="table">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th class="col-1">STT</th>
@@ -82,7 +82,7 @@ if ($check_act == "books") {
         </div>
 
         <br><br>
-        <table class="table">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col">STT</th>
@@ -151,7 +151,7 @@ if ($check_act == "users") {
             </div>
         </div>
         <br><br>
-        <table class="table">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col">STT</th>
