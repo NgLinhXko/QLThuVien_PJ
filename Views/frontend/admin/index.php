@@ -1,4 +1,5 @@
 <body>
+
     <title>Trang chủ</title>
     <?php
     // include("C:/xampp/htdocs/QLTV/Public/public/header.php");
@@ -34,7 +35,7 @@
                                 <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><i class="fas fa-bars"></i></a>
                                 <form class="d-flex">
                                     <a id="profile_tch" href="#" class="navbar-brand">Tài khoản</a>
-                                    <a href="<?=URL?>/index.php?controller=login&action=logout" class="navbar-brand">Đăng xuất</a>
+                                    <a href="<?= URL ?>/index.php?controller=login&action=logout" class="navbar-brand">Đăng xuất</a>
                                 </form>
                             </div>
                         </nav>
@@ -88,7 +89,7 @@
                                         <h3 class="text-success">Xóa Thể Loại</h3>
                                     </div>
                                     <div class="modal-body">
-
+                                        8080
                                         <p> Bạn có chắc chắn muốn xóa thể loại này không ?</p>
                                         <button type="button" class="btn btn-success" style="width: 100px;" id="btn_delete_cate">Delete</button>
                                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_save1" style="width: 100px;">Close</button>
@@ -429,13 +430,13 @@
         <?php
         include('Public/public/footer.php')
         ?>
-        <script src="http://localhost:88/QLThuVien_PJ/Public/js/admin/index.js"></script>
+        <script src="http://localhost:8080/QLThuVien_PJ/Public/js/admin/index.js"></script>
 
         <!-- <script src="http://localhost:8080/QLThuVien_PJ/Public/js/admin/category.js"></script> -->
         <script>
             $(document).ready(function() {
-              
-                url = "<?= URL?>/index.php?controller=admin&action="
+
+                url = "<?= URL ?>/index.php?controller=admin&action="
                 let action = "",
                     table = "";
                 // click quản lý
