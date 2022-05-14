@@ -22,6 +22,7 @@ class  AdminController extends BaseController
             ]
         );
     }
+    //av
     public function get_data()
     {
         $table = $_POST['table'];
