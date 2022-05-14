@@ -9,7 +9,7 @@ class  AdminController extends BaseController
             // khởi tạo đối tượng
             $this->AdminModel = new AdminModel;
         }else{
-            header("Location: http://localhost:88/QLThuVien_Pj/index.php");
+            header("Location: ".URL);
         }
     }
     public function index()
@@ -65,6 +65,7 @@ class  AdminController extends BaseController
                 $data_get['avatar_u'] = $anhchinh;
                 $data_get['table'] = "users";
             }
+
         }
         $table = array_pop($data_get); //xóa tên bảng
         $data = $this->AdminModel->add_data($table, $data_get);
