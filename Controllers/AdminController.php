@@ -109,14 +109,17 @@ class  AdminController extends BaseController
         $data_s = [];
         if ($table == "categories") {
             $data_s['name_cate'] = $data;
+            $datas = $this->AdminModel->get_cate_search($data);
         }
         if ($table == "books") {
             $data_s['name_b'] = $data;
+            $datas = $this->AdminModel->search_data($table, $data_s);
         }
         if ($table == "users") {
             $data_s['name_u'] = $data;
+            $datas = $this->AdminModel->search_data($table, $data_s);
         }
-        $datas = $this->AdminModel->search_data($table, $data_s);
+        // $datas = $this->AdminModel->search_data($table, $data_s);
         return $this->view("frontend.admin.table_data", [
             "check_act" =>  $table,
             "datas" => $datas

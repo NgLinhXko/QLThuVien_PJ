@@ -42,6 +42,17 @@ class AdminModel extends BaseModel
         }
         return $datar;
     }
+    public function get_cate_search($data)
+    {
+        $sql = "SELECT categories.id_cate,name_cate,(SELECT COUNT(id_b) FROM books
+         where id_cate =  categories.id_cate) as SLuong from categories where name_cate like '%$data%'";
+        $query = $this->query($sql);
+        $datar = [];
+        while ($row = mysqli_fetch_assoc($query)) {
+            array_push($datar, $row);
+        }
+        return $datar;
+    }
     public function check_name($data){
         $sql = "SELECT * from categories where name_cate like '$data' ";
         $query = $this->query($sql);
