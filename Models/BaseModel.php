@@ -88,7 +88,7 @@ class BaseModel extends Database
     if ($query) {
       return "Thêm thành công";
     } else {
-      "Thêm thất bại";
+      return "Thêm thất bại";
     }
     // echo $sql;
   }
@@ -108,7 +108,7 @@ class BaseModel extends Database
     $query = $this->query($sql);
     if ($query) {
       return "Update thành công.";
-    }else{
+    } else {
       return "Update thất bại";
     }
   }

@@ -42,8 +42,8 @@
                             <br>
                             <div class="row">
                                 <button type="button" class="btn btn-warning quanly col-3" table="books" id="qlSach">Quản lý Sách</button>
-                                <button type="button" style="margin-left: 10%" table="categories" class="btn btn-success quanly  col-3" id="qlTheLoai">Quản lý thể loại</button>
-                                <button type="button" style="margin-left: 10%" table="users" class="btn btn-info quanly  col-3" id="qlUser">Quản lý Users</button>
+                                <button type="button" style="margin-left: 10%" table="categories" class="btn btn-success quanly  col-3" id="qlTheLoai">Quản lý Thể Loại</button>
+                                <button type="button" style="margin-left: 10%" table="users" class="btn btn-info quanly  col-3" id="qlUser">Quản lý Người Dùng</button>
 
                             </div>
 
@@ -131,7 +131,7 @@
                                 <div class="modal-content">
                                     <form action="" method="POST" onsubmit="return false;" enctype="multipart/form-data" id="form_add_book" name="myform_adds">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="modalTitle">Thêm sản phẩm</h5>
+                                            <h5 class="modal-title" id="modalTitle">Thêm Sách</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
                                         </div>
@@ -200,7 +200,7 @@
                                             <br>
                                             <br>
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" name_form="add_book" class="btn btn-primary btn_add_suces">Thêm Sản Phẩm</button>
+                                            <button type="submit" name_form="add_book" class="btn btn-primary btn_add_suces">Thêm Sách</button>
                                         </div>
                                     </form>
 
@@ -289,7 +289,6 @@
                                                         <input id="img_b1" required type="file" class="form-control" name="img_b" aria-describedby="emailHelp">
                                                     </div>
 
-
                                                 </div>
 
                                             </div>
@@ -304,7 +303,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <!--Add Modal user -->
                         <div class="modal add" id="modalAddUS">
                             <div class="modal-dialog">
@@ -332,17 +330,19 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputEmail1" class="form-label">Email</label>
-                                                <input required type="text" class="form-control" id="email_u" name="email_u" aria-describedby="emailHelp">
+                                                <input required type="Email" class="form-control" id="email_u" name="email_u" aria-describedby="emailHelp">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputEmail1" class="form-label">Số Dư</label>
-                                                <input type="text" class="form-control" id="money" name="money" aria-describedby="emailHelp">
+                                                <input required type="text" class="form-control" id="money" name="money" aria-describedby="emailHelp">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputEmail1" class="form-label">Ảnh</label>
                                                 <input type="file" class="form-control" name="avatar_u" aria-describedby="emailHelp">
                                             </div>
+                                            <input type="text" hidden name="status" value="1">
                                             <input type="text" hidden name="table" value="users">
+
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Hủy</button>
 

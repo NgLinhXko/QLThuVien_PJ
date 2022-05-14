@@ -64,7 +64,7 @@ if ($check_act == "books") {
         <div class="col-4" style="margin-top: 20px;" style="float: left;">
             <div class="mb-4">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAddSP">
-                    Thêm sách
+                    Thêm Sách
                 </button>
 
             </div>
@@ -184,7 +184,7 @@ if ($check_act == "users") {
                         <td><?= $user['email_u']  ?></td>
                         <td><?= $user['money']  ?></td>
                         <td>
-                        <div class="d-grid">
+                            <div class="d-grid">
                                 <button id_get="<?= $user['id_u'] ?>" id="btn_detail" class="btn btn-sm btn-warning btn_detail">Chi Tiết</button><br>
                                 <button id_get="<?= $user['id_u'] ?>" id="btn_update1" class="btn btn-sm btn-secondary btn_update1">Sửa</button><br>
                                 <button id_get="<?= $user['id_u'] ?>" id="btn_delete" class="btn btn-sm btn-danger btn_delete">Xóa</button><br>

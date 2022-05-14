@@ -53,7 +53,8 @@ class AdminModel extends BaseModel
         }
         return $datar;
     }
-    public function check_name($data){
+    public function check_name($data)
+    {
         $sql = "SELECT * from categories where name_cate like '$data' ";
         $query = $this->query($sql);
         $datar = [];
