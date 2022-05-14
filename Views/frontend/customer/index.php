@@ -1736,7 +1736,7 @@
 												<figure><a href="javascript:void(0);"><img src="images/author/imag-09.jpg" alt="image description"></a></figure>
 												<div class="tg-authornamebooks">
 													<h4><a href="javascript:void(0);">Jude Morphew</a></h4>
-													<p>21,658 Published Books</p>
+													<p>21,685 Published Books</p>
 												</div>
 											</li>
 											<li>
@@ -1807,7 +1807,7 @@
 
 	<script>
 		$(document).ready(function() {
-			url = "http://localhost:88/QLthuVien_PJ/index.php?"
+			url = "http://localhost:8080/QLthuVien_PJ/index.php?"
 			check_email = false;
 			check_pass = false;
 			check_pass_again = false;
@@ -1919,16 +1919,16 @@
 						success: function(dt) {
 							if (dt == 0) {
 								$('#check_resign').html("Tài khoản mật khẩu không chính xác !")
-								$('#check_resign').css("color","red")
+								$('#check_resign').css("color", "red")
 							} else if (dt == 1) {
-								window.location.href = "http://localhost:88/QLThuVien_Pj/index.php?controller=admin"
+								window.location.href = "http://localhost:8080/QLThuVien_Pj/index.php?controller=admin"
 							} else {
-								window.location.href = "http://localhost:88/QLThuVien_Pj/index.php"
+								window.location.href = "http://localhost:8080/QLThuVien_Pj/index.php"
 							}
 						}
 					})
-				} 
-				
+				}
+
 			})
 
 			function disb_dky() {

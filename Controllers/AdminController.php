@@ -8,8 +8,8 @@ class  AdminController extends BaseController
             $this->loadModel('AdminModel');
             // khởi tạo đối tượng
             $this->AdminModel = new AdminModel;
-        }else{
-            header("Location: http://localhost:88/QLThuVien_Pj/index.php");
+        } else {
+            header("Location: http://localhost:8080/QLThuVien_Pj/index.php");
         }
     }
     public function index()
@@ -25,12 +25,12 @@ class  AdminController extends BaseController
     public function get_data()
     {
         $table = $_POST['table'];
-        if($table == "categories"){
-            $datas = $this-> AdminModel -> get_cate();
-        }else{
+        if ($table == "categories") {
+            $datas = $this->AdminModel->get_cate();
+        } else {
             $datas = $this->AdminModel->getALL($table);
         }
-        
+
 
         // $count = $this->AdminModel->(,...)
         return $this->view("frontend.admin.table_data", [
@@ -70,7 +70,7 @@ class  AdminController extends BaseController
         }
         $table = array_pop($data_get); //xóa tên bảng
         $data = $this->AdminModel->add_data($table, $data_get);
-        echo $data;
+        // echo $data;
         // print_r($data_get);
     }
     public function update_all()
@@ -138,7 +138,7 @@ class  AdminController extends BaseController
             $data['id_u'] = $_POST['id'];
         }
         $datas = $this->AdminModel->deleteByID($table, $data);
-        print_r($datas);
+        // print_r($datas);
     }
     public function load_update()
     {

@@ -34,7 +34,7 @@
                                 <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><i class="fas fa-bars"></i></a>
                                 <form class="d-flex">
                                     <a id="profile_tch" href="#" class="navbar-brand">Tài khoản</a>
-                                    <a href="http://localhost:88/QLThuVien_Pj/index.php?controller=login&action=logout" class="navbar-brand">Đăng xuất</a>
+                                    <a href="http://localhost:8080/QLThuVien_Pj/index.php?controller=login&action=logout" class="navbar-brand">Đăng xuất</a>
                                 </form>
                             </div>
                         </nav>
@@ -61,11 +61,11 @@
                                     </div>
                                     <div class="modal-body">
                                         <p id="message" class="text-success"></p>
-                                        <form class="mt-4" method="POST" id="form_add_cate">
+                                        <form class="mt-4" onsubmit="return false;" method="POST" id="form_add_cate">
                                             <div class="col-mb-3">
                                                 <label for="txtTLoai_a" class="col-sm-3 col-form-label">Tên Thể Loại</label>
                                                 <div class="col-sm-10">
-                                                    <input require type="text" class="form-control" id="txtTLoai_a" name="name_cate">
+                                                    <input required type="text" class="form-control" id="txtTLoai_a" name="name_cate">
                                                 </div>
                                             </div>
                                             <input type="text" hidden name="table" value="categories">
@@ -436,12 +436,12 @@
                 $("#wrapper").toggleClass("toggled");
             });
         </script>
-        <script src="http://localhost:88/QLThuVien_PJ/Public/js/admin/index.js"></script>
+        <script src="http://localhost:8080/QLThuVien_PJ/Public/js/admin/index.js"></script>
 
         <!-- <script src="http://localhost:8080/QLThuVien_PJ/Public/js/admin/category.js"></script> -->
         <script>
             $(document).ready(function() {
-                url = "http://localhost:88/QLThuVien_Pj/index.php?controller=admin&action="
+                url = "http://localhost:8080/QLThuVien_Pj/index.php?controller=admin&action="
                 let action = "",
                     table = "";
                 // click quản lý
@@ -452,19 +452,18 @@
                 })
                 //click thêm thể loại , form hiện lân , nhấn save
                 $('.btn_add_suces').click(function(dt) {
-                    // if (table == "categories") {
-                    //     form = new FormData(form_add_cate)
-                    //     add(form)
-                    // }
-                    // if (table == "books") {
-                    //     form = new FormData(form_add_book)
-                    //     add(form)
-                    // }
-                    // if (table == "users") {
-                    //     form = new FormData(form_add_user)
-                    //     add(form)
-                    // }
-                    // alert(name_form)
+                    if (table == "categories") {
+                        form = new FormData(form_add_cate)
+                        add(form)
+                    }
+                    if (table == "books") {
+                        form = new FormData(form_add_book)
+                        add(form)
+                    }
+                    if (table == "users") {
+                        form = new FormData(form_add_user)
+                        add(form)
+                    }
                 })
                 $(document).on("click", '.btn_delete', function() {
                     action = "get_data";
@@ -596,8 +595,8 @@
                         contentType: false,
                         success: function(dt) {
                             load_data(action, table)
-                            console.log(dt);
-                            $('#message').html(dt)
+                            // console.log(dt);
+                            $('#up-message').html(dt)
                         }
                     })
                 }
@@ -648,7 +647,7 @@
                         },
                         success: function(dt) {
                             load_data(action, table)
-                            console.log(dt);
+                            // console.log(dt);
                             $('#message').html(dt)
                         }
                     })

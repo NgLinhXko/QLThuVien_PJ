@@ -104,10 +104,12 @@ class BaseModel extends Database
     //nối các phần tử mảng thành một chuỗi kết quả
     $dataSetString = implode(',', $dataSets);
     $sql = "UPDATE ${table} SET ${dataSetString} WHERE $where";
-   
+
     $query = $this->query($sql);
     if ($query) {
-      return true;
+      return "Sửa thành công";
+    } else {
+      "Sửa thất bại";
     }
   }
   public function search_($table, $data)
@@ -185,9 +187,9 @@ class BaseModel extends Database
     $query = $this->query($sql);
     //echo $sql;
     if ($query) {
-      return true;
+      return "Xóa thành công";
     } else {
-      return false;
+      "Xóa thất bại";
     }
   }
 }

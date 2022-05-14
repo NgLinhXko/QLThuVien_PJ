@@ -7,7 +7,7 @@
                 <h4 style="text-align: center;">Đăng nhập</h4>
                 <h5 id="check_resign">
                 </h5>
-                <form method="POST" onsubmit="return false;" action="#" id="formLogin" >
+                <form method="POST" onsubmit="return false;" action="#" id="formLogin">
                     <span id="msgThongBaoLG"></span>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Email address</label>

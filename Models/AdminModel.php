@@ -33,8 +33,8 @@ class AdminModel extends BaseModel
     }
     public function get_cate()
     {
-        $sql = "SELECT COUNT(id_b) as SLuong  , categories.id_cate,name_cate FROM `categories`,books 
-        WHERE books.id_cate = categories.id_cate GROUP BY books.id_cate";
+        $sql = "SELECT categories.id_cate,name_cate,(SELECT COUNT(id_b) FROM books
+        where id_cate =  categories.id_cate) as SLuong from categories";
         $query = $this->query($sql);
         $datar = [];
         while ($row = mysqli_fetch_assoc($query)) {
