@@ -288,19 +288,17 @@
                                                         <label for="exampleInputEmail1" class="form-label">Ảnh</label>
                                                         <input id="img_b1" required type="file" class="form-control" name="img_b" aria-describedby="emailHelp">
                                                     </div>
-
-
                                                 </div>
 
                                             </div>
                                             <input type="text" hidden name="table" value="books">
-
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-success btn-updatee" style="width: 100px;" id="btn_update">Update</button>
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Close</button>
+                                            </div>
                                         </form>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-success btn-updatee" style="width: 100px;" id="btn_update">Update</button>
-                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Close</button>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -332,11 +330,11 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputEmail1" class="form-label">Email</label>
-                                                <input required type="text" class="form-control" id="email_u" name="email_u" aria-describedby="emailHelp">
+                                                <input required type="email" class="form-control" id="email_u" name="email_u" aria-describedby="emailHelp">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputEmail1" class="form-label">Số Dư</label>
-                                                <input type="text" class="form-control" id="money" name="money" aria-describedby="emailHelp">
+                                                <input required type="text" class="form-control" id="money" name="money" aria-describedby="emailHelp">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputEmail1" class="form-label">Ảnh</label>
@@ -345,12 +343,10 @@
                                             <input type="text" hidden name="table" value="users">
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Hủy</button>
-
                                                 <button type="submit" name_form="add_users" class="btn btn-success btn_add_suces" id="update" style="width: 100px;">Thêm</button>
                                             </div>
                                         </form>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -398,7 +394,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputEmail1" class="form-label">Email</label>
-                                                <input required type="text" class="form-control" id="email_u1" name="email_u" aria-describedby="emailHelp">
+                                                <input required readonly type="Email" class="form-control" id="email_u1" name="email_u" aria-describedby="emailHelp">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputEmail1" class="form-label">Số Dư</label>
@@ -656,14 +652,14 @@
                         processData: false,
                         contentType: false,
                         success: function(dt) {
-                            // load_data(action, table)
-                            // $('#msg_modal').modal('show')
-                            // $('#text_msg').html(dt)
-                            // setTimeout(function() {
-                            //     $('#msg_modal').modal('hide')
-                            // }, 3000)
-                            // $('.update').modal('hide')
-                            console.log(dt)
+                            load_data(action, table)
+                            $('#msg_modal').modal('show')
+                            $('#text_msg').html(dt)
+                            setTimeout(function() {
+                                $('#msg_modal').modal('hide')
+                            }, 3000)
+                            $('.update').modal('hide')
+
                         }
                     })
                 }
