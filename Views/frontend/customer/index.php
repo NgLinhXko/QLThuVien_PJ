@@ -1786,7 +1786,7 @@
 
 	<script>
 		$(document).ready(function() {
-			url = "<?= URL?>/index.php?"
+			url = "<?= URL ?>/index.php?"
 			check_email = false;
 			check_pass = false;
 			check_pass_again = false;
@@ -1811,43 +1811,60 @@
 			})
 			$('#btn_dangky').click(function() {
 
-				name_u = $('#name_u').val();
-				address_u = $('#address_u').val();
-				phone_u = $('#phone_u').val();
+				// name_u = $('#name_u').val();
+				// address_u = $('#address_u').val();
+				// phone_u = $('#phone_u').val();
 				email_u = $('#email_u').val();
-				pass_u = $('#pass_u').val();
-				pass_u_again = $('#pass_u_again').val();
-				if (name_u != '' && address_u != "" && phone_u != "" && email_u != "" && pass_u != "" && pass_u_again != "") {
-					if (check_email == true && check_pass == true && check_pass_again == true) {
-						form = new FormData(formResign)
-						// alert('123')
-						$.ajax({
-							url: url + "controller=Login&action=addUser",
-							method: "POST",
-							data: form,
-							mimeType: "multipart/form-data",
-							processData: false,
-							contentType: false,
-							success: function(dt) {
-								$('#modalResign').modal('hide')
-								$('#modal_signup_succes').modal('show')
-								$('#formResign').trigger("reset")
-								$('#msgThongBao').html("")
-								$('#msgThongBao_pass').html("")
-								$('#msgThongBao_pass_again').html("")
-							}
-						})
+				// pass_u = $('#pass_u').val();
+				// pass_u_again = $('#pass_u_again').val();
+				// if (name_u != '' && address_u != "" && phone_u != "" && email_u != "" && pass_u != "" && pass_u_again != "") {
+				// 	if (check_email == true && check_pass == true && check_pass_again == true) {
+				form = new FormData(formResign)
+				// alert('123')
+				check_form = true;
+				for (var value of form.values()) {
+
+					if (value == "") {
+						check_form = false;
 					}
 
-				} else {
-					alert("Vui lòng nhập đầy đủ thông tin !")
+				}
+				check_form = validateEmail(email);
+
+				console.log(check_form)
+				if (check_form == true) {
+					$.ajax({
+						url: url + "controller=Login&action=addUser",
+						method: "POST",
+						data: form,
+						mimeType: "multipart/form-data",
+						processData: false,
+						contentType: false,
+						success: function(dt) {
+							$('#modalResign').modal('hide')
+							$('#modal_signup_succes').modal('show')
+							$('#formResign').trigger("reset")
+							$('#msgThongBao').html("")
+							$('#msgThongBao_pass').html("")
+							$('#msgThongBao_pass_again').html("")
+						}
+					})
 				}
 
+				// }
+
+				// } 
+
 			})
+
+			function validateEmail(email) {
+				var re = /\S+@\S+\.\S+/;
+				return re.test(email);
+			}
 			//check email
 			$('#email_u').blur(function() {
-				email = $(this).val()
-				if (email != "") {
+				email = $(this).val();
+				if (email != '') {
 					$.ajax({
 						url: url + "controller=login&action=check_mail",
 						method: "POST",
@@ -1855,7 +1872,7 @@
 							email_u: email
 						},
 						success: function(dt) {
-							console.log(dt)
+							// console.log(dt)
 							if (dt == 0) {
 								$('#msgThongBao').css("color", "green")
 								$('#msgThongBao').html("Tài khoản sẵn sàng")
@@ -1865,11 +1882,13 @@
 								$('#msgThongBao').css("color", "red")
 								$('#msgThongBao').html("Tài khoản đã tồn tại!")
 								check_email = false
+								disb_dky()
 							}
-
 						}
 					})
 				}
+
+
 
 			})
 			$('#pass_u').blur(function() {
@@ -1880,6 +1899,7 @@
 						$('#msgThongBao_pass').css("color", "red")
 						$('#msgThongBao_pass').html("Mật khẩu dài ít nhất 8 ký tự , có chữ hoa , chữ thường ,số và ký tự đặc biệt!")
 						check_pass = false
+						disb_dky()
 					} else {
 						$('#msgThongBao_pass').html("")
 						check_pass = true;
@@ -1897,6 +1917,7 @@
 					check_pass_again = false;
 					$('#msgThongBao_pass_again').css("color", "red")
 					$('#msgThongBao_pass_again').html("Mật khẩu xác nhận không chính xác!")
+					disb_dky()
 				}
 			})
 			$('#btnLogin').click(function() {
@@ -1911,7 +1932,7 @@
 							pass: pass
 						},
 						success: function(dt) {
-							 console.log(dt)
+							console.log(dt)
 							if (dt == 0) {
 								$('#check_resign').html("Tài khoản mật khẩu không chính xác !")
 								$('#check_resign').css("color", "red")
