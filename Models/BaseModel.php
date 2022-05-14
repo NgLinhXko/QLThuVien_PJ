@@ -59,8 +59,9 @@ class BaseModel extends Database
   //lay ra ban ghi theo id loadupdate
   public function find($table, $id)
   {
+   
     foreach ($id as $key => $val) {
-      $where = $key . '=' . "'$val'";
+      $where = $key . '=' . "'$val' ";
     }
     $sql = "SELECT * FROM ${table} WHERE ${where}";
     $query = $this->query($sql);
@@ -70,6 +71,8 @@ class BaseModel extends Database
       array_push($data, $row);
     }
     return $data;
+    // echo $sql
+    // print_r($sql);
   }
 
 
@@ -166,6 +169,16 @@ class BaseModel extends Database
   {
 
     $sql = "SELect * from $table ";
+    $query = $this->query($sql);
+    $ar = [];
+    while ($row = mysqli_fetch_assoc($query)) {
+      array_push($ar, $row);
+    }
+    return  $ar;
+  }
+  public function slt_orderby($table, $column, $order,$limit)
+  {
+    $sql = "SELECT * from $table order by $column $order limit 0,$limit";
     $query = $this->query($sql);
     $ar = [];
     while ($row = mysqli_fetch_assoc($query)) {

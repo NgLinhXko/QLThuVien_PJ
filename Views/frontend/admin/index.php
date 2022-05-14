@@ -34,7 +34,7 @@
                                 <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><i class="fas fa-bars"></i></a>
                                 <form class="d-flex">
                                     <a id="profile_tch" href="#" class="navbar-brand">Tài khoản</a>
-                                    <a href="http://localhost:8080/QLThuVien_Pj/index.php?controller=login&action=logout" class="navbar-brand">Đăng xuất</a>
+                                    <a href="http://localhost:88/QLThuVien_Pj/index.php?controller=login&action=logout" class="navbar-brand">Đăng xuất</a>
                                 </form>
                             </div>
                         </nav>
@@ -42,8 +42,8 @@
                             <br>
                             <div class="row">
                                 <button type="button" class="btn btn-warning quanly col-3" table="books" id="qlSach">Quản lý Sách</button>
-                                <button type="button" style="margin-left: 10%" table="categories" class="btn btn-success quanly  col-3" id="qlTheLoai">Quản lý Thể Loại</button>
-                                <button type="button" style="margin-left: 10%" table="users" class="btn btn-info quanly  col-3" id="qlUser">Quản lý Người Dùng</button>
+                                <button type="button" style="margin-left: 10%" table="categories" class="btn btn-success quanly  col-3" id="qlTheLoai">Quản lý thể loại</button>
+                                <button type="button" style="margin-left: 10%" table="users" class="btn btn-info quanly  col-3" id="qlUser">Quản lý Users</button>
 
                             </div>
 
@@ -131,7 +131,7 @@
                                 <div class="modal-content">
                                     <form action="" method="POST" onsubmit="return false;" enctype="multipart/form-data" id="form_add_book" name="myform_adds">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="modalTitle">Thêm Sách</h5>
+                                            <h5 class="modal-title" id="modalTitle">Thêm sản phẩm</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
                                         </div>
@@ -200,7 +200,7 @@
                                             <br>
                                             <br>
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" name_form="add_book" class="btn btn-primary btn_add_suces">Thêm Sách</button>
+                                            <button type="submit" name_form="add_book" class="btn btn-primary btn_add_suces">Thêm Sản Phẩm</button>
                                         </div>
                                     </form>
 
@@ -288,21 +288,21 @@
                                                         <label for="exampleInputEmail1" class="form-label">Ảnh</label>
                                                         <input id="img_b1" required type="file" class="form-control" name="img_b" aria-describedby="emailHelp">
                                                     </div>
-
                                                 </div>
 
                                             </div>
                                             <input type="text" hidden name="table" value="books">
-
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-success btn-updatee" style="width: 100px;" id="btn_update">Update</button>
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Close</button>
+                                            </div>
                                         </form>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-success btn-updatee" style="width: 100px;" id="btn_update">Update</button>
-                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Close</button>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
+
                         <!--Add Modal user -->
                         <div class="modal add" id="modalAddUS">
                             <div class="modal-dialog">
@@ -330,7 +330,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputEmail1" class="form-label">Email</label>
-                                                <input required type="Email" class="form-control" id="email_u" name="email_u" aria-describedby="emailHelp">
+                                                <input required type="email" class="form-control" id="email_u" name="email_u" aria-describedby="emailHelp">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputEmail1" class="form-label">Số Dư</label>
@@ -340,17 +340,13 @@
                                                 <label for="exampleInputEmail1" class="form-label">Ảnh</label>
                                                 <input type="file" class="form-control" name="avatar_u" aria-describedby="emailHelp">
                                             </div>
-                                            <input type="text" hidden name="status" value="1">
                                             <input type="text" hidden name="table" value="users">
-
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Hủy</button>
-
                                                 <button type="submit" name_form="add_users" class="btn btn-success btn_add_suces" id="update" style="width: 100px;">Thêm</button>
                                             </div>
                                         </form>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -398,7 +394,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputEmail1" class="form-label">Email</label>
-                                                <input required type="text" class="form-control" id="email_u1" name="email_u" aria-describedby="emailHelp">
+                                                <input required readonly type="Email" class="form-control" id="email_u1" name="email_u" aria-describedby="emailHelp">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputEmail1" class="form-label">Số Dư</label>
@@ -433,12 +429,12 @@
         <?php
         include('Public/public/footer.php')
         ?>
-        <script src="http://localhost:8080/QLThuVien_PJ/Public/js/admin/index.js"></script>
+        <script src="http://localhost:88/QLThuVien_PJ/Public/js/admin/index.js"></script>
 
         <!-- <script src="http://localhost:8080/QLThuVien_PJ/Public/js/admin/category.js"></script> -->
         <script>
             $(document).ready(function() {
-                url = "http://localhost:8080/QLThuVien_Pj/index.php?controller=admin&action="
+                url = "http://localhost:88/QLThuVien_Pj/index.php?controller=admin&action="
                 let action = "",
                     table = "";
                 // click quản lý
@@ -534,7 +530,7 @@
                     if ($('#txt_search').val() != "") {
                         if (table == "categories") {
                             var txt_search = $('#txt_search').val();
-                            search_cate(table, txt_search)
+                            search_fc(table, txt_search)
                         }
                         if (table == "books") {
                             var txt_search = $('#txt_search').val();
@@ -663,7 +659,7 @@
                                 $('#msg_modal').modal('hide')
                             }, 3000)
                             $('.update').modal('hide')
-                            // console.log(dt)
+
                         }
                     })
                 }
@@ -672,20 +668,6 @@
                 function search_fc(table, data) {
                     $.ajax({
                         url: url + "search_all",
-                        method: "POST",
-                        data: {
-                            table: table,
-                            data: data,
-                        },
-                        success: function(dt) {
-                            $('#data').html(dt)
-                        }
-                    })
-                }
-
-                function search_cate(table, data) {
-                    $.ajax({
-                        url: url + "search_dtcate",
                         method: "POST",
                         data: {
                             table: table,
