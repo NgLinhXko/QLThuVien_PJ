@@ -9,5 +9,3 @@ class LoginModel extends BaseModel{
         return $this-> create(self::TABLE,$data);
     }
 }
-
-?>

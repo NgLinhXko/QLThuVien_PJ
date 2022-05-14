@@ -1807,7 +1807,7 @@
 
 	<script>
 		$(document).ready(function() {
-			url = "http://localhost:88/QLthuVien_PJ/index.php?"
+			url = "http://localhost:8080/QLthuVien_PJ/index.php?"
 			check_email = false;
 			check_pass = false;
 			check_pass_again = false;
@@ -1936,7 +1936,7 @@
 								$('#check_resign').html("Tài khoản mật khẩu không chính xác !")
 								$('#check_resign').css("color", "red")
 							} else if (dt == 1) {
-								window.location.href = url+"controller=admin"
+								window.location.href = url + "controller=admin"
 							} else {
 								window.location.href = url
 							}

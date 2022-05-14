@@ -34,7 +34,7 @@
                                 <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><i class="fas fa-bars"></i></a>
                                 <form class="d-flex">
                                     <a id="profile_tch" href="#" class="navbar-brand">Tài khoản</a>
-                                    <a href="http://localhost:88/QLThuVien_Pj/index.php?controller=login&action=logout" class="navbar-brand">Đăng xuất</a>
+                                    <a href="http://localhost:8080/QLThuVien_Pj/index.php?controller=login&action=logout" class="navbar-brand">Đăng xuất</a>
                                 </form>
                             </div>
                         </nav>
@@ -433,12 +433,12 @@
         <?php
         include('Public/public/footer.php')
         ?>
-        <script src="http://localhost:88/QLThuVien_PJ/Public/js/admin/index.js"></script>
+        <script src="http://localhost:8080/QLThuVien_PJ/Public/js/admin/index.js"></script>
 
         <!-- <script src="http://localhost:8080/QLThuVien_PJ/Public/js/admin/category.js"></script> -->
         <script>
             $(document).ready(function() {
-                url = "http://localhost:88/QLThuVien_Pj/index.php?controller=admin&action="
+                url = "http://localhost:8080/QLThuVien_Pj/index.php?controller=admin&action="
                 let action = "",
                     table = "";
                 // click quản lý
@@ -534,7 +534,7 @@
                     if ($('#txt_search').val() != "") {
                         if (table == "categories") {
                             var txt_search = $('#txt_search').val();
-                            search_fc(table, txt_search)
+                            search_cate(table, txt_search)
                         }
                         if (table == "books") {
                             var txt_search = $('#txt_search').val();
@@ -656,14 +656,14 @@
                         processData: false,
                         contentType: false,
                         success: function(dt) {
-                            // load_data(action, table)
-                            // $('#msg_modal').modal('show')
-                            // $('#text_msg').html(dt)
-                            // setTimeout(function() {
-                            //     $('#msg_modal').modal('hide')
-                            // }, 3000)
-                            // $('.update').modal('hide')
-                            console.log(dt)
+                            load_data(action, table)
+                            $('#msg_modal').modal('show')
+                            $('#text_msg').html(dt)
+                            setTimeout(function() {
+                                $('#msg_modal').modal('hide')
+                            }, 3000)
+                            $('.update').modal('hide')
+                            // console.log(dt)
                         }
                     })
                 }
@@ -672,6 +672,20 @@
                 function search_fc(table, data) {
                     $.ajax({
                         url: url + "search_all",
+                        method: "POST",
+                        data: {
+                            table: table,
+                            data: data,
+                        },
+                        success: function(dt) {
+                            $('#data').html(dt)
+                        }
+                    })
+                }
+
+                function search_cate(table, data) {
+                    $.ajax({
+                        url: url + "search_dtcate",
                         method: "POST",
                         data: {
                             table: table,
