@@ -1736,7 +1736,7 @@
 												<figure><a href="javascript:void(0);"><img src="images/author/imag-09.jpg" alt="image description"></a></figure>
 												<div class="tg-authornamebooks">
 													<h4><a href="javascript:void(0);">Jude Morphew</a></h4>
-													<p>21,685 Published Books</p>
+													<p>21,658 Published Books</p>
 												</div>
 											</li>
 											<li>
@@ -1807,7 +1807,7 @@
 
 	<script>
 		$(document).ready(function() {
-			url = "http://localhost:8080/QLthuVien_PJ/index.php?"
+			url = "http://localhost:88/QLthuVien_PJ/index.php?"
 			check_email = false;
 			check_pass = false;
 			check_pass_again = false;
@@ -1815,12 +1815,23 @@
 			passwd_again = 2;
 			$('#btn_login').click(function() {
 				$('#modalLogin').modal('show')
+
 			})
 			$('#Register').click(function() {
 				$('#modalLogin').modal('hide')
 				$('#modalResign').modal('show')
 			})
+			$('.closed').click(function() {
+				$('#modal_signup_succes').modal('hide')
+			})
+			$('#gmail').mouseover(function() {
+				$(this).css("color", "rgb(226 201 63)")
+			})
+			$('#gmail').mouseleave(function() {
+				$(this).css("color", "red")
+			})
 			$('#btn_dangky').click(function() {
+
 				name_u = $('#name_u').val();
 				address_u = $('#address_u').val();
 				phone_u = $('#phone_u').val();
@@ -1839,8 +1850,12 @@
 							processData: false,
 							contentType: false,
 							success: function(dt) {
-								console.log(dt)
-								//console.log('12331241')
+								$('#modalResign').modal('hide')
+								$('#modal_signup_succes').modal('show')
+								$('#formResign').trigger("reset")
+								$('#msgThongBao').html("")
+								$('#msgThongBao_pass').html("")
+								$('#msgThongBao_pass_again').html("")
 							}
 						})
 					}
@@ -1921,9 +1936,9 @@
 								$('#check_resign').html("Tài khoản mật khẩu không chính xác !")
 								$('#check_resign').css("color", "red")
 							} else if (dt == 1) {
-								window.location.href = "http://localhost:8080/QLThuVien_Pj/index.php?controller=admin"
+								window.location.href = url+"controller=admin"
 							} else {
-								window.location.href = "http://localhost:8080/QLThuVien_Pj/index.php"
+								window.location.href = url
 							}
 						}
 					})

@@ -90,6 +90,7 @@ class BaseModel extends Database
     } else {
       "Thêm thất bại";
     }
+    // echo $sql;
   }
   //sua data book
   public function update($table, $id, $data = [])
@@ -104,12 +105,11 @@ class BaseModel extends Database
     //nối các phần tử mảng thành một chuỗi kết quả
     $dataSetString = implode(',', $dataSets);
     $sql = "UPDATE ${table} SET ${dataSetString} WHERE $where";
-
     $query = $this->query($sql);
     if ($query) {
-      return "Sửa thành công";
-    } else {
-      "Sửa thất bại";
+      return "Update thành công.";
+    }else{
+      return "Update thất bại";
     }
   }
   public function search_($table, $data)
@@ -150,12 +150,11 @@ class BaseModel extends Database
       $where = $key . '=' . "'$val'";
     }
     $sql = "DELETE from $table where $where ";
-    print_r($sql);
     $query = $this->query($sql);
     if ($query) {
       return "Xóa thành công";
     } else {
-      "Xóa thất bại";
+      return "Xóa thất bại";
     }
   }
   ////4----sau khi có được câu sql thì phải thực hiện truy vấn 
@@ -187,9 +186,9 @@ class BaseModel extends Database
     $query = $this->query($sql);
     //echo $sql;
     if ($query) {
-      return "Xóa thành công";
+      return true;
     } else {
-      "Xóa thất bại";
+      return false;
     }
   }
 }
