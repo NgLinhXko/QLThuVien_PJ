@@ -34,7 +34,7 @@
                                 <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><i class="fas fa-bars"></i></a>
                                 <form class="d-flex">
                                     <a id="profile_tch" href="#" class="navbar-brand">Tài khoản</a>
-                                    <a href="http://localhost:88/QLThuVien_Pj/index.php?controller=login&action=logout" class="navbar-brand">Đăng xuất</a>
+                                    <a href="<?=URL?>/index.php?controller=login&action=logout" class="navbar-brand">Đăng xuất</a>
                                 </form>
                             </div>
                         </nav>
@@ -434,7 +434,8 @@
         <!-- <script src="http://localhost:8080/QLThuVien_PJ/Public/js/admin/category.js"></script> -->
         <script>
             $(document).ready(function() {
-                url = "http://localhost:88/QLThuVien_Pj/index.php?controller=admin&action="
+              
+                url = "<?= URL?>/index.php?controller=admin&action="
                 let action = "",
                     table = "";
                 // click quản lý
@@ -644,24 +645,34 @@
 
 
                 function update(form) {
-                    $.ajax({
-                        url: url + "update_all",
-                        method: "POST",
-                        data: form,
-                        mimeType: "multipart/form-data",
-                        processData: false,
-                        contentType: false,
-                        success: function(dt) {
-                            load_data(action, table)
-                            $('#msg_modal').modal('show')
-                            $('#text_msg').html(dt)
-                            setTimeout(function() {
-                                $('#msg_modal').modal('hide')
-                            }, 3000)
-                            $('.update').modal('hide')
-
+                    check_form = true;
+                    for (var value of form.values()) {
+                        console.log(value);
+                        if (value == "") {
+                            check_form = false;
                         }
-                    })
+                    }
+                    if (check_form == true) {
+                        $.ajax({
+                            url: url + "update_all",
+                            method: "POST",
+                            data: form,
+                            mimeType: "multipart/form-data",
+                            processData: false,
+                            contentType: false,
+                            success: function(dt) {
+                                load_data(action, table)
+                                $('#msg_modal').modal('show')
+                                $('#text_msg').html(dt)
+                                setTimeout(function() {
+                                    $('#msg_modal').modal('hide')
+                                }, 3000)
+                                $('.update').modal('hide')
+
+                            }
+                        })
+                    }
+
                 }
 
 

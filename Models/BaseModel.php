@@ -91,7 +91,7 @@ class BaseModel extends Database
     if ($query) {
       return "Thêm thành công";
     } else {
-      return "Thêm thất bại";
+     return "Thêm thất bại";
     }
     // echo $sql;
   }

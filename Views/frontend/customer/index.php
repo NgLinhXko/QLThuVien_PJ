@@ -1786,7 +1786,7 @@
 
 	<script>
 		$(document).ready(function() {
-			url = "http://localhost:88/QLthuVien_PJ/index.php?"
+			url = "<?= URL?>/index.php?"
 			check_email = false;
 			check_pass = false;
 			check_pass_again = false;
