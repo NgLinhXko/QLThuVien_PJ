@@ -17,6 +17,9 @@ class LoginController extends BaseController
         $this->loadModel('AdminModel');
         $this->AdminModel = new AdminModel;
     }
+     //status = 0 người dùng chưa kích hoạt tài khoản
+    //status = 1 người dũng đã kích hoạt tài khoản
+    //status =2 admin
     public function addUser()
     {
 
@@ -58,7 +61,6 @@ class LoginController extends BaseController
             $bodyContent .= '<b>Email:</b>' . $data['email_u'] . '<br>';
 
             $bodyContent .= '<p>Nếu thông tin trên là đúng.Vui lòng nhấn vào  <a href="' . self::URL . 'controller=Login&action=process_addUser&email=' . $data['email_u'] . '&code=' . $code_k . '">Xác nhận</a> để kích hoạt tài khoản</p>';
-            $bodyContent .= '<p>Note: Mã xác nhận tồn tại trong 5 phút .</p>';
             $bodyContent .= '<p>Chú ý: Không trả lời thư này.Xin trân trọng cảm ơn !</p>';
             $bodyContent .= '<p><b>Thân mến!</b></p>';
             $mail->Body = $bodyContent;
@@ -76,6 +78,7 @@ class LoginController extends BaseController
         //echo '123';
 
     }
+
     public function process_addUser()
     {
         $email = $_GET['email'];
@@ -85,7 +88,7 @@ class LoginController extends BaseController
         $datas = $this->AdminModel->load_update(self::USERS, $ar);
         if (password_verify($datas[0]['code'], $code)) {
             $data_update = [];
-            $data_update['status'] = 0;
+            $data_update['status'] = 1;
             $data_update['code'] = 0;
             $value = $this->AdminModel->update_data(self::USERS, $ar, $data_update);
             if ($value == true) {

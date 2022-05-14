@@ -30,8 +30,6 @@ class  AdminController extends BaseController
         }else{
             $datas = $this->AdminModel->getALL($table);
         }
-        
-
         // $count = $this->AdminModel->(,...)
         return $this->view("frontend.admin.table_data", [
             "check_act" =>  $table,
@@ -46,7 +44,7 @@ class  AdminController extends BaseController
         $data_get = $_POST;
         $table1 = $_POST['table'];
         if ($table1 == "books") {
-            if (isset($_FILES['img_b']['name'])) {
+            if (isset($_FILES['img_b']['name']) && $_FILES['img_b']['name'] != "") {
                 $anhchinh = $_FILES['img_b']['name']; //tên file ảnh
                 $tempname = $_FILES["img_b"]["tmp_name"]; //ổ ảo
                 $folder = $_SERVER['DOCUMENT_ROOT'] . "/QLThuVien_PJ/public/images/" . $anhchinh; //thư mục chuyển ảnh vào
@@ -57,8 +55,8 @@ class  AdminController extends BaseController
             }
         }
         if ($table1 == "users") {
-            print_r("ok");
-            if (isset($_FILES['avatar_u']['name'])) {
+            
+            if (isset($_FILES['avatar_u']['name'])&&$_FILES['avatar_u']['name'] != "") {
                 $anhchinh = $_FILES['avatar_u']['name']; //tên file ảnh
                 $tempname = $_FILES["avatar_u"]["tmp_name"]; //ổ ảo
                 $folder = $_SERVER['DOCUMENT_ROOT'] . "/QLThuVien_PJ/public/images/" . $anhchinh; //thư mục chuyển ảnh vào
@@ -76,10 +74,10 @@ class  AdminController extends BaseController
     public function update_all()
     {
         $data_get = $_POST;
-        print_r($data_get);
+        
         $table = array_pop($data_get); //xóa tên bảng
         if ($table == "books") {
-            if (isset($_FILES['img_b']['name'])) {
+            if (isset($_FILES['img_b']['name']) && $_FILES['img_b']['name'] != "" ) {
                 $anhchinh = $_FILES['img_b']['name']; //tên file ảnh
                 $tempname = $_FILES["img_b"]["tmp_name"]; //ổ ảo
                 $folder = $_SERVER['DOCUMENT_ROOT'] . "/QLThuVien_PJ/public/images/" . $anhchinh; //thư mục chuyển ảnh vào
@@ -102,6 +100,7 @@ class  AdminController extends BaseController
         $ar = [];
         $ar[array_keys($data_get)[0]] = $id;
         $data = $this->AdminModel->update_data($table, $ar, $data_get);
+        echo $data;
     }
     public function search_all()
     {
@@ -128,7 +127,7 @@ class  AdminController extends BaseController
         $data = [];
         $table = $_POST['table'];
         if ($table == "categories") {
-            print_r($_POST['id']);
+           
             $data['id_cate'] = $_POST['id'];
         }
         if ($table == "books") {
@@ -156,5 +155,10 @@ class  AdminController extends BaseController
 
         $datas = $this->AdminModel->load_update($table, $data);
         echo json_encode($datas);
+    }
+    public function check_name_cate(){
+        $name_cate = $_POST['name_cate'];
+        $datas = $this-> AdminModel -> check_name($name_cate);
+        echo sizeof($datas);
     }
 }

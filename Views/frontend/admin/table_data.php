@@ -11,12 +11,12 @@ if ($check_act == "categories") {
                 Thêm Thể Loại
             </button>
         </div>
-        <div class="col-4" style="margin-top: 20px;width:100%" >
+        <div class="col-4" style="margin-top: 20px;width:100%">
             <div class="mb-4">
                 <form action="" class="">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control form-control-lg" id="txt_search" placeholder="Search Here">
-                        <button type="button" class="input-group-text btn-success btn_search"><i class="bi bi-search me-4"></i> Search</button>
+                        <input type="text" class="form-control form-control-lg" id="txt_search" placeholder="Nhập tên thể loại">
+                        <button type="button" class="input-group-text btn-success btn_search"><i class="bi bi-search me-4"></i> Tìm kiếm</button>
                     </div>
                 </form>
             </div>
@@ -24,10 +24,10 @@ if ($check_act == "categories") {
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">STT</th>
-                    <th scope="col">Tên thể loại</th>
-                    <th scope="col">Số lượng sách</th>
-                    <th scope="col">Thao tác</th>
+                    <th class="col-1">STT</th>
+                    <th class="col-5">Tên thể loại</th>
+                    <th class="col-3">Số lượng sách</th>
+                    <th class="col-3">Thao tác</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,9 +41,11 @@ if ($check_act == "categories") {
                         <td><?= $cate['name_cate']  ?></td>
                         <td><?= $cate['SLuong'] ?></td>
                         <td>
-                            <button id_get="<?= $cate['id_cate'] ?>" id="btn_detail" class="btn btn-warning btn_detail">Chi Tiết</button>
-                            <button id_get="<?= $cate['id_cate'] ?>" id="btn_update1" class="btn btn-secondary btn_update1">Sửa</button>
-                            <button id_get="<?= $cate['id_cate'] ?>" id="btn_delete" class="btn btn-danger btn_delete">Xóa</button>
+                            <div class="d-grid">
+                                <button id_get="<?= $cate['id_cate'] ?>" id="btn_detail" class="btn btn-sm btn-warning btn_detail">Chi Tiết</button><br>
+                                <button id_get="<?= $cate['id_cate'] ?>" id="btn_update1" class="btn btn-sm btn-secondary btn_update1">Sửa</button><br>
+                                <button id_get="<?= $cate['id_cate'] ?>" id="btn_delete" class="btn btn-sm btn-danger btn_delete">Xóa</button><br>
+                            </div>
                         </td>
                     </tr>
                 <?php
@@ -72,8 +74,8 @@ if ($check_act == "books") {
 
                 <form action="" class="">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control form-control-lg" id="txt_search" placeholder="Search Here">
-                        <button type="button" class="input-group-text btn-success btn_search"><i class="bi bi-search me-4"></i> Search</button>
+                        <input type="text" class="form-control form-control-lg" id="txt_search" placeholder="Nhập tên sách">
+                        <button type="button" class="input-group-text btn-success btn_search"><i class="bi bi-search me-4"></i> Tìm kiếm</button>
                     </div>
                 </form>
             </div>
@@ -111,13 +113,13 @@ if ($check_act == "books") {
                         <td><?= $book['numBorr']  ?></td>
 
                         <td>
-                        <div class="d-grid">
-                            <button id_get="<?= $book['id_b'] ?>" id="btn_detail" class="btn btn-sm btn-warning btn_detail">Chi Tiết</button><br>
-                            <button id_get="<?= $book['id_b'] ?>" id="btn_update1" class="btn btn-sm btn-secondary btn_update1">Sửa</button><br>
-                            <button id_get="<?= $book['id_b'] ?>" id="btn_delete" class="btn btn-sm btn-danger btn_delete">Xóa</button><br>
-                        </div>
+                            <div class="d-grid">
+                                <button id_get="<?= $book['id_b'] ?>" id="btn_detail" class="btn btn-sm btn-warning btn_detail">Chi Tiết</button><br>
+                                <button id_get="<?= $book['id_b'] ?>" id="btn_update1" class="btn btn-sm btn-secondary btn_update1">Sửa</button><br>
+                                <button id_get="<?= $book['id_b'] ?>" id="btn_delete" class="btn btn-sm btn-danger btn_delete">Xóa</button><br>
+                            </div>
                         </td>
-                        
+
                     </tr>
                 <?php
                 }
@@ -142,8 +144,8 @@ if ($check_act == "users") {
 
                 <form action="" class="">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control form-control-lg" id="txt_search" placeholder="Search Here">
-                        <button type="button" class="input-group-text btn-success btn_search"><i class="bi bi-search me-4"></i> Search</button>
+                        <input type="text" class="form-control form-control-lg" id="txt_search" placeholder="Nhập tên người dùng">
+                        <button type="button" class="input-group-text btn-success btn_search"><i class="bi bi-search me-4"></i> Tìm kiếm</button>
                     </div>
                 </form>
             </div>
@@ -182,9 +184,11 @@ if ($check_act == "users") {
                         <td><?= $user['email_u']  ?></td>
                         <td><?= $user['money']  ?></td>
                         <td>
-                            <button id_get="<?= $user['id_u'] ?>" id="btn_detail" class="btn btn-warning btn_detail">Chi Tiết</button>
-                            <button id_get="<?= $user['id_u'] ?>" id="btn_update1" class="btn btn-secondary btn_update1">Sửa</button>
-                            <button id_get="<?= $user['id_u'] ?>" id="btn_delete" class="btn btn-danger btn_delete">Xóa</button>
+                        <div class="d-grid">
+                                <button id_get="<?= $user['id_u'] ?>" id="btn_detail" class="btn btn-sm btn-warning btn_detail">Chi Tiết</button><br>
+                                <button id_get="<?= $user['id_u'] ?>" id="btn_update1" class="btn btn-sm btn-secondary btn_update1">Sửa</button><br>
+                                <button id_get="<?= $user['id_u'] ?>" id="btn_delete" class="btn btn-sm btn-danger btn_delete">Xóa</button><br>
+                            </div>
                         </td>
                     </tr>
                 <?php
