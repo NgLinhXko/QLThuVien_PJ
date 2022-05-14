@@ -56,7 +56,6 @@
                     <div class="mb-1">
                         <label for="exampleInputEmail1" class="form-label">Email</label>
                         <span style="font-size: 12px;" id="msgThongBao"></span>
-
                         <input required type="email" id="email_u" name="email_u" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
