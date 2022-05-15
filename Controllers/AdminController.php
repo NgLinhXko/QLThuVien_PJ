@@ -8,13 +8,14 @@ class  AdminController extends BaseController
             $this->loadModel('AdminModel');
             // khởi tạo đối tượng
             $this->AdminModel = new AdminModel;
-        }else{
-            header("Location: ".URL);
+        } else {
+            header("Location: " . URL);
         }
     }
     public function index()
     {
         $categories = $this->AdminModel->getALL("categories");
+
         return $this->view(
             "frontend.admin.index",
             [
@@ -26,16 +27,28 @@ class  AdminController extends BaseController
     public function get_data()
     {
         $table = $_POST['table'];
-        if($table == "categories"){
-            $datas = $this-> AdminModel -> get_cate();
-        }else{
-            $datas = $this->AdminModel->getALL($table);
+        if (!isset($_POST['this_page'])) {
+            $this_page = 1;
+        } else {
+            $this_page = $_POST['this_page'];
         }
+        $start = ($this_page - 1) * 10;
+        if ($table == "categories") {
+            // $datas = $this-> AdminModel -> get_cate();
+            $datas = $this->AdminModel->get_cate($start);;
+        } else if ($table == "books") {
+            // $datas = $this->AdminModel->getALL($table);
+            $datas = $this->AdminModel->pagination($table, "id_b", $start);
+        } else {
+            $datas = $this->AdminModel->pagination($table, "id_u", $start);
+        }
+        $total_page = $this->AdminModel->total_page($table);
         // $count = $this->AdminModel->(,...)
         return $this->view("frontend.admin.table_data", [
             "check_act" =>  $table,
-            "datas" => $datas
-
+            "datas" => $datas,
+            "total_page" => $total_page,
+            "this_page" => $this_page
         ]);
     }
 
@@ -56,8 +69,8 @@ class  AdminController extends BaseController
             }
         }
         if ($table1 == "users") {
-            
-            if (isset($_FILES['avatar_u']['name'])&&$_FILES['avatar_u']['name'] != "") {
+
+            if (isset($_FILES['avatar_u']['name']) && $_FILES['avatar_u']['name'] != "") {
                 $anhchinh = $_FILES['avatar_u']['name']; //tên file ảnh
                 $tempname = $_FILES["avatar_u"]["tmp_name"]; //ổ ảo
                 $folder = $_SERVER['DOCUMENT_ROOT'] . "/QLThuVien_PJ/public/images/" . $anhchinh; //thư mục chuyển ảnh vào
@@ -66,7 +79,6 @@ class  AdminController extends BaseController
                 $data_get['avatar_u'] = $anhchinh;
                 $data_get['table'] = "users";
             }
-
         }
         $table = array_pop($data_get); //xóa tên bảng
         $data = $this->AdminModel->add_data($table, $data_get);
@@ -76,10 +88,10 @@ class  AdminController extends BaseController
     public function update_all()
     {
         $data_get = $_POST;
-        
+
         $table = array_pop($data_get); //xóa tên bảng
         if ($table == "books") {
-            if (isset($_FILES['img_b']['name']) && $_FILES['img_b']['name'] != "" ) {
+            if (isset($_FILES['img_b']['name']) && $_FILES['img_b']['name'] != "") {
                 $anhchinh = $_FILES['img_b']['name']; //tên file ảnh
                 $tempname = $_FILES["img_b"]["tmp_name"]; //ổ ảo
                 $folder = $_SERVER['DOCUMENT_ROOT'] . "/QLThuVien_PJ/public/images/" . $anhchinh; //thư mục chuyển ảnh vào
@@ -108,23 +120,30 @@ class  AdminController extends BaseController
     {
         $table = $_POST['table'];
         $data = $_POST['data'];
+        $this_page = $_POST['this_page'];
+        $start = ($this_page - 1) * 10;
         $data_s = [];
         if ($table == "categories") {
             $data_s['name_cate'] = $data;
-            $datas = $this->AdminModel->get_cate_search($data);
+            $datas = $this->AdminModel->get_cate_search($data,$start);
         }
         if ($table == "books") {
             $data_s['name_b'] = $data;
-            $datas = $this->AdminModel->search_data($table, $data_s);
+            $datas = $this->AdminModel->search_data($table, $data_s,$start);
         }
         if ($table == "users") {
             $data_s['name_u'] = $data;
-            $datas = $this->AdminModel->search_data($table, $data_s);
+            $datas = $this->AdminModel->search_data($table, $data_s,$start);
         }
+        $total_page = $this->AdminModel->total_page_search($table,$data_s);
         // $datas = $this->AdminModel->search_data($table, $data_s);
         return $this->view("frontend.admin.table_data", [
             "check_act" =>  $table,
-            "datas" => $datas
+            "datas" => $datas,
+            "total_page" => $total_page,
+            "this_page" => $this_page,
+            "val_search" => $data
+
         ]);
     }
     public function delete_all()
@@ -132,7 +151,7 @@ class  AdminController extends BaseController
         $data = [];
         $table = $_POST['table'];
         if ($table == "categories") {
-           
+
             $data['id_cate'] = $_POST['id'];
         }
         if ($table == "books") {
@@ -161,9 +180,10 @@ class  AdminController extends BaseController
         $datas = $this->AdminModel->load_update($table, $data);
         echo json_encode($datas);
     }
-    public function check_name_cate(){
+    public function check_name_cate()
+    {
         $name_cate = $_POST['name_cate'];
-        $datas = $this-> AdminModel -> check_name($name_cate);
+        $datas = $this->AdminModel->check_name($name_cate);
         echo sizeof($datas);
     }
 }

@@ -15,7 +15,11 @@ if ($check_act == "categories") {
             <div class="mb-4">
                 <form action="" class="">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control form-control-lg" id="txt_search" placeholder="Nhập tên thể loại">
+                        <input type="text" class="form-control form-control-lg" id="txt_search" value="<?php
+                                                                                                        if (isset($val_search)) {
+                                                                                                            echo $val_search;
+                                                                                                        }
+                                                                                                        ?>" placeholder="Nhập tên thể loại">
                         <button type="button" class="input-group-text btn-success btn_search"><i class="bi bi-search me-4"></i> Tìm kiếm</button>
                     </div>
                 </form>
@@ -32,7 +36,7 @@ if ($check_act == "categories") {
             </thead>
             <tbody>
                 <?php
-                $i = 0;
+                $i = ($this_page - 1) * 10;
                 foreach ($datas as $cate) {
                     $i++;
                 ?>
@@ -74,7 +78,11 @@ if ($check_act == "books") {
 
                 <form action="" class="">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control form-control-lg" id="txt_search" placeholder="Nhập tên sách">
+                        <input type="text" class="form-control form-control-lg" id="txt_search" value="<?php
+                                                                                                        if (isset($val_search)) {
+                                                                                                            echo $val_search;
+                                                                                                        }
+                                                                                                        ?>" placeholder="Nhập tên sách">
                         <button type="button" class="input-group-text btn-success btn_search"><i class="bi bi-search me-4"></i> Tìm kiếm</button>
                     </div>
                 </form>
@@ -97,7 +105,7 @@ if ($check_act == "books") {
             </thead>
             <tbody>
                 <?php
-                $i = 0;
+                $i = ($this_page - 1) * 10;
                 foreach ($datas as $book) {
                     $i++;
                 ?>
@@ -144,7 +152,11 @@ if ($check_act == "users") {
 
                 <form action="" class="">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control form-control-lg" id="txt_search" placeholder="Nhập tên người dùng">
+                        <input type="text" class="form-control form-control-lg" id="txt_search" value="<?php
+                                                                                                        if (isset($val_search)) {
+                                                                                                            echo $val_search;
+                                                                                                        }
+                                                                                                        ?>" placeholder="Nhập tên người dùng">
                         <button type="button" class="input-group-text btn-success btn_search"><i class="bi bi-search me-4"></i> Tìm kiếm</button>
                     </div>
                 </form>
@@ -167,7 +179,7 @@ if ($check_act == "users") {
             </thead>
             <tbody>
                 <?php
-                $i = 0;
+                $i = ($this_page - 1) * 10;
                 foreach ($datas as $user) {
                     $i++;
                 ?>
@@ -184,7 +196,7 @@ if ($check_act == "users") {
                         <td><?= $user['email_u']  ?></td>
                         <td><?= $user['money']  ?></td>
                         <td>
-                        <div class="d-grid">
+                            <div class="d-grid">
                                 <button id_get="<?= $user['id_u'] ?>" id="btn_detail" class="btn btn-sm btn-warning btn_detail">Chi Tiết</button><br>
                                 <button id_get="<?= $user['id_u'] ?>" id="btn_update1" class="btn btn-sm btn-secondary btn_update1">Sửa</button><br>
                                 <button id_get="<?= $user['id_u'] ?>" id="btn_delete" class="btn btn-sm btn-danger btn_delete">Xóa</button><br>
@@ -200,3 +212,55 @@ if ($check_act == "users") {
 <?php
 }
 ?>
+<nav aria-label="Page navigation example" style="margin-left:35% ;">
+    <ul class="pagination">
+        <li class="page-item <?php 
+        if($this_page == 1){
+            echo "disabled";
+        }
+        ?> " this_page=<?php
+            if($this_page == 1){
+                echo 1;
+            }else{
+                echo $this_page-1;
+            }
+        ?>>
+            <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <?php
+        for ($i = 1; $i <= $total_page; $i++) {
+        ?>
+            <li class="page-item <?php
+                                    if ($this_page == $i) {
+                                        echo 'active';
+                                    }
+                                    ?>" this_page=<?= $i ?>><a class="page-link" href="#"><?= $i ?></a></li>
+        <?php
+        }
+        ?>
+        <li class="page-item <?php 
+        if($this_page == $total_page){
+            echo "disabled";
+        }
+        ?>" this_page=<?php
+            if($this_page == $total_page){
+                echo $total_page;
+            }else{
+                echo $this_page+1;
+            }
+        ?>>
+            <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+<div hidden id="check_all" status=<?php
+                                    if (isset($val_search)) {
+                                        echo $val_search;
+                                    } else {
+                                        echo 'NoSearch';
+                                    }
+                                    ?>></div>

@@ -115,12 +115,13 @@ class BaseModel extends Database
       return "Update thất bại";
     }
   }
-  public function search_($table, $data)
+  public function search_($table, $data,$start)
   {
     foreach ($data as $key => $val) {
       $where = $key . ' like ' . "'%$val%'";
     }
-    $sql = "SELECT * FROM ${table} WHERE ${where}";
+    $sql = "SELECT * FROM ${table} WHERE ${where} limit $start,10";
+    // echo $sql;
     $query = $this->query($sql);
     $datar = [];
     while ($row = mysqli_fetch_assoc($query)) {
@@ -176,7 +177,7 @@ class BaseModel extends Database
     }
     return  $ar;
   }
-  public function slt_orderby($table, $column, $order,$limit)
+  public function slt_orderby($table, $column, $order,$start,$limit)
   {
     $sql = "SELECT * from $table order by $column $order limit 0,$limit";
     $query = $this->query($sql);
