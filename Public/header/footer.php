@@ -16,7 +16,6 @@
 	<script src="<?= URL?>/public/js/gmap3.js"></script>
 	<script src="<?= URL?>/public/js/main.js"></script>
     <script src="<?= URL?>/public/js/login/index.js"></script> -->
-
 	<script src="<?= URL?>/public/js/vendor/jquery-library.js"></script>
 	<script src="<?= URL?>/public/js/vendor/bootstrap.min.js"></script>
 	<script src="https://maps.google.com/maps/api/js?key=AIzaSyCR-KEWAVCn52mSdeVeTqZjtqbmVJyfSus&amp;language=en"></script>
@@ -29,3 +28,4 @@
 	<script src="<?= URL?>/public/js/appear.js"></script>
 	<script src="<?= URL?>/public/js/gmap3.js"></script>
 	<script src="<?= URL?>/public/js/main.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->

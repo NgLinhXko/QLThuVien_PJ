@@ -63,11 +63,24 @@
 									</li>
 								</ul>
 							</div>
-							<div class="tg-userlogin">
-								<!-- <figure><a href="javascript:void(0);"><img src="images/users/img-01.jpg" alt="image description"></a></figure>
-								<span>Hi, John</span> -->
-								<h5 id="btn_login" style="cursor: pointer;">Đăng nhập</h5>
+							<div class="tg-userlogin ">
+								<!-- <figure><a href="javascript:void(0);"><img src="./public/images/img-01.jpg" alt="image description"></a></figure>
+								<div class="btn-group">
+									<span type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">Hi, John</span>
+
+									<ul class="dropdown-menu acc" aria-labelledby="dropdownMenuButton1">
+										<li style="list-style: none;"><a class="dropdown-item" href="#">Thông tin tài khoản</a></li>
+										<li style="list-style: none;"><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
+										<li  style="list-style: none;"><a class="dropdown-item" href="<?= URL ?>/index.php?controller=login&action=logout">Đăng xuất</a></li>
+									</ul>
+								</div> -->
+								<h5 id="btn_login" <?php
+													if (isset($_SESSION['email_u'])) {
+														echo 'hidden';
+													}
+													?> style="cursor: pointer;">Đăng nhập</h5>
 							</div>
+
 						</div>
 					</div>
 				</div>
@@ -202,7 +215,7 @@
 												<?php
 												foreach ($all_nxbs as $all_nxb) {
 												?>
-													<li><a href="authors.html"><?= $all_nxb['nxb_b']?></a></li>
+													<li><a href="authors.html"><?= $all_nxb['nxb_b'] ?></a></li>
 												<?php
 												}
 												?>
@@ -952,6 +965,7 @@
 				// } 
 
 			})
+			$(this).removeClass
 
 			function validateEmail(email) {
 				var re = /\S+@\S+\.\S+/;
@@ -1043,6 +1057,7 @@
 
 			})
 
+		
 			function disb_dky() {
 				if (check_email == true && check_pass == true && check_pass_again == true) {
 					$('#btn_dangky').prop("disabled", false)

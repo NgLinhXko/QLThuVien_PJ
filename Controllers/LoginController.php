@@ -17,9 +17,7 @@ class LoginController extends BaseController
         $this->loadModel('AdminModel');
         $this->AdminModel = new AdminModel;
     }
-    //status = 0 người dùng chưa kích hoạt tài khoản
-    //status = 1 người dũng đã kích hoạt tài khoản
-    //status =2 admin
+ 
     public function addUser()
     {
 
@@ -98,6 +96,9 @@ class LoginController extends BaseController
             echo 'fail';
         }
     }
+       //status = 0 người dùng chưa kích hoạt tài khoản
+    //status = 1 người dũng đã kích hoạt tài khoản
+    //status =2 admin
     public function login()
     {
         $email = $_POST['email'];
@@ -106,19 +107,20 @@ class LoginController extends BaseController
         $arr_data['email_u'] = $email;
         $arr_data['pass_u'] = $pass;
         $datas = $this->LoginModel->find_acc(self::USERS, $email,$pass);
-        // print_r($datas);
+      
         if (sizeof($datas) == 0 ) {
             echo '0';
         } else if ($datas[0]['status'] == 2) {
-            // header('Location: ');
+           
             $_SESSION['email'] = $email;
             echo '2';
             // echo 'http://localhost:88/QLThuVien_Pj/index.php?controller=admin';
         } else {
             echo '1';
+            $_SESSION['email_u'] = $email;
             // header('location:http://localhost:88/QLThuVien_Pj/index.php');
         }
-        // print_r( $datas);
+    
     }
     public function check_mail()
     {
