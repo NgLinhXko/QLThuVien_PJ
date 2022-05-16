@@ -8,8 +8,8 @@ class  AdminController extends BaseController
             $this->loadModel('AdminModel');
             // khởi tạo đối tượng
             $this->AdminModel = new AdminModel;
-        }else{
-            header("Location: ".URL);
+        } else {
+            header("Location: " . URL);
         }
     }
     public function index()
@@ -26,9 +26,12 @@ class  AdminController extends BaseController
     public function get_data()
     {
         $table = $_POST['table'];
-        if($table == "categories"){
-            $datas = $this-> AdminModel -> get_cate();
-        }else{
+        $datas = [];
+        if ($table == "categories") {
+            $datas = $this->AdminModel->get_cate();
+        } else if ($table == "users") {
+            $datas = $this->AdminModel->getUser();
+        } else {
             $datas = $this->AdminModel->getALL($table);
         }
         // $count = $this->AdminModel->(,...)
@@ -56,8 +59,8 @@ class  AdminController extends BaseController
             }
         }
         if ($table1 == "users") {
-            
-            if (isset($_FILES['avatar_u']['name'])&&$_FILES['avatar_u']['name'] != "") {
+
+            if (isset($_FILES['avatar_u']['name']) && $_FILES['avatar_u']['name'] != "") {
                 $anhchinh = $_FILES['avatar_u']['name']; //tên file ảnh
                 $tempname = $_FILES["avatar_u"]["tmp_name"]; //ổ ảo
                 $folder = $_SERVER['DOCUMENT_ROOT'] . "/QLThuVien_PJ/public/images/" . $anhchinh; //thư mục chuyển ảnh vào
@@ -66,7 +69,6 @@ class  AdminController extends BaseController
                 $data_get['avatar_u'] = $anhchinh;
                 $data_get['table'] = "users";
             }
-
         }
         $table = array_pop($data_get); //xóa tên bảng
         $data = $this->AdminModel->add_data($table, $data_get);
@@ -76,10 +78,10 @@ class  AdminController extends BaseController
     public function update_all()
     {
         $data_get = $_POST;
-        
+
         $table = array_pop($data_get); //xóa tên bảng
         if ($table == "books") {
-            if (isset($_FILES['img_b']['name']) && $_FILES['img_b']['name'] != "" ) {
+            if (isset($_FILES['img_b']['name']) && $_FILES['img_b']['name'] != "") {
                 $anhchinh = $_FILES['img_b']['name']; //tên file ảnh
                 $tempname = $_FILES["img_b"]["tmp_name"]; //ổ ảo
                 $folder = $_SERVER['DOCUMENT_ROOT'] . "/QLThuVien_PJ/public/images/" . $anhchinh; //thư mục chuyển ảnh vào
@@ -132,7 +134,7 @@ class  AdminController extends BaseController
         $data = [];
         $table = $_POST['table'];
         if ($table == "categories") {
-           
+
             $data['id_cate'] = $_POST['id'];
         }
         if ($table == "books") {
@@ -161,9 +163,10 @@ class  AdminController extends BaseController
         $datas = $this->AdminModel->load_update($table, $data);
         echo json_encode($datas);
     }
-    public function check_name_cate(){
+    public function check_name_cate()
+    {
         $name_cate = $_POST['name_cate'];
-        $datas = $this-> AdminModel -> check_name($name_cate);
+        $datas = $this->AdminModel->check_name($name_cate);
         echo sizeof($datas);
     }
 }

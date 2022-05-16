@@ -44,7 +44,7 @@
                             <div class="row">
                                 <button type="button" class="btn btn-warning quanly col-3" table="books" id="qlSach">Quản lý Sách</button>
                                 <button type="button" style="margin-left: 10%" table="categories" class="btn btn-success quanly  col-3" id="qlTheLoai">Quản lý thể loại</button>
-                                <button type="button" style="margin-left: 10%" table="users" class="btn btn-info quanly  col-3" id="qlUser">Quản lý Users</button>
+                                <button type="button" style="margin-left: 10%" table="users" class="btn btn-info quanly  col-3" id="qlUser">Quản lý Người Dùng</button>
 
                             </div>
 
@@ -751,6 +751,7 @@
                             table: table
                         },
                         success: function(dt) {
+                            console.log(dt)
                             $('#data').html(dt)
                         }
                     })
