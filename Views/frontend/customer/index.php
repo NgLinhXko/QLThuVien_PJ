@@ -1107,6 +1107,8 @@
 						email_u: val
 					},
 					success: function(dt) {
+						$('#email_code').val("123");
+						$('#email_change').val("val")
 						$('#modal_code').modal('show');
 						$('#modal_fg_pass').modal('hide')
 					}

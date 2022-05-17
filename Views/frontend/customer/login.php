@@ -140,11 +140,7 @@
                         <label for="exampleInputPassword1" class="form-label">Nhập mã xác nhận</label>
                         <span style="font-size: 12px;color:red" id="msg_err_code"></span>
                         <input required type="text" name="code" class="form-control" id="input_code">
-                        <input type="text" id="email_code" name="email_u" hidden value="<?php
-                                                                                        if (isset($_SESSION['email_code'])) {
-                                                                                            echo $_SESSION['email_code'];
-                                                                                        }
-                                                                                        ?>">
+                        <input type="text" id="email_code" name="email_u" hidden >
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -171,11 +167,7 @@
                         <span style="font-size: 12px;color:red" id="msg_change_pas"></span>
                         <input required type="password" name="code" class="form-control" id="intput_pass_again">
 
-                        <input type="text" id="email_change" name="email_u" hidden value="<?php
-                                                                                        if (isset($_SESSION['email_code'])) {
-                                                                                            echo $_SESSION['email_code'];
-                                                                                        }
-                                                                                        ?>">
+                        <input type="text" id="email_change" name="email_u" hidden >
                     </div>
                 </div>
                 <div class="modal-footer">
