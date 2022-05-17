@@ -1,5 +1,5 @@
 <?php
- const URL = "http://localhost:88/QLThuVien_PJ";
+const URL = "http://localhost:8080/QLThuVien_PJ";
 ?>
 <!DOCTYPE html>
 <html lang="en">

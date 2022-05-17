@@ -27,10 +27,20 @@ class  AdminController extends BaseController
     public function get_data()
     {
         $table = $_POST['table'];
+<<<<<<< HEAD
         if (!isset($_POST['this_page'])) {
             $this_page = 1;
         } else {
             $this_page = $_POST['this_page'];
+=======
+        $datas = [];
+        if ($table == "categories") {
+            $datas = $this->AdminModel->get_cate();
+        } else if ($table == "users") {
+            $datas = $this->AdminModel->getUser();
+        } else {
+            $datas = $this->AdminModel->getALL($table);
+>>>>>>> LinhND
         }
         $start = ($this_page - 1) * 10;
         if ($table == "categories") {

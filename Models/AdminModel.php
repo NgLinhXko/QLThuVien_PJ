@@ -6,6 +6,10 @@ class AdminModel extends BaseModel
     {
         return $this->get_all($table);
     }
+    public function getUser()
+    {
+        return $this->get_user();
+    }
     //add data INSERT INTO $table($colum) values($data)
     public function add_data($table, $data)
     {
