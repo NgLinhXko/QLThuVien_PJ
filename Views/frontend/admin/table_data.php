@@ -68,7 +68,7 @@ if ($check_act == "books") {
         <div class="col-4" style="margin-top: 20px;" style="float: left;">
             <div class="mb-4">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAddSP">
-                    Thêm Sách
+                    Thêm sách
                 </button>
 
             </div>
