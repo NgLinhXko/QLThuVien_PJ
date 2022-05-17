@@ -340,6 +340,7 @@
                                                 <label for="exampleInputEmail1" class="form-label">Ảnh</label>
                                                 <input type="file" class="form-control" name="avatar_u" aria-describedby="emailHelp">
                                             </div>
+                                            <input type="text" hidden name="status" value="1">
                                             <input type="text" hidden name="table" value="users">
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Hủy</button>

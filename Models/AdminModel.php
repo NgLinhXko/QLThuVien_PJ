@@ -65,7 +65,12 @@ class AdminModel extends BaseModel
     }
     public function pagination($table, $colum, $start,)
     {
-        $sql = "SELECT * from $table order by $colum DESC limit $start,10";
+        if($table == "users"){
+            $sql = "SELECT * from $table where status = 1 order by $colum DESC limit $start,10";
+        }else{
+            $sql = "SELECT * from $table order by $colum DESC limit $start,10";
+        }
+      
         $query = $this->query($sql);
         $datar = [];
         while ($row = mysqli_fetch_assoc($query)) {
