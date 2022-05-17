@@ -103,5 +103,4 @@ class AdminModel extends BaseModel
         }
         return $datar;
     }
-  
 }

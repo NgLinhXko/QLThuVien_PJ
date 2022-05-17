@@ -63,33 +63,22 @@
 									</li>
 								</ul>
 							</div>
-							<!-- <div class="dropdown">
-								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-									Dropdown button
-								</button>
-								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-									<li><a class="dropdown-item" href="#">Action</a></li>
-									<li><a class="dropdown-item" href="#">Another action</a></li>
-									<li><a class="dropdown-item" href="#">Something else here</a></li>
-								</ul>
-							</div> -->
-							<div class="tg-userlogin" style="float: right;">
+							<div class="tg-userlogin ">
+								<!-- <figure><a href="javascript:void(0);"><img src="./public/images/img-01.jpg" alt="image description"></a></figure>
+								<div class="btn-group">
+									<span type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">Hi, John</span>
 
-								<?php
-								if (!isset($_SESSION['email_u'])) {
-									echo '<h5 id="btn_login" style="cursor: pointer;">Đăng nhập</h5>';
-								} else {
-
-									echo '<p id="btn_acc"aria-expanded="false" data-bs-toggle="dropdown" data-bs-auto-close="true" style="cursor: pointer;"><span>Tài khoản</span>
-
-								</ul>
-								</p>';
-								}
-								?>
-								<ul class="dropdown-menu acc" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 36px);" data-popper-placement="bottom-start" aria-labelledby="dropdownMenuButton1">
-									<li style="list-style: none;"><a class="dropdown-item" href="#">Thông tin tài khoản</a></li>
-									<li style="list-style: none;"><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
-									<li style="list-style: none;"><a class="dropdown-item" href="<?= URL ?>/index.php?controller=login&action=logout">Đăng xuất</a></li>
+									<ul class="dropdown-menu acc" aria-labelledby="dropdownMenuButton1">
+										<li style="list-style: none;"><a class="dropdown-item" href="#">Thông tin tài khoản</a></li>
+										<li style="list-style: none;"><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
+										<li  style="list-style: none;"><a class="dropdown-item" href="<?= URL ?>/index.php?controller=login&action=logout">Đăng xuất</a></li>
+									</ul>
+								</div> -->
+								<h5 id="btn_login" <?php
+													if (isset($_SESSION['email_u'])) {
+														echo 'hidden';
+													}
+													?> style="cursor: pointer;">Đăng nhập</h5>
 							</div>
 
 						</div>
@@ -900,7 +889,6 @@
 
 	<?php
 	include('login.php');
-	include('Public/public/footer.php');
 	include('public/header/footer.php');
 	?>
 
@@ -977,19 +965,12 @@
 				// } 
 
 			})
-			$('#btn_acc').click(function() {
-				$('.acc').addClass('show')
-			})
-			$('#forgot_pass').click(function() {
-				$('#modal_fg_pass').modal('show');
-				$('#modalLogin').modal('hide')
-			})
+			$(this).removeClass
 
 			function validateEmail(email) {
 				var re = /\S+@\S+\.\S+/;
 				return re.test(email);
 			}
-
 			//check email
 			$('#email_u').blur(function() {
 				email = $(this).val();
@@ -1016,101 +997,9 @@
 						}
 					})
 				}
-			})
-			$('#email_fg_pass').keyup(function() {
-				val = $(this).val();
-				if (validateEmail(val) == true) {
-					$.ajax({
-						url: url + "controller=login&action=check_mail",
-						method: "POST",
-						data: {
-							email_u: val
-						},
-						success: function(dt) {
-							// console.log(dt)
-							if (dt == 0) {
-								$('#msg_fg_pass').css("color", "red")
-								$('#msg_fg_pass').html("Tài khoản không tồn tại")
-								$('#btn_fg_pas').prop("disabled", true);
-							} else {
-								$('#msg_fg_pass').html("")
-								$('#btn_fg_pas').prop("disabled", false);
-							}
-						}
-					})
-				}
 
-			})
-			$('#btn_send_code').click(function() {
-				code = $('#input_code').val();
-				email = $('#email_code').val();
-				$.ajax({
-					url: url + "controller=login&action=check_code",
-					method: "POST",
-					data: {
-						code: code,
-						email: email
-					},
-					success: function(dt) {
-						console.log(dt)
-						if (dt != 1) {
-							$('#msg_err_code').html("Mã xác nhận không chính xác.")
-						} else {
-							$('#change_pass').modal('show')
-							$('#modal_code').modal('hide')
-						}
 
-					}
-				})
-			})
-			$('#intput_pass_again').keyup(function() {
-				pass_again = $(this).val();
-				pass = $('#input_pass').val();
-				if (pass != pass_again && pass != "") {
-					$('#msg_change_pas').html("Mật khẩu không khớp!");
-					$('#btn_change_pass').prop("disabled", true)
 
-				} else {
-					$('#msg_change_pas').html("");
-					$('#btn_change_pass').prop("disabled", false)
-				}
-
-			})
-			$('#btn_change_pass').click(function() {
-				email = $('#email_change').val();
-				pass = $('#input_pass').val();
-				$.ajax({
-					url: url+"controller=login&action=change_pass",
-					method: "POST",
-					data: {
-						email: email,
-						pass: pass_again
-					},
-					success: function(dt) {
-						console.log(dt)
-						$('#change_pass').modal("hide")
-						$('#msg_modal').modal('show')
-						$('#text_msg').html(dt)
-						setTimeout(function() {
-							$('#msg_modal').modal('hide')
-						}, 3000)
-					}
-				})
-			})
-
-			$('#btn_fg_pas').click(function() {
-				val = $('#email_fg_pass').val();
-				$.ajax({
-					url: url + "controller=login&action=forgot_pass",
-					method: "POST",
-					data: {
-						email_u: val
-					},
-					success: function(dt) {
-						$('#modal_code').modal('show');
-						$('#modal_fg_pass').modal('hide')
-					}
-				})
 			})
 			$('#pass_u').blur(function() {
 				passwd = $(this).val();
@@ -1168,7 +1057,7 @@
 
 			})
 
-
+		
 			function disb_dky() {
 				if (check_email == true && check_pass == true && check_pass_again == true) {
 					$('#btn_dangky').prop("disabled", false)

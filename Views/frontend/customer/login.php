@@ -23,18 +23,10 @@
                     </div>
                     <button style="width:100%" type="submit" id="btnLogin" class="btn btn-primary">Đăng nhập</button>
                 </form>
-                <div style="text-align:center ;">
-                    <br>
-                    <span style="color:#8195a9">OR</span>
-                    <br>
-                    <h4 style="color: #185cbf;cursor:pointer" id="forgot_pass">Quên mật khẩu.</h4>
-                </div>
-
-                <span style="color: blue;">Bạn chưa có tài khoản ?</span>
-                <span style="color: red;cursor:pointer" id="Register">Đăng ký</span><br>
                 <br>
-
-
+                <br>
+                <span style="color: blue;">Bạn chưa có tài khoản ?</span>
+                <span style="color: red;cursor:pointer" id="Register">Đăng ký</span>
             </div>
         </div>
     </div>
@@ -101,87 +93,6 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary closed " data-bs-dismiss="modal">OKE =))</button>
             </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="modal_fg_pass" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="staticBackdropLabel">Quên mật khẩu</h3>
-                <button type="button" class="btn-close closed" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="" onsubmit="return false;">
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Nhập email</label>
-                        <span style="font-size: 12px;" id="msg_fg_pass"></span>
-                        <input required type="email" name="email_u" class="form-control" id="email_fg_pass">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" id="btn_fg_pas" disabled class="btn btn-primary closed " data-bs-dismiss="modal">Gửi</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="modal_code" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="staticBackdropLabel">Mã xác nhận</h3>
-                <button type="button" class="btn-close closed" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="" onsubmit="return false;">
-                <div class="modal-body">
-                    <h5 style="color: green;">Chúng tôi đã gửi một mã xác nhận đến địa chỉ email của bạn , Vui lòng nhập mã xác nhận bên dưới..</h5>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Nhập mã xác nhận</label>
-                        <span style="font-size: 12px;color:red" id="msg_err_code"></span>
-                        <input required type="text" name="code" class="form-control" id="input_code">
-                        <input type="text" id="email_code" name="email_u" hidden value="<?php
-                                                                                        if (isset($_SESSION['email_code'])) {
-                                                                                            echo $_SESSION['email_code'];
-                                                                                        }
-                                                                                        ?>">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" id="btn_send_code" class="btn btn-primary closed " data-bs-dismiss="modal">Gửi</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="change_pass" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="staticBackdropLabel">Đổi mật khẩu</h3>
-                <button type="button" class="btn-close closed" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="" onsubmit="return false;">
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Nhập mật khẩu</label>
-                        
-                        <input required type="password" name="code" class="form-control" id="input_pass">
-                        <label for="exampleInputPassword1" class="form-label">Xác nhận mật khẩu</label>
-                        <span style="font-size: 12px;color:red" id="msg_change_pas"></span>
-                        <input required type="password" name="code" class="form-control" id="intput_pass_again">
-
-                        <input type="text" id="email_change" name="email_u" hidden value="<?php
-                                                                                        if (isset($_SESSION['email_code'])) {
-                                                                                            echo $_SESSION['email_code'];
-                                                                                        }
-                                                                                        ?>">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" disabled id="btn_change_pass" class="btn btn-primary " data-bs-dismiss="modal">Gửi</button>
-                </div>
-            </form>
         </div>
     </div>
 </div>
