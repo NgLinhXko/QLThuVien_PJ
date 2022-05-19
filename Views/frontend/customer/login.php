@@ -3,8 +3,10 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content ">
             <div style="margin: 40px;">
-
-                <h4 style="text-align: center;">Đăng nhập</h4>
+                <div class="modal-header">
+                    <h4 style="text-align: center;">Đăng Ký</h4>
+                    <button type="button" id="close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
                 <h5 id="check_resign">
                 </h5>
                 <form method="POST" onsubmit="return false;" action="#" id="formLogin">
@@ -46,7 +48,11 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content ">
             <div style="margin: 40px;">
-                <h4 style="text-align: center;">Đăng Ký</h4>
+                <div class="modal-header">
+                    <h4 style="text-align: center;">Đăng Ký</h4>
+                    <button type="button" id="close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
                 <form onsubmit="return false;" method="POST" id="formResign">
                     <!-- 2 column grid layout with text inputs for the first and last names -->
                     <div class="mb-1">
