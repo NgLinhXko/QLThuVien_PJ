@@ -1013,6 +1013,9 @@
 					})
 				}
 			})
+			$('#close').click(function(){
+				$('.modal').modal('hide')
+			})
 			$('#email_fg_pass').keyup(function() {
 				val = $(this).val();
 				if (validateEmail(val) == true) {
