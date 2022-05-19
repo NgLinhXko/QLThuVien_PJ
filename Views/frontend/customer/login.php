@@ -59,7 +59,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Số Điện Thoại(0 XXX XXX XXX) <span class="text-danger">(*)</span></label>
-                        <input required type="tel" pattern="0[0-9]{10}" minlength="10" maxlength="10" name="phone_u" class="form-control" id="phone_u" aria-describedby="emailHelp">
+                        <input required type="tel" pattern="0[0-9]{9}" minlength="10" maxlength="10" name="phone_u" class="form-control" id="phone_u" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-1">
                         <label for="exampleInputEmail1" class="form-label">Email <span class="text-danger">(*)</span></label>
