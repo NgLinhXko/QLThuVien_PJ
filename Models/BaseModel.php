@@ -59,7 +59,7 @@ class BaseModel extends Database
   //lay ra ban ghi theo id loadupdate
   public function find($table, $id)
   {
-   
+
     foreach ($id as $key => $val) {
       $where = $key . '=' . "'$val' ";
     }
@@ -91,7 +91,7 @@ class BaseModel extends Database
     if ($query) {
       return "Thêm thành công";
     } else {
-     return "Thêm thất bại";
+      return "Thêm thất bại";
     }
     // echo $sql;
   }
@@ -166,6 +166,7 @@ class BaseModel extends Database
   {
     $this->connect = $this->connect();
   }
+
   public function get_all($table)
   {
 
@@ -177,7 +178,23 @@ class BaseModel extends Database
     }
     return  $ar;
   }
-  public function slt_orderby($table, $column, $order,$start,$limit)
+
+  // public function slt_orderby($table, $column, $order,$start,$limit)
+
+  //get user
+  public function get_user()
+  {
+
+    $sql = "SELECT * FROM users EXCEPT SELECT * from users WHERE status = 2 ";
+    $query = $this->query($sql);
+    $ar = [];
+    while ($row = mysqli_fetch_assoc($query)) {
+      array_push($ar, $row);
+    }
+    return  $ar;
+  }
+  public function slt_orderby($table, $column, $order, $limit)
+
   {
     $sql = "SELECT * from $table order by $column $order limit 0,$limit";
     $query = $this->query($sql);

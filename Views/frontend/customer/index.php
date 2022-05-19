@@ -932,50 +932,46 @@
 			})
 			$('#btn_dangky').click(function() {
 
-				// name_u = $('#name_u').val();
-				// address_u = $('#address_u').val();
-				// phone_u = $('#phone_u').val();
+				name_u = $('#name_u').val();
+				address_u = $('#address_u').val();
+				phone_u = $('#phone_u').val();
 				email_u = $('#email_u').val();
 				// pass_u = $('#pass_u').val();
 				// pass_u_again = $('#pass_u_again').val();
 				// if (name_u != '' && address_u != "" && phone_u != "" && email_u != "" && pass_u != "" && pass_u_again != "") {
 				// 	if (check_email == true && check_pass == true && check_pass_again == true) {
-				form = new FormData(formResign)
-				// alert('123')
-				check_form = true;
-				for (var value of form.values()) {
+				if (name_u.length > 1 && address_u.length > 9 && phone_u.length > 9 && email_u.length > 14) {
+					form = new FormData(formResign)
+					// alert('123')
+					check_form = true;
+					for (var value of form.values()) {
 
-					if (value == "") {
-						check_form = false;
-					}
-
-				}
-				check_form = validateEmail(email);
-
-				console.log(check_form)
-				if (check_form == true) {
-					$.ajax({
-						url: url + "controller=Login&action=addUser",
-						method: "POST",
-						data: form,
-						mimeType: "multipart/form-data",
-						processData: false,
-						contentType: false,
-						success: function(dt) {
-							$('#modalResign').modal('hide')
-							$('#modal_signup_succes').modal('show')
-							$('#formResign').trigger("reset")
-							$('#msgThongBao').html("")
-							$('#msgThongBao_pass').html("")
-							$('#msgThongBao_pass_again').html("")
+						if (value == "") {
+							check_form = false;
 						}
-					})
+
+					}
+					check_form = validateEmail(email);
+					// console.log(check_form)
+					if (check_form == true) {
+						$.ajax({
+							url: url + "controller=Login&action=addUser",
+							method: "POST",
+							data: form,
+							mimeType: "multipart/form-data",
+							processData: false,
+							contentType: false,
+							success: function(dt) {
+								$('#modalResign').modal('hide')
+								$('#modal_signup_succes').modal('show')
+								$('#formResign').trigger("reset")
+								$('#msgThongBao').html("")
+								$('#msgThongBao_pass').html("")
+								$('#msgThongBao_pass_again').html("")
+							}
+						})
+					}
 				}
-
-				// }
-
-				// } 
-
 			})
 			$('#btn_acc').click(function() {
 				$('.acc').addClass('show')
@@ -995,7 +991,7 @@
 				email = $(this).val();
 				if (email != '') {
 					$.ajax({
-						url: url + "controller=login&action=check_mail",
+						url: url + "controller=login&action=check_mail_all",
 						method: "POST",
 						data: {
 							email_u: email
@@ -1107,6 +1103,8 @@
 						email_u: val
 					},
 					success: function(dt) {
+						$('#email_code').val("123");
+						$('#email_change').val("val")
 						$('#modal_code').modal('show');
 						$('#modal_fg_pass').modal('hide')
 					}

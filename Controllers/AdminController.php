@@ -77,6 +77,7 @@ class  AdminController extends BaseController
                 move_uploaded_file($tempname, $folder); //chuyển file vào ổ(tên ổ,thư mục chuyển)
                 array_pop($data_get); //xóa phần tử cuối cùng của mảng
                 $data_get['avatar_u'] = $anhchinh;
+                // $data['status'] = 1;
                 $data_get['table'] = "users";
             }
         }
