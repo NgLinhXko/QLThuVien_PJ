@@ -128,6 +128,14 @@ class LoginController extends BaseController
         $data = $this->LoginModel->checkEmail($data);
         echo sizeof($data);
     }
+    public function check_mail_all()
+    {
+        $data = $_POST['email_u'];
+       
+        $data = $this->LoginModel->checkEmail_all($data);
+         echo sizeof($data);
+        
+    }
     public function logout()
     {
         session_destroy();

@@ -50,33 +50,36 @@
                 <form onsubmit="return false;" method="POST" id="formResign">
                     <!-- 2 column grid layout with text inputs for the first and last names -->
                     <div class="mb-1">
-                        <label for="exampleInputEmail1" class="form-label">Họ Tên</label>
-                        <input required type="text" name="name_u" class="form-control" id="name_u" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1" class="form-label">Họ Tên <span class="text-danger">(*)</span></label>
+                        <input required type="text" minlength="2" name="name_u" class="form-control" id="name_u" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-1">
-                        <label for="exampleInputEmail1" class="form-label">Địa chỉ</label>
-                        <input required type="text" name="address_u" class="form-control" id="address_u" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1" class="form-label">Địa chỉ <span class="text-danger">(*)</span></label>
+                        <input required type="text" minlength="10" name="address_u" class="form-control" id="address_u" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Số Điện Thoại</label>
-                        <input required type="text" name="phone_u" class="form-control" id="phone_u" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1" class="form-label">Số Điện Thoại(0 XXX XXX XXX) <span class="text-danger">(*)</span></label>
+                        <input required type="tel" pattern="0[0-9]{10}" minlength="10" maxlength="10" name="phone_u" class="form-control" id="phone_u" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-1">
-                        <label for="exampleInputEmail1" class="form-label">Email</label>
+                        <label for="exampleInputEmail1" class="form-label">Email <span class="text-danger">(*)</span></label>
                         <span style="font-size: 12px;" id="msgThongBao"></span>
-                        <input required type="email" id="email_u" name="email_u" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input required type="email" minlength="15" id="email_u" name="email_u" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Mật khẩu</label>
+                        <label for="exampleInputPassword1" class="form-label">Mật khẩu <span class="text-danger">(*)</span></label>
                         <span style="font-size: 12px;" id="msgThongBao_pass"></span>
                         <input required type="password" name="pass_u" class="form-control" id="pass_u">
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Xác nhận Mật khẩu</label>
+                        <label for="exampleInputPassword1" class="form-label">Xác nhận Mật khẩu <span class="text-danger">(*)</span></label>
                         <span style="font-size: 12px;" id="msgThongBao_pass_again"></span>
                         <input required type="password" name="pass_u_again" class="form-control" id="pass_u_again">
                     </div>
-
+                    <div class="mv-3">
+                        <span class="text-danger">Ghi chú</span>: <span class="text-danger">(*)</span> là những trường bắt buộc.
+                    </div>
+                    <br>
                     <button type="submit" id="btn_dangky" disabled class="btn btn-primary">Đăng ký</button>
                 </form>
             </div>
@@ -140,7 +143,7 @@
                         <label for="exampleInputPassword1" class="form-label">Nhập mã xác nhận</label>
                         <span style="font-size: 12px;color:red" id="msg_err_code"></span>
                         <input required type="text" name="code" class="form-control" id="input_code">
-                        <input type="text" id="email_code" name="email_u" hidden >
+                        <input type="text" id="email_code" name="email_u" hidden>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -161,13 +164,13 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Nhập mật khẩu</label>
-                        
+
                         <input required type="password" name="code" class="form-control" id="input_pass">
                         <label for="exampleInputPassword1" class="form-label">Xác nhận mật khẩu</label>
                         <span style="font-size: 12px;color:red" id="msg_change_pas"></span>
                         <input required type="password" name="code" class="form-control" id="intput_pass_again">
 
-                        <input type="text" id="email_change" name="email_u" hidden >
+                        <input type="text" id="email_change" name="email_u" hidden>
                     </div>
                 </div>
                 <div class="modal-footer">

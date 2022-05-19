@@ -13,6 +13,18 @@ class LoginModel extends BaseModel
         }
         return $data;
     }
+    public function checkEmail_all($email_u)
+    {
+        // return $this-> find(self::TABLE,$data);
+        $sql = "SELECT * from users where email_u = '$email_u'";
+        $query = $this->query($sql);
+        $data = [];
+        while ($row = mysqli_fetch_assoc($query)) {
+            array_push($data, $row);
+        }
+        return $data;
+        echo $sql;
+    }
 
     public function add_user($data)
     {
