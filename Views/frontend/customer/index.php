@@ -1080,7 +1080,7 @@
 				email = $('#email_change').val();
 				pass = $('#input_pass').val();
 				$.ajax({
-					url: url+"controller=login&action=change_pass",
+					url: url + "controller=login&action=change_pass",
 					method: "POST",
 					data: {
 						email: email,

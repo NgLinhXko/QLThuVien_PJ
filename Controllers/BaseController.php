@@ -7,7 +7,7 @@ session_start();
 //mọi controller đều kế thừa từ basecontroller
 class BaseController
 {
-    const URL = "http://localhost:88/QLthuVien_PJ/index.php?";
+    const URL = "http://localhost:8080/QLthuVien_PJ/index.php?";
     const VIEW_FOLDER_NAME = 'Views';
     const MODEL_FOLDER_NAME = 'Models';
     protected function view($viewPath, array $data = [])

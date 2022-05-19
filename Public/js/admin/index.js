@@ -1,11 +1,11 @@
 
 $(document).ready(function () {
-    // alert('123')
+    alert('123')
     $("#menu-toggle").click(function (e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
-    url = "http://localhost:88/QLThuVien_PJ/index.php?controller=admin&action="
+    url = "http://localhost:8080/QLThuVien_PJ/index.php?controller=admin&action="
     let action = "",
         table = "";
     this_page = 1;

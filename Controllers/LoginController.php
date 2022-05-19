@@ -114,17 +114,17 @@ class LoginController extends BaseController
 
             $_SESSION['email'] = $email;
             echo '2';
-            // echo 'http://localhost:88/QLThuVien_Pj/index.php?controller=admin';
+            // echo 'http://localhost:/QLThuVien_Pj/index.php?controller=admin';
         } else {
             echo '1';
             $_SESSION['email_u'] = $email;
-            // header('location:http://localhost:88/QLThuVien_Pj/index.php');
+            // header('location:http://localhost:/QLThuVien_Pj/index.php');
         }
     }
     public function check_mail()
     {
         $data = $_POST['email_u'];
-       
+
         $data = $this->LoginModel->checkEmail($data);
         echo sizeof($data);
     }
@@ -138,7 +138,7 @@ class LoginController extends BaseController
         $email = $_POST['email_u'];
         $_SESSION['email_code'] = $email;
         $code = mt_rand(1000, 9999);
-        $datas = $this->LoginModel->update_code($email,$code);
+        $datas = $this->LoginModel->update_code($email, $code);
         $mail = new PHPMailer(true);
         try {
             //Server settings
@@ -175,16 +175,18 @@ class LoginController extends BaseController
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
     }
-    public function check_code(){
+    public function check_code()
+    {
         $code = $_POST['code'];
         $email = $_POST['email'];
-        $check = $this->LoginModel-> check_code($email,$code);
+        $check = $this->LoginModel->check_code($email, $code);
         echo $check;
     }
-    public function change_pass(){
+    public function change_pass()
+    {
         $email = $_POST['email'];
         $pass = $_POST['pass'];
-        $data = $this-> LoginModel -> change_pass($email,$pass);
+        $data = $this->LoginModel->change_pass($email, $pass);
         echo $data;
     }
 }
