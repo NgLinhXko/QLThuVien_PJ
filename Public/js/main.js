@@ -1,6 +1,7 @@
 /* -------------------------------------
 		CUSTOM FUNCTION WRITE HERE
 -------------------------------------- */
+
 jQuery(document).on('ready', function() {
 	"use strict";
 	jQuery('.tg-themetabnav > li > a').hover(function() {
@@ -264,4 +265,6 @@ jQuery(document).on('ready', function() {
 		jQuery('#quantity1').val(parseInt(jQuery('#quantity1').val(), 10) + 1);
 	});
 	
+	
 });
+

@@ -23,10 +23,18 @@
                     </div>
                     <button style="width:100%" type="submit" id="btnLogin" class="btn btn-primary">Đăng nhập</button>
                 </form>
-                <br>
-                <br>
+                <div style="text-align:center ;">
+                    <br>
+                    <span style="color:#8195a9">OR</span>
+                    <br>
+                    <h4 style="color: #185cbf;cursor:pointer" id="forgot_pass">Quên mật khẩu.</h4>
+                </div>
+
                 <span style="color: blue;">Bạn chưa có tài khoản ?</span>
-                <span style="color: red;cursor:pointer" id="Register">Đăng ký</span>
+                <span style="color: red;cursor:pointer" id="Register">Đăng ký</span><br>
+                <br>
+
+
             </div>
         </div>
     </div>
@@ -42,34 +50,36 @@
                 <form onsubmit="return false;" method="POST" id="formResign">
                     <!-- 2 column grid layout with text inputs for the first and last names -->
                     <div class="mb-1">
-                        <label for="exampleInputEmail1" class="form-label">Họ Tên</label>
-                        <input required type="text" name="name_u" class="form-control" id="name_u" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1" class="form-label">Họ Tên <span class="text-danger">(*)</span></label>
+                        <input required type="text" minlength="2" name="name_u" class="form-control" id="name_u" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-1">
-                        <label for="exampleInputEmail1" class="form-label">Địa chỉ</label>
-                        <input required type="text" name="address_u" class="form-control" id="address_u" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1" class="form-label">Địa chỉ <span class="text-danger">(*)</span></label>
+                        <input required type="text" minlength="10" name="address_u" class="form-control" id="address_u" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Số Điện Thoại</label>
-                        <input required type="text" name="phone_u" class="form-control" id="phone_u" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1" class="form-label">Số Điện Thoại(0 XXX XXX XXX) <span class="text-danger">(*)</span></label>
+                        <input required type="tel" pattern="0[0-9]{10}" minlength="10" maxlength="10" name="phone_u" class="form-control" id="phone_u" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-1">
-                        <label for="exampleInputEmail1" class="form-label">Email</label>
+                        <label for="exampleInputEmail1" class="form-label">Email <span class="text-danger">(*)</span></label>
                         <span style="font-size: 12px;" id="msgThongBao"></span>
-
-                        <input required type="email" id="email_u" name="email_u" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input required type="email" minlength="15" id="email_u" name="email_u" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Mật khẩu</label>
+                        <label for="exampleInputPassword1" class="form-label">Mật khẩu <span class="text-danger">(*)</span></label>
                         <span style="font-size: 12px;" id="msgThongBao_pass"></span>
                         <input required type="password" name="pass_u" class="form-control" id="pass_u">
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Xác nhận Mật khẩu</label>
+                        <label for="exampleInputPassword1" class="form-label">Xác nhận Mật khẩu <span class="text-danger">(*)</span></label>
                         <span style="font-size: 12px;" id="msgThongBao_pass_again"></span>
                         <input required type="password" name="pass_u_again" class="form-control" id="pass_u_again">
                     </div>
-
+                    <div class="mv-3">
+                        <span class="text-danger">Ghi chú</span>: <span class="text-danger">(*)</span> là những trường bắt buộc.
+                    </div>
+                    <br>
                     <button type="submit" id="btn_dangky" disabled class="btn btn-primary">Đăng ký</button>
                 </form>
             </div>
@@ -94,6 +104,79 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary closed " data-bs-dismiss="modal">OKE =))</button>
             </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal_fg_pass" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="staticBackdropLabel">Quên mật khẩu</h3>
+                <button type="button" class="btn-close closed" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" onsubmit="return false;">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Nhập email</label>
+                        <span style="font-size: 12px;" id="msg_fg_pass"></span>
+                        <input required type="email" name="email_u" class="form-control" id="email_fg_pass">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="btn_fg_pas" disabled class="btn btn-primary closed " data-bs-dismiss="modal">Gửi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal_code" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="staticBackdropLabel">Mã xác nhận</h3>
+                <button type="button" class="btn-close closed" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" onsubmit="return false;">
+                <div class="modal-body">
+                    <h5 style="color: green;">Chúng tôi đã gửi một mã xác nhận đến địa chỉ email của bạn , Vui lòng nhập mã xác nhận bên dưới..</h5>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Nhập mã xác nhận</label>
+                        <span style="font-size: 12px;color:red" id="msg_err_code"></span>
+                        <input required type="text" name="code" class="form-control" id="input_code">
+                        <input type="text" id="email_code" name="email_u" hidden>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="btn_send_code" class="btn btn-primary closed " data-bs-dismiss="modal">Gửi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="change_pass" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="staticBackdropLabel">Đổi mật khẩu</h3>
+                <button type="button" class="btn-close closed" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" onsubmit="return false;">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Nhập mật khẩu</label>
+
+                        <input required type="password" name="code" class="form-control" id="input_pass">
+                        <label for="exampleInputPassword1" class="form-label">Xác nhận mật khẩu</label>
+                        <span style="font-size: 12px;color:red" id="msg_change_pas"></span>
+                        <input required type="password" name="code" class="form-control" id="intput_pass_again">
+
+                        <input type="text" id="email_change" name="email_u" hidden>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" disabled id="btn_change_pass" class="btn btn-primary " data-bs-dismiss="modal">Gửi</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

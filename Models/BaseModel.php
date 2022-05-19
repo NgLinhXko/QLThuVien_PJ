@@ -59,8 +59,9 @@ class BaseModel extends Database
   //lay ra ban ghi theo id loadupdate
   public function find($table, $id)
   {
+
     foreach ($id as $key => $val) {
-      $where = $key . '=' . "'$val'";
+      $where = $key . '=' . "'$val' ";
     }
     $sql = "SELECT * FROM ${table} WHERE ${where}";
     $query = $this->query($sql);
@@ -70,6 +71,8 @@ class BaseModel extends Database
       array_push($data, $row);
     }
     return $data;
+    // echo $sql
+    // print_r($sql);
   }
 
 
@@ -88,7 +91,7 @@ class BaseModel extends Database
     if ($query) {
       return "Thêm thành công";
     } else {
-      "Thêm thất bại";
+      return "Thêm thất bại";
     }
     // echo $sql;
   }
@@ -108,16 +111,17 @@ class BaseModel extends Database
     $query = $this->query($sql);
     if ($query) {
       return "Update thành công.";
-    }else{
+    } else {
       return "Update thất bại";
     }
   }
-  public function search_($table, $data)
+  public function search_($table, $data,$start)
   {
     foreach ($data as $key => $val) {
       $where = $key . ' like ' . "'%$val%'";
     }
-    $sql = "SELECT * FROM ${table} WHERE ${where}";
+    $sql = "SELECT * FROM ${table} WHERE ${where} limit $start,10";
+    // echo $sql;
     $query = $this->query($sql);
     $datar = [];
     while ($row = mysqli_fetch_assoc($query)) {
@@ -162,10 +166,37 @@ class BaseModel extends Database
   {
     $this->connect = $this->connect();
   }
+
   public function get_all($table)
   {
 
     $sql = "SELect * from $table ";
+    $query = $this->query($sql);
+    $ar = [];
+    while ($row = mysqli_fetch_assoc($query)) {
+      array_push($ar, $row);
+    }
+    return  $ar;
+  }
+
+  // public function slt_orderby($table, $column, $order,$start,$limit)
+
+  //get user
+  public function get_user()
+  {
+
+    $sql = "SELECT * FROM users EXCEPT SELECT * from users WHERE status = 2 ";
+    $query = $this->query($sql);
+    $ar = [];
+    while ($row = mysqli_fetch_assoc($query)) {
+      array_push($ar, $row);
+    }
+    return  $ar;
+  }
+  public function slt_orderby($table, $column, $order, $limit)
+
+  {
+    $sql = "SELECT * from $table order by $column $order limit 0,$limit";
     $query = $this->query($sql);
     $ar = [];
     while ($row = mysqli_fetch_assoc($query)) {

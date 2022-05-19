@@ -4144,3 +4144,6 @@ body.tg-comingsoonpage .tg-footerbar{position:static;}
 .tg-userlogin   h5{
 	cursor: pointer;
 }
+.dropdown-menu .acc  li{
+	list-style: none;
+}

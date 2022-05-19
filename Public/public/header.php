@@ -1,3 +1,6 @@
+<?php
+ const URL = "http://localhost:88/QLThuVien_PJ";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <!-- <link rel="stylesheet" href="http://localhost:8080/QLTV/Public/CSS/style.css" /> -->
-    <link rel="stylesheet" href="http://localhost:81/Project/QLThuVien_PJ/Public/CSS/style1.css" />
+    <link rel="stylesheet" href="<?= URL ?>/Public/CSS/style1.css" />
 
     <link rel="stylesheet" href="./CSS/style1.css">
 
