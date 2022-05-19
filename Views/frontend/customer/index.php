@@ -1807,7 +1807,7 @@
 
 	<script>
 		$(document).ready(function() {
-			url = "http://localhost:88/QLthuVien_PJ/index.php?"
+			url = "http://localhost:81/Project/QLthuVien_PJ/index.php?"
 			check_email = false;
 			check_pass = false;
 			check_pass_again = false;

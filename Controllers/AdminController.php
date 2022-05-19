@@ -9,7 +9,7 @@ class  AdminController extends BaseController
             // khởi tạo đối tượng
             $this->AdminModel = new AdminModel;
         }else{
-            header("Location: http://localhost:88/QLThuVien_Pj/index.php");
+            header("Location: http://localhost:81/Project/QLThuVien_Pj/index.php");
         }
     }
     public function index()
