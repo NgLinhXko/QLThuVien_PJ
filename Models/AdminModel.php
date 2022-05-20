@@ -27,9 +27,9 @@ class AdminModel extends BaseModel
     {
         return $this->update($table, $ar, $data);
     }
-    public function search_data($table, $data,$start)
+    public function search_data($table, $data, $start)
     {
-        return $this->search_($table, $data,$start);
+        return $this->search_($table, $data, $start);
     }
     public function get_cate($start)
     {
@@ -48,16 +48,29 @@ class AdminModel extends BaseModel
          where id_cate =  categories.id_cate) as SLuong from categories where name_cate 
          like '%$data%' order by id_cate limit $start,10";
         $query = $this->query($sql);
-        if($query){
+        if ($query) {
             $datar = [];
             while ($row = mysqli_fetch_assoc($query)) {
                 array_push($datar, $row);
             }
             return $datar;
-        }else{
+        } else {
             return false;
         }
-      
+    }
+    public function search_User($table, $data_s, $start)
+    {
+        foreach ($data_s as $key => $val) {
+            $where = $key . ' like ' . "'%$val%'";
+        }
+        $sql = "SELECT * FROM ${table} WHERE ${where} and status = 1 limit $start,10";
+        // echo $sql;
+        $query = $this->query($sql);
+        $datar = [];
+        while ($row = mysqli_fetch_assoc($query)) {
+            array_push($datar, $row);
+        }
+        return $datar;
     }
     public function check_name($data)
     {
@@ -71,12 +84,12 @@ class AdminModel extends BaseModel
     }
     public function pagination($table, $colum, $start,)
     {
-        if($table == "users"){
+        if ($table == "users") {
             $sql = "SELECT * from $table where status = 1 order by $colum DESC limit $start,10";
-        }else{
+        } else {
             $sql = "SELECT * from $table order by $colum DESC limit $start,10";
         }
-      
+
         $query = $this->query($sql);
         $datar = [];
         while ($row = mysqli_fetch_assoc($query)) {
@@ -91,7 +104,7 @@ class AdminModel extends BaseModel
         $total_row = mysqli_num_rows($query);
         return ceil($total_row / 10);
     }
-    public function total_page_search($table,$arr)
+    public function total_page_search($table, $arr)
     {
         foreach ($arr as $key => $val) {
             $where = $key . ' like ' . "'%$val%'";
@@ -101,7 +114,8 @@ class AdminModel extends BaseModel
         $total_row = mysqli_num_rows($query);
         return ceil($total_row / 10);
     }
-    public function all_nxb(){
+    public function all_nxb()
+    {
         $sql = "SELECT nxb_b FROM `books` GROUP by nxb_b";
         $query = $this->query($sql);
         $datar = [];
@@ -110,5 +124,4 @@ class AdminModel extends BaseModel
         }
         return $datar;
     }
-  
 }

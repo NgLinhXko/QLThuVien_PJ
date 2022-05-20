@@ -279,7 +279,7 @@
                                                 <div class="col-6" style="float: left;">
                                                     <div class="mb-3">
                                                         <label for="exampleInputEmail1" class="form-label">Năm xuất bản <span class="text-danger">(*)</span></label>
-                                                        <input type="number" id="year_b1" min=1000 max=<?= date("Y") ?> class="form-control" name="year_b" aria-describedby="emailHelp">
+                                                        <input require type="number" id="year_b1" min=1000 max=<?= date("Y") ?> class="form-control" name="year_b" aria-describedby="emailHelp">
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="exampleInputEmail1" class="form-label">Số trang <span class="text-danger">(*)</span></label>
@@ -592,8 +592,8 @@
                         }
                     }
                     if (table == "books") {
-                        name_b = length($('#name_b1').val())
-                        nxb_b = length($('#nxb_b1').val())
+                        name_b = $('#name_b1').val().length
+                        nxb_b = $('#nxb_b1').val().length
                         val_book = parseInt($('#year_b1').val())
                         price_b = parseInt($('#price_b1').val())
                         page_b = parseInt($('#page_b1').val())
