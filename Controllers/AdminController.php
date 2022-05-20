@@ -78,8 +78,14 @@ class  AdminController extends BaseController
                 array_pop($data_get); //xóa phần tử cuối cùng của mảng
                 $data_get['avatar_u'] = $anhchinh;
                 // $data['status'] = 1;
+                $data_get['pass_u'] = $_POST['email_u'];
+                $data_get['table'] = "users";
+            }else{
+                array_pop($data_get);
+                $data_get['pass_u'] = $_POST['email_u'];
                 $data_get['table'] = "users";
             }
+
         }
         $table = array_pop($data_get); //xóa tên bảng
         $data = $this->AdminModel->add_data($table, $data_get);
