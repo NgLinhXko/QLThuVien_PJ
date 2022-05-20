@@ -77,12 +77,10 @@ class AdminModel extends BaseModel
         $sql = "SELECT * from categories where name_cate like '$data' ";
         $query = $this->query($sql);
         $datar = [];
-        //if
         while ($row = mysqli_fetch_assoc($query)) {
             array_push($datar, $row);
         }
         return $datar;
-        //else
     }
     public function pagination($table, $colum, $start,)
     {

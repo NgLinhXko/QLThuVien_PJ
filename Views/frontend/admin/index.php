@@ -279,7 +279,7 @@
                                                 <div class="col-6" style="float: left;">
                                                     <div class="mb-3">
                                                         <label for="exampleInputEmail1" class="form-label">Năm xuất bản <span class="text-danger">(*)</span></label>
-                                                        <input type="number" id="year_b1" min=1000 max=<?= date("Y") ?> class="form-control" name="year_b" aria-describedby="emailHelp">
+                                                        <input require type="number" id="year_b1" min=1000 max=<?= date("Y") ?> class="form-control" name="year_b" aria-describedby="emailHelp">
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="exampleInputEmail1" class="form-label">Số trang <span class="text-danger">(*)</span></label>

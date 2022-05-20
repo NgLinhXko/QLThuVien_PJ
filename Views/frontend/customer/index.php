@@ -1013,7 +1013,7 @@
 					})
 				}
 			})
-			$('#close').click(function(){
+			$('.btn-close').click(function(){
 				$('.modal').modal('hide')
 			})
 			$('#email_fg_pass').keyup(function() {
@@ -1159,7 +1159,9 @@
 								$('#check_resign').html("Tài khoản mật khẩu không chính xác !")
 								$('#check_resign').css("color", "red")
 							} else if (dt == 2) {
+								
 								window.location.href = url + "controller=admin"
+								alert('đăng nhập thành công');
 							} else {
 								window.location.href = url
 							}
