@@ -3,10 +3,13 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content ">
             <div style="margin: 40px;">
+
                 <div class="modal-header">
-                    <h4 style="text-align: center;">Đăng Ký</h4>
-                    <button type="button" id="close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h4 style="text-align: center;" class="modal-title">Đăng Nhập</h4>
+                    <button type="button" id="close" style="float: left;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
                 </div>
+
                 <h5 id="check_resign">
                 </h5>
                 <form method="POST" onsubmit="return false;" action="#" id="formLogin">

@@ -1145,7 +1145,7 @@
 			$('#btnLogin').click(function() {
 				email = $('#email_login').val();
 				pass = $('#pass_login').val();
-				if (email != "" && pass != "") {
+				if ( validateEmail(email) == true && email != "" && pass != "") {
 					$.ajax({
 						url: url + "controller=login&action=login",
 						method: "POST",

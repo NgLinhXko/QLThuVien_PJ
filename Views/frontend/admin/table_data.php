@@ -96,7 +96,7 @@ if ($check_act == "books") {
                     <th scope="col">STT</th>
                     <th scope="col">Tên Sách</th>
                     <th scope="col">Nhà Xuất Bản Sách</th>
-                    <th scope="col">Năm Sản Xuất</th>
+                    <th scope="col">Năm Xuất Bản</th>
                     <th scope="col">Số Lượng Đầu Sách</th>
                     <th scope="col">Số Sách Cho Mượn</th>
                     <!-- <th scope="col">Thuộc Thể Loại</th> -->

@@ -45,13 +45,19 @@ class AdminModel extends BaseModel
     public function get_cate_search($data, $start)
     {
         $sql = "SELECT categories.id_cate,name_cate,(SELECT COUNT(id_b) FROM books
-         where id_cate =  categories.id_cate) as SLuong from categories where name_cate like '%$data%' order by id_cate limit $start,10";
+         where id_cate =  categories.id_cate) as SLuong from categories where name_cate 
+         like '%$data%' order by id_cate limit $start,10";
         $query = $this->query($sql);
-        $datar = [];
-        while ($row = mysqli_fetch_assoc($query)) {
-            array_push($datar, $row);
+        if($query){
+            $datar = [];
+            while ($row = mysqli_fetch_assoc($query)) {
+                array_push($datar, $row);
+            }
+            return $datar;
+        }else{
+            return false;
         }
-        return $datar;
+      
     }
     public function check_name($data)
     {
