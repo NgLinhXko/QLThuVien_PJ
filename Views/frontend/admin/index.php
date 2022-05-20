@@ -63,17 +63,22 @@
 
                                         <form onsubmit="return false;" action="" class="mt-4" method="POST" id="form_add_cate">
                                             <div class="col-mb-3">
-                                                <label for="txtTLoai_a" class="col-sm-3 col-form-label">Tên Thể Loại</label>
+                                                <label for="txtTLoai_a" class="col-sm-3 col-form-label">Tên Thể Loại <span class="text-danger">(*)</span></label>
                                                 <p id="message_cate_err" class="text-danger"></p>
                                                 <div class="col-sm-10">
                                                     <input required minlength="4" type="text" class="form-control" id="txtTLoai_a" name="name_cate">
                                                 </div>
                                             </div>
                                             <input type="text" hidden name="table" value="categories">
+                                            <br>
+                                            <div class="mv-3" style="font-size: 12px;">
+                                                <span class="text-danger" >Ghi chú</span>: <span class="text-danger">(*)</span> là những trường bắt buộc.
+                                            </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Hủy</button>
                                                 <button type="submit" disabled name_form="add_cate" class="btn btn-success btn_add_suces" id="add_cate" style="width: 100px;">Thêm</button>
                                             </div>
+
                                         </form>
                                     </div>
 
@@ -108,12 +113,16 @@
                                         <form onsubmit="return false;" class="mt-4" action="" enctype="multipart/form-data" method="POST" id="form_update_cate">
                                             <input type="hidden" class="form-control" id="txtIdTL" name="id_cate" value="">
                                             <div class="col-mb-3">
-                                                <label for="txtTL" class="col-sm-2 col-form-label">Tên Thể Loại</label>
+                                                <label for="txtTL" class="col-sm-2 col-form-label">Tên Thể Loại <span class="text-danger">(*)</span></label>
                                                 <div class="col-sm-10">
                                                     <input minlength="4" required type="text" class="form-control" id="txtTL" name="name_cate" value="">
                                                 </div>
                                             </div>
                                             <input type="text" hidden name="table" value="categories">
+                                            <br>
+                                            <div class="mv-3" style="font-size: 12px;">
+                                                <span class="text-danger" >Ghi chú</span>: <span class="text-danger">(*)</span> là những trường bắt buộc.
+                                            </div>
                                             <div class="modal-footer">
                                                 <button type="sumit" class="btn btn-success btn-updatee" style="width: 100px;" id="btn_update">Update</button>
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Close</button>
@@ -139,11 +148,11 @@
                                             <div class="col-6" style="float: left;">
 
                                                 <div class="mb-3">
-                                                    <label for="exampleInputEmail1" class="form-label">Tên Sách</label>
+                                                    <label for="exampleInputEmail1" class="form-label">Tên Sách <span class="text-danger">(*)</span></label>
                                                     <input required type="text" class="form-control" minlength="2" id="name_b" name="name_b" aria-describedby="emailHelp">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="exampleInputEmail1" class="form-label">Thể Loại</label>
+                                                    <label for="exampleInputEmail1" class="form-label">Thể Loại <span class="text-danger">(*)</span></label>
                                                     <br>
                                                     <select name="id_cate" id="id_cate">
                                                         <?php
@@ -156,41 +165,46 @@
                                                     </select>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="exampleInputEmail1" class="form-label">Giá </label>
+                                                    <label for="exampleInputEmail1" class="form-label">Giá <span class="text-danger">(*)</span></label>
                                                     <input required type="number" min=10000 id="price_b" class="form-control" name="price_b" aria-describedby="emailHelp">
                                                 </div>
                                                 <!-- <input type="text" required hidden name="" id="" value=""> -->
                                                 <div class="mb-3">
-                                                    <label for="exampleInputEmail1" class="form-label">Nhà xuất bản </label>
+                                                    <label for="exampleInputEmail1" class="form-label">Nhà xuất bản <span class="text-danger">(*)</span></label>
                                                     <input required type="text" id="nxb_b" minlength="2" class="form-control" name="nxb_b" aria-describedby="emailHelp">
                                                 </div>
                                             </div>
                                             <div class="col-6" style="float: left;">
                                                 <div class="mb-3">
-                                                    <label for="exampleInputEmail1" class="form-label">Năm xuất bản</label>
+                                                    <label for="exampleInputEmail1" class="form-label">Năm xuất bản <span class="text-danger">(*)</span></label>
                                                     <input required type="number" id="year_b" maxlength="4" min=1000 max=<?= date("Y") ?> class="form-control" name="year_b" aria-describedby="emailHelp">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="exampleInputEmail1" class="form-label">Số trang</label>
+                                                    <label for="exampleInputEmail1" class="form-label">Số trang <span class="text-danger">(*)</span></label>
                                                     <input required type="number" min=50 id="page_b" class="form-control" name="page_b" aria-describedby="emailHelp">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="exampleInputEmail1" class="form-label">Số lượng còn</label>
+                                                    <label for="exampleInputEmail1" class="form-label">Số lượng còn <span class="text-danger">(*)</span></label>
                                                     <input required type="number" min=0 id="quantity_b" class="form-control" name="quantity_b" aria-describedby="emailHelp">
                                                 </div>
                                                 <div class="mb-3">
                                                     <div class="form-floating">
                                                         <textarea id="des_b" required class="form-control" placeholder="Leave a comment here" name="des_b" style="height: 100px"></textarea>
-                                                        <label for="floatingTextarea2">Mô tả</label>
+                                                        <label for="floatingTextarea2">Mô tả <span class="text-danger">(*)</span></label>
                                                     </div>
                                                 </div>
 
                                                 <br>
                                                 <div class="mb-3">
-                                                    <label for="exampleInputEmail1" class="form-label">Ảnh</label>
+                                                    <label for="exampleInputEmail1" class="form-label">Ảnh <span class="text-danger">(*)</span></label>
                                                     <input required type="file" class="form-control" name="img_b" aria-describedby="emailHelp">
                                                 </div>
                                                 <input type="text" hidden name="table" value="books">
+                                                <br>
+                                            
+                                            </div>
+                                            <div class="mv-3" style="font-size: 12px;">
+                                                <span class="text-danger" >Ghi chú</span>: <span class="text-danger">(*)</span> là những trường bắt buộc.
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -236,11 +250,11 @@
                                             <div class="modal-body">
                                                 <div class="col-6" style="float: left;">
                                                     <div class="mb-3">
-                                                        <label for="exampleInputEmail1" class="form-label">Tên Sách</label>
+                                                        <label for="exampleInputEmail1" class="form-label">Tên Sách <span class="text-danger">(*)</span></label>
                                                         <input required type="text" minlength="2" class="form-control" id="name_b1" name="name_b" aria-describedby="emailHelp">
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="exampleInputEmail1" class="form-label">Thể Loại</label>
+                                                        <label for="exampleInputEmail1" class="form-label">Thể Loại <span class="text-danger">(*)</span></label>
                                                         <br>
                                                         <select name="id_cate" id="id_cate">
                                                             <?php
@@ -253,42 +267,45 @@
                                                         </select>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="exampleInputEmail1" class="form-label">Giá </label>
+                                                        <label for="exampleInputEmail1" class="form-label">Giá <span class="text-danger">(*)</span></label>
                                                         <input required type="number" min=10000 id="price_b1" class="form-control" name="price_b" aria-describedby="emailHelp">
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="exampleInputEmail1" class="form-label">Nhà xuất bản </label>
+                                                        <label for="exampleInputEmail1" class="form-label">Nhà xuất bản <span class="text-danger">(*)</span></label>
                                                         <input required type="text" minlength="2" id="nxb_b1" class="form-control" name="nxb_b" aria-describedby="emailHelp">
                                                     </div>
 
                                                 </div>
                                                 <div class="col-6" style="float: left;">
                                                     <div class="mb-3">
-                                                        <label for="exampleInputEmail1" class="form-label">Năm xuất bản</label>
+                                                        <label for="exampleInputEmail1" class="form-label">Năm xuất bản <span class="text-danger">(*)</span></label>
                                                         <input type="number" id="year_b1" min=1000 max=<?= date("Y") ?> class="form-control" name="year_b" aria-describedby="emailHelp">
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="exampleInputEmail1" class="form-label">Số trang</label>
+                                                        <label for="exampleInputEmail1" class="form-label">Số trang <span class="text-danger">(*)</span></label>
                                                         <input required type="number" min=50 id="page_b1" class="form-control" name="page_b" aria-describedby="emailHelp">
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="exampleInputEmail1" class="form-label">Số lượng còn</label>
+                                                        <label for="exampleInputEmail1" class="form-label">Số lượng còn <span class="text-danger">(*)</span></label>
                                                         <input required type="number" min=0 id="quantity_b1" class="form-control" name="quantity_b" aria-describedby="emailHelp">
                                                     </div>
                                                     <div class="mb-3">
                                                         <div class="form-floating">
                                                             <textarea id="des_b1" required class="form-control" placeholder="Leave a comment here" name="des_b" style="height: 100px"></textarea>
-                                                            <label for="floatingTextarea2">Mô tả</label>
+                                                            <label for="floatingTextarea2">Mô tả <span class="text-danger">(*)</span></label>
                                                         </div>
                                                     </div>
 
                                                     <br>
                                                     <div class="mb-3">
                                                         <label for="exampleInputEmail1" class="form-label">Ảnh</label>
-                                                        <input id="img_b1" required type="file" class="form-control" name="img_b" aria-describedby="emailHelp">
+                                                        <input id="img_b1" type="file" class="form-control" name="img_b" aria-describedby="emailHelp">
                                                     </div>
                                                 </div>
 
+                                            </div>
+                                            <div class="mv-3" style="font-size: 12px;">
+                                                <span class="text-danger" >Ghi chú</span>: <span class="text-danger">(*)</span> là những trường bắt buộc.
                                             </div>
                                             <input type="text" hidden name="table" value="books">
                                             <div class="modal-footer">
@@ -313,28 +330,28 @@
                                         <p id="message" class="text-success"></p>
                                         <form onsubmit="return false;" class="mt-4" action="" method="POST" id="form_add_user">
                                             <div class="col-mb-3">
-                                                <label for="name_u" class="col-sm-3 col-form-label">Tên Người Dùng</label>
+                                                <label for="name_u" class="col-sm-3 col-form-label">Tên Người Dùng <span class="text-danger">(*)</span></label>
                                                 <div class="col-sm-10">
                                                     <input required type="text" minlength="2" class="form-control" id="name_u" name="name_u">
                                                 </div>
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="exampleInputEmail1" class="form-label">Địa Chỉ</label>
+                                                <label for="exampleInputEmail1" class="form-label">Địa Chỉ <span class="text-danger">(*)</span></label>
                                                 <input required type="text" minlength="10" class="form-control" id="address_u" name="address_u" aria-describedby="emailHelp">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="exampleInputEmail1" class="form-label">Số Điện Thoại(0 XXX XXX XXX)</label>
-                                                <input required type="tel" pattern="0[0-9]{10}" minlength="10" maxlength="10" class="form-control" id="phone_u" name="phone_u" aria-describedby="emailHelp">
+                                                <label for="exampleInputEmail1" class="form-label">Số Điện Thoại(0 XXX XXX XXX) <span class="text-danger">(*)</span></label>
+                                                <input required type="tel" pattern="0[0-9]{9}" minlength="10" maxlength="10" class="form-control" id="phone_u" name="phone_u" aria-describedby="emailHelp">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="exampleInputEmail1" class="form-label">Email</label>
+                                                <label for="exampleInputEmail1" class="form-label">Email <span class="text-danger">(*)</span></label>
                                                 <p id="message_users_err" class="text-danger"></p>
                                                 <input required type="email" class="form-control" minlength="15" id="email_u" name="email_u" aria-describedby="emailHelp">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="exampleInputEmail1" class="form-label">Số Dư</label>
-                                                <input type="number" min="0" class="form-control" id="money" name="money" value="0" aria-describedby="emailHelp">
+                                                <label for="exampleInputEmail1" class="form-label">Số Dư <span class="text-danger">(*)</span></label>
+                                                <input required type="number" min="0" class="form-control" id="money" name="money" value="0" aria-describedby="emailHelp">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputEmail1" class="form-label">Ảnh</label>
@@ -342,6 +359,9 @@
                                             </div>
                                             <input type="text" hidden name="status" value="1">
                                             <input type="text" hidden name="table" value="users">
+                                            <div class="mv-3" style="font-size: 12px;">
+                                                <span class="text-danger" >Ghi chú</span>: <span class="text-danger">(*)</span> là những trường bắt buộc.
+                                            </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Hủy</button>
                                                 <button type="submit" disabled name_form="add_users" class="btn btn-success btn_add_suces" id="update_add_users" style="width: 100px;">Thêm</button>
@@ -379,35 +399,38 @@
                                         <form onsubmit="return false;" class="mt-4" action="" method="POST" id="form_update_user">
                                             <input type="hidden" class="form-control" id="id_u1" name="id_u" value="">
                                             <div class="col-mb-3">
-                                                <label for="name_u" class="col-sm-3 col-form-label">Tên Người Dùng</label>
+                                                <label for="name_u" class="col-sm-3 col-form-label">Tên Người Dùng <span class="text-danger">(*)</span></label>
                                                 <div class="col-sm-10">
                                                     <input required type="text" class="form-control" id="name_u1" name="name_u">
                                                 </div>
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="exampleInputEmail1" class="form-label">Địa Chỉ</label>
+                                                <label for="exampleInputEmail1" class="form-label">Địa Chỉ <span class="text-danger">(*)</span></label>
                                                 <input required type="text" class="form-control" id="address_u1" name="address_u" aria-describedby="emailHelp">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="exampleInputEmail1" class="form-label">Số Điện Thoại</label>
-                                                <input required type="text" class="form-control" id="phone_u1" name="phone_u" aria-describedby="emailHelp">
+                                                <label for="exampleInputEmail1" class="form-label">Số Điện Thoại <span class="text-danger">(*)</span></label>
+                                                <input required readonly type="text" class="form-control" id="phone_u1" name="phone_u" aria-describedby="emailHelp">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="exampleInputEmail1" class="form-label">Email</label>
+                                                <label for="exampleInputEmail1" class="form-label">Email <span class="text-danger">(*)</span></label>
                                                 <input required readonly type="Email" class="form-control" id="email_u1" name="email_u" aria-describedby="emailHelp">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="exampleInputEmail1" class="form-label">Số Dư</label>
+                                                <label for="exampleInputEmail1" class="form-label">Số Dư <span class="text-danger">(*)</span></label>
                                                 <input required type="text" class="form-control" id="money1" name="money" aria-describedby="emailHelp">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="exampleInputEmail1" class="form-label">Ảnh</label>
+                                                <label for="exampleInputEmail1" class="form-label">Ảnh <span class="text-danger">(*)</span></label>
                                                 <input required type="file" id="avatar_u1" class="form-control" name="avatar_u" aria-describedby="emailHelp">
                                             </div>
                                             <input type="text" hidden name="table" value="users">
+                                            <div class="mv-3" style="font-size: 12px;">
+                                                <span class="text-danger" >Ghi chú</span>: <span class="text-danger">(*)</span> là những trường bắt buộc.
+                                            </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Hủy</button>
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Close</button>
 
                                                 <button type="submit" name_form="add_users" class="btn btn-success btn-updatee" id="btn_update" style="width: 100px;">Update</button>
                                             </div>
@@ -512,7 +535,7 @@
                 })
                 $('#email_u').keyup(function() {
                     val = $(this).val();
-                    if ( val != "") {
+                    if (val != "") {
                         $.ajax({
                             url: "http://localhost:88/QLThuVien_PJ/index.php?controller=login&action=check_mail_all",
                             method: "POST",
@@ -528,7 +551,7 @@
                                     $('#message_users_err').html("Tài  khoản đã tồn tại")
                                     $('#update_add_users').prop("disabled", true);
                                 }
-                               
+
                             }
                         })
                     }
