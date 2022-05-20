@@ -27,9 +27,9 @@ class AdminModel extends BaseModel
     {
         return $this->update($table, $ar, $data);
     }
-    public function search_data($table, $data,$start)
+    public function search_data($table, $data, $start)
     {
-        return $this->search_($table, $data,$start);
+        return $this->search_($table, $data, $start);
     }
     public function get_cate($start)
     {
@@ -58,19 +58,21 @@ class AdminModel extends BaseModel
         $sql = "SELECT * from categories where name_cate like '$data' ";
         $query = $this->query($sql);
         $datar = [];
+        //if
         while ($row = mysqli_fetch_assoc($query)) {
             array_push($datar, $row);
         }
         return $datar;
+        //else
     }
     public function pagination($table, $colum, $start,)
     {
-        if($table == "users"){
+        if ($table == "users") {
             $sql = "SELECT * from $table where status = 1 order by $colum DESC limit $start,10";
-        }else{
+        } else {
             $sql = "SELECT * from $table order by $colum DESC limit $start,10";
         }
-      
+
         $query = $this->query($sql);
         $datar = [];
         while ($row = mysqli_fetch_assoc($query)) {
@@ -85,7 +87,7 @@ class AdminModel extends BaseModel
         $total_row = mysqli_num_rows($query);
         return ceil($total_row / 10);
     }
-    public function total_page_search($table,$arr)
+    public function total_page_search($table, $arr)
     {
         foreach ($arr as $key => $val) {
             $where = $key . ' like ' . "'%$val%'";
@@ -95,7 +97,8 @@ class AdminModel extends BaseModel
         $total_row = mysqli_num_rows($query);
         return ceil($total_row / 10);
     }
-    public function all_nxb(){
+    public function all_nxb()
+    {
         $sql = "SELECT nxb_b FROM `books` GROUP by nxb_b";
         $query = $this->query($sql);
         $datar = [];
@@ -104,5 +107,4 @@ class AdminModel extends BaseModel
         }
         return $datar;
     }
-  
 }

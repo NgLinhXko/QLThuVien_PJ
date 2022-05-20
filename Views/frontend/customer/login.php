@@ -4,7 +4,7 @@
         <div class="modal-content ">
             <div style="margin: 40px;">
                 <div class="modal-header">
-                    <h4 style="text-align: center;">Đăng Ký</h4>
+                    <h4 style="text-align: center;">Đăng Nhập</h4>
                     <button type="button" id="close" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <h5 id="check_resign">
@@ -108,7 +108,7 @@
                     </svg></h5>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary closed " data-bs-dismiss="modal">OKE =))</button>
+                <button type="button" class="btn btn-primary closed " data-bs-dismiss="modal">OK</button>
             </div>
         </div>
     </div>
