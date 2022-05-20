@@ -56,6 +56,19 @@ class BaseModel extends Database
   // //     }
   // //     return $data;
   // // }
+
+  //getdata view
+  public function slt_orderby($table, $column, $order, $limit)
+
+  {
+    $sql = "SELECT * from $table order by $column $order limit 0,$limit";
+    $query = $this->query($sql);
+    $ar = [];
+    while ($row = mysqli_fetch_assoc($query)) {
+      array_push($ar, $row);
+    }
+    return  $ar;
+  }
   //lay ra ban ghi theo id loadupdate
   public function find($table, $id)
   {
@@ -95,7 +108,8 @@ class BaseModel extends Database
     }
     // echo $sql;
   }
-  //sua data book
+
+  //sua data
   public function update($table, $id, $data = [])
   {
     foreach ($id as $key => $val) {
@@ -115,7 +129,9 @@ class BaseModel extends Database
       return "Update thất bại";
     }
   }
-  public function search_($table, $data,$start)
+
+  //tim kiem
+  public function search_($table, $data, $start)
   {
     foreach ($data as $key => $val) {
       $where = $key . ' like ' . "'%$val%'";
@@ -129,25 +145,9 @@ class BaseModel extends Database
     }
     return $datar;
   }
-  // //sua data cate
-  // public function updateCate($table, $id, $data)
-  // {
-  //     $dataSets = [];
-  //     foreach ($data as $key => $val) {
-  //         array_push($dataSets, "${key} = '" . $val . "'");
-  //     }
-  //     //nối các phần tử mảng thành một chuỗi kết quả
-  //     $dataSetString = implode(',', $dataSets);
-  //     $sql = "UPDATE ${table} SET ${dataSetString} WHERE id_cate = ${id}";
-  //     $this->_query($sql);
-  // }
-  // //xoa data book
-  // public function delete($table, $id)
-  // {
-  //   $sql = "DELETE FROM ${table} where id_b = ${id}";
-  //   $this->query($sql);
-  // }
-  //xoa data cate
+
+
+  //xoa
   public function deleteAll($table, $id)
   {
     foreach ($id as $key => $val) {
@@ -161,15 +161,10 @@ class BaseModel extends Database
       return "Xóa thất bại";
     }
   }
-  ////4----sau khi có được câu sql thì phải thực hiện truy vấn 
-  public function __construct()
-  {
-    $this->connect = $this->connect();
-  }
 
+  //select all
   public function get_all($table)
   {
-
     $sql = "SELect * from $table ";
     $query = $this->query($sql);
     $ar = [];
@@ -180,6 +175,7 @@ class BaseModel extends Database
   }
 
   // public function slt_orderby($table, $column, $order,$start,$limit)
+
 
   //get user
   public function get_user()
@@ -193,21 +189,9 @@ class BaseModel extends Database
     }
     return  $ar;
   }
-  public function slt_orderby($table, $column, $order, $limit)
 
-  {
-    $sql = "SELECT * from $table order by $column $order limit 0,$limit";
-    $query = $this->query($sql);
-    $ar = [];
-    while ($row = mysqli_fetch_assoc($query)) {
-      array_push($ar, $row);
-    }
-    return  $ar;
-  }
-  public function query($sql)
-  {
-    return mysqli_query($this->connect, $sql);
-  }
+
+  //delete_ID
   public function delete_ID($table, $ar)
   {
     foreach ($ar as $key => $val) {
@@ -221,5 +205,15 @@ class BaseModel extends Database
     } else {
       return false;
     }
+  }
+
+  ////4----sau khi có được câu sql thì phải thực hiện truy vấn 
+  public function __construct()
+  {
+    $this->connect = $this->connect();
+  }
+  public function query($sql)
+  {
+    return mysqli_query($this->connect, $sql);
   }
 }

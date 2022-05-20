@@ -468,19 +468,19 @@
 
                     load_data(action, table)
                 })
+
+
                 //click thêm thể loại , form hiện lân , nhấn save
+
                 $('.btn_add_suces').click(function(dt) {
                     // alert(table)
                     if (table == "categories") {
-
                         name_cate = $('#txtTLoai_a').val()
-
                         if (name_cate.length > 3) {
                             form = new FormData(form_add_cate)
                             add(form)
 
                         }
-
                     }
                     if (table == "books") {
                         name_b = $('#name_b').val().length
@@ -504,9 +504,9 @@
                             form = new FormData(form_add_user)
                         add(form)
                     }
-
-                    // alert(name_form)
                 })
+
+                //delete
                 $(document).on("click", '.btn_delete', function() {
                     action = "get_data";
                     if (table == "categories") {
@@ -533,6 +533,7 @@
 
 
                 })
+                //check mail
                 $('#email_u').keyup(function() {
                     val = $(this).val();
                     if (val != "") {
@@ -561,7 +562,8 @@
                     var re = /\S+@\S+\.\S+/;
                     return re.test(email);
                 }
-                //loadupdate
+
+                //load data view form update
                 $(document).on("click", '.btn_update1', function() {
                     if (table == "categories") {
                         $('#update_cate').modal('show')
@@ -582,7 +584,7 @@
                         load_update3(table, id)
                     }
                 })
-                //update
+                //update back database
                 $('.btn-updatee').click(function(dt) {
                     if (table == "categories") {
                         name_cate = $('#txtTL').val()
@@ -592,8 +594,8 @@
                         }
                     }
                     if (table == "books") {
-                        name_b = length($('#name_b1').val())
-                        nxb_b = length($('#nxb_b1').val())
+                        name_b = $('#name_b1').val().length
+                        nxb_b = $('#nxb_b1').val().length
                         val_book = parseInt($('#year_b1').val())
                         price_b = parseInt($('#price_b1').val())
                         page_b = parseInt($('#page_b1').val())
@@ -852,8 +854,6 @@
                             }
                         })
                     }
-
-
                 }
                 //load bảng data
                 function load_data(action, table, this_page) {

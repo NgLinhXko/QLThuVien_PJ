@@ -80,12 +80,11 @@ class  AdminController extends BaseController
                 // $data['status'] = 1;
                 $data_get['pass_u'] = $_POST['email_u'];
                 $data_get['table'] = "users";
-            }else{
+            } else {
                 array_pop($data_get);
                 $data_get['pass_u'] = $_POST['email_u'];
                 $data_get['table'] = "users";
             }
-
         }
         $table = array_pop($data_get); //xóa tên bảng
         $data = $this->AdminModel->add_data($table, $data_get);
@@ -100,7 +99,7 @@ class  AdminController extends BaseController
         if ($table == "books") {
             if (isset($_FILES['img_b']['name']) && $_FILES['img_b']['name'] != "") {
                 $anhchinh = $_FILES['img_b']['name']; //tên file ảnh
-                $tempname = $_FILES["img_b"]["tmp_name"]; //ổ ảo
+                $tempname = $_FILES["img_b"]["tmp_name"]; //folder tạm
                 $folder = $_SERVER['DOCUMENT_ROOT'] . "/QLThuVien_PJ/public/images/" . $anhchinh; //thư mục chuyển ảnh vào
                 move_uploaded_file($tempname, $folder); //chuyển file vào ổ(tên ổ,thư mục chuyển)
                 array_pop($data_get); //xóa phần tử cuối cùng của mảng
@@ -132,17 +131,17 @@ class  AdminController extends BaseController
         $data_s = [];
         if ($table == "categories") {
             $data_s['name_cate'] = $data;
-            $datas = $this->AdminModel->get_cate_search($data,$start);
+            $datas = $this->AdminModel->get_cate_search($data, $start);
         }
         if ($table == "books") {
             $data_s['name_b'] = $data;
-            $datas = $this->AdminModel->search_data($table, $data_s,$start);
+            $datas = $this->AdminModel->search_data($table, $data_s, $start);
         }
         if ($table == "users") {
             $data_s['name_u'] = $data;
-            $datas = $this->AdminModel->search_data($table, $data_s,$start);
+            $datas = $this->AdminModel->search_User($table, $data_s, $start);
         }
-        $total_page = $this->AdminModel->total_page_search($table,$data_s);
+        $total_page = $this->AdminModel->total_page_search($table, $data_s);
         // $datas = $this->AdminModel->search_data($table, $data_s);
         return $this->view("frontend.admin.table_data", [
             "check_act" =>  $table,

@@ -48,16 +48,29 @@ class AdminModel extends BaseModel
          where id_cate =  categories.id_cate) as SLuong from categories where name_cate 
          like '%$data%' order by id_cate limit $start,10";
         $query = $this->query($sql);
-        if($query){
+        if ($query) {
             $datar = [];
             while ($row = mysqli_fetch_assoc($query)) {
                 array_push($datar, $row);
             }
             return $datar;
-        }else{
+        } else {
             return false;
         }
-      
+    }
+    public function search_User($table, $data_s, $start)
+    {
+        foreach ($data_s as $key => $val) {
+            $where = $key . ' like ' . "'%$val%'";
+        }
+        $sql = "SELECT * FROM ${table} WHERE ${where} and status = 1 limit $start,10";
+        // echo $sql;
+        $query = $this->query($sql);
+        $datar = [];
+        while ($row = mysqli_fetch_assoc($query)) {
+            array_push($datar, $row);
+        }
+        return $datar;
     }
     public function check_name($data)
     {
