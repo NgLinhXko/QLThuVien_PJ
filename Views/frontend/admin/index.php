@@ -42,8 +42,8 @@
                             <br>
                             <div class="row">
                                 <button type="button" class="btn btn-warning quanly col-3" table="books" id="qlSach">Quản lý Sách</button>
-                                <button type="button" style="margin-left: 10%" table="categories" class="btn btn-success quanly  col-3" id="qlTheLoai">Quản lý thể loại</button>
-                                <button type="button" style="margin-left: 10%" table="users" class="btn btn-info quanly  col-3" id="qlUser">Quản lý Users</button>
+                                <button type="button" style="margin-left: 10%" table="categories" class="btn btn-success quanly  col-3" id="qlTheLoai">Quản lý Thể Loại</button>
+                                <button type="button" style="margin-left: 10%" table="users" class="btn btn-info quanly  col-3" id="qlUser">Quản lý Người Dùng</button>
 
                             </div>
 
@@ -72,7 +72,7 @@
                                             <input type="text" hidden name="table" value="categories">
                                             <br>
                                             <div class="mv-3" style="font-size: 12px;">
-                                                <span class="text-danger" >Ghi chú</span>: <span class="text-danger">(*)</span> là những trường bắt buộc.
+                                                <span class="text-danger">Ghi chú</span>: <span class="text-danger">(*)</span> là những trường bắt buộc.
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Hủy</button>
@@ -121,7 +121,7 @@
                                             <input type="text" hidden name="table" value="categories">
                                             <br>
                                             <div class="mv-3" style="font-size: 12px;">
-                                                <span class="text-danger" >Ghi chú</span>: <span class="text-danger">(*)</span> là những trường bắt buộc.
+                                                <span class="text-danger">Ghi chú</span>: <span class="text-danger">(*)</span> là những trường bắt buộc.
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="sumit" class="btn btn-success btn-updatee" style="width: 100px;" id="btn_update">Update</button>
@@ -201,10 +201,10 @@
                                                 </div>
                                                 <input type="text" hidden name="table" value="books">
                                                 <br>
-                                            
+
                                             </div>
                                             <div class="mv-3" style="font-size: 12px;">
-                                                <span class="text-danger" >Ghi chú</span>: <span class="text-danger">(*)</span> là những trường bắt buộc.
+                                                <span class="text-danger">Ghi chú</span>: <span class="text-danger">(*)</span> là những trường bắt buộc.
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -305,7 +305,7 @@
 
                                             </div>
                                             <div class="mv-3" style="font-size: 12px;">
-                                                <span class="text-danger" >Ghi chú</span>: <span class="text-danger">(*)</span> là những trường bắt buộc.
+                                                <span class="text-danger">Ghi chú</span>: <span class="text-danger">(*)</span> là những trường bắt buộc.
                                             </div>
                                             <input type="text" hidden name="table" value="books">
                                             <div class="modal-footer">
@@ -360,7 +360,7 @@
                                             <input type="text" hidden name="status" value="1">
                                             <input type="text" hidden name="table" value="users">
                                             <div class="mv-3" style="font-size: 12px;">
-                                                <span class="text-danger" >Ghi chú</span>: <span class="text-danger">(*)</span> là những trường bắt buộc.
+                                                <span class="text-danger">Ghi chú</span>: <span class="text-danger">(*)</span> là những trường bắt buộc.
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Hủy</button>
@@ -427,7 +427,7 @@
                                             </div>
                                             <input type="text" hidden name="table" value="users">
                                             <div class="mv-3" style="font-size: 12px;">
-                                                <span class="text-danger" >Ghi chú</span>: <span class="text-danger">(*)</span> là những trường bắt buộc.
+                                                <span class="text-danger">Ghi chú</span>: <span class="text-danger">(*)</span> là những trường bắt buộc.
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="btn_close" style="width: 100px;">Close</button>
@@ -457,7 +457,7 @@
                     e.preventDefault();
                     $("#wrapper").toggleClass("toggled");
                 });
-                url = "http://localhost:88/QLThuVien_PJ/index.php?controller=admin&action="
+                url = "http://localhost:8080/QLThuVien_PJ/index.php?controller=admin&action="
                 let action = "",
                     table = "";
                 this_page = 1;
@@ -537,7 +537,7 @@
                     val = $(this).val();
                     if (val != "") {
                         $.ajax({
-                            url: "http://localhost:88/QLThuVien_PJ/index.php?controller=login&action=check_mail_all",
+                            url: "http://localhost:8080/QLThuVien_PJ/index.php?controller=login&action=check_mail_all",
                             method: "POST",
                             data: {
                                 email_u: val
