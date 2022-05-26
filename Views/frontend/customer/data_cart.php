@@ -31,7 +31,7 @@ if ($actions == "total_cart") {
         if ($index > 4) {
         ?>
             <div id="data_cart_get" total=<?= $tong ?> style="text-align:center ;">
-                <a href="" style="color:red;font-size:13px">Còn <?= $index - 4 ?> sản phẩm nữa</a>
+                <a href="<?=URL1?>&controller=cart" style="color:red;font-size:13px">Còn <?= $index - 4 ?> sản phẩm nữa</a>
             </div>
         <?php
         } else {

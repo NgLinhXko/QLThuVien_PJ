@@ -23,6 +23,7 @@ class CartController extends BaseController
     }
     public function add_cart()
     {
+        $data = [];
         if (isset($_POST['id_b'])) {
             $id_b = $_POST['id_b'];
             $dem = 0;
@@ -33,18 +34,24 @@ class CartController extends BaseController
             }
         }
         if ($dem == 1) {
-            echo  "Sản phẩm đã có trong giỏ hàng";
+            $string = "Sản phẩm đã có trong giỏ hàng";
         }
         if ($dem == 0) {
             $data_book = $this->AdminModel->load_update(self::BOOKS, ["id_b" => $id_b]);
             array_push($_SESSION['cart'], $data_book);
-            echo "Thêm thành công";
+            $string = "Thêm thành công";
         }
+        // array_push($data, $string);
+        // array_push($data, sizeof($_SESSION['cart']));
+        echo $string;
+    }
+    public function number_cart(){
+        echo sizeof($_SESSION['cart']);
     }
     public function view_cart()
     {
         $actions = $_POST['actions'];
-        return $this->view("frontend.customer.data_cart",[
+        return $this->view("frontend.customer.data_cart", [
             "actions" => $actions
         ]);
         // print_r($_SESSION['cart']);
@@ -58,10 +65,10 @@ class CartController extends BaseController
     {
         return sizeof($_SESSION['cart']);
     }
-    public function delete_cart_id(){
+    public function delete_cart_id()
+    {
         $id_b = $_POST['id_b'];
-        array_splice($_SESSION['cart'],$id_b,1);
-       echo 'Xóa thành công';
-       
+        array_splice($_SESSION['cart'], $id_b, 1);
+        echo 'Xóa thành công';
     }
 }

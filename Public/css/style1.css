@@ -210,12 +210,16 @@ h1.count {
 .noBill {
     background-color: #ee4d2d;
     color: #fff;
-    font-size: 20px;
+    /* font-size: 20px; */
     text-align: center;
     margin: 20%;
+    line-height: 50px;
     height: 50px;
     border-radius: 20px;
-    padding-top: 5px;
+    /* padding-top: 5px; */
+}
+.page-item:hover{
+    cursor: pointer;
 }
 
 .mualai {
@@ -231,10 +235,10 @@ h1.count {
     font-size: 20px;
     text-align: center;
     width: 60%;
-    margin:0 20%;
+    margin: 0 20%;
     /* margin-top:0%; */
     line-height: 50px;
     height: 50px;
     border-radius: 20px;
-  
+
 }

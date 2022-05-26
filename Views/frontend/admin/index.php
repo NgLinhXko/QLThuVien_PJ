@@ -810,11 +810,7 @@
                         },
                         success: function(dt) {
                             load_data(action, table)
-                            $('#msg_modal').modal('show')
-                            $('#text_msg').html(dt)
-                            setTimeout(function() {
-                                $('#msg_modal').modal('hide')
-                            }, 3000)
+                            load_msg(dt)
                             $('.delete').modal('hide');
                         }
                     })

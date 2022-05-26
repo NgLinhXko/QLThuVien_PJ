@@ -117,9 +117,9 @@
 								</div>
 								<div class="dropdown tg-themedropdown tg-minicartdropdown">
 									<a href="javascript:void(0);" id="tg-minicart" class="tg-btnthemedropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										<span class="tg-themebadge">3</span>
+										<span class="tg-themebadge number_cart"></span>
 										<i class="icon-cart"></i>
-										<span>$123.00</span>
+										<!-- <span>$123.00</span> -->
 									</a>
 									<div class="dropdown-menu tg-themedropdownmenu" aria-labelledby="tg-minicart">
 										<div class="tg-minicartbody">
@@ -143,8 +143,8 @@
 							<div class="tg-searchbox">
 								<form class="tg-formtheme tg-formsearch">
 									<fieldset>
-										<input type="text" name="search" class="typeahead form-control" placeholder="Search by title, author, keyword, ISBN...">
-										<button type="submit"><i class="icon-magnifier"></i></button>
+										<input type="text" name="search" class="typeahead form-control" placeholder="Nhập tên sách">
+										<button type="button"><i class="icon-magnifier"></i></button>
 									</fieldset>
 									<a href="javascript:void(0);">+ Advanced Search</a>
 								</form>

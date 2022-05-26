@@ -121,9 +121,9 @@
 								</div>
 								<div class="dropdown tg-themedropdown tg-minicartdropdown">
 									<a href="javascript:void(0);" id="tg-minicart" class="tg-btnthemedropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										<span class="tg-themebadge">3</span>
+										<span class="tg-themebadge number_cart"></span>
 										<i class="icon-cart"></i>
-										<span>$123.00</span>
+										<!-- <span>$123.00</span> -->
 									</a>
 									<div class="dropdown-menu tg-themedropdownmenu" aria-labelledby="tg-minicart">
 										<div class="tg-minicartbody">
@@ -145,10 +145,10 @@
 								</div>
 							</div>
 							<div class="tg-searchbox">
-								<form class="tg-formtheme tg-formsearch">
+								<form class="tg-formtheme tg-formsearch" method="POST" action="<?=URL?>/index.php?controller=cate&action=search">
 									<fieldset>
-										<input type="text" name="search" class="typeahead form-control" placeholder="Search by title, author, keyword, ISBN...">
-										<button type="submit"><i class="icon-magnifier"></i></button>
+										<input type="text" id="input_search" name="search" class="typeahead form-control" placeholder="Nhập tên sách">
+										<button type="submit" id="btn_search"><i class="icon-magnifier"></i></button>
 									</fieldset>
 									<a href="javascript:void(0);">+ Advanced Search</a>
 								</form>
@@ -283,7 +283,7 @@
 										</figure>
 										<div class="tg-postbookcontent">
 											<ul class="tg-bookscategories">
-												<li><a href="javascript:void(0);"><?= $topnumBorr['name_cate'] ?></a></li>
+												<li><a href="<?= URL ?>/index.php?controller=cate&id_cate=<?=$topnumBorr['id_cate']?>"><?= $topnumBorr['name_cate'] ?></a></li>
 
 											</ul>
 											<div class="tg-booktitle" style="height: 80px;">
@@ -400,7 +400,7 @@
 											</figure>
 											<div class="tg-postbookcontent">
 												<ul class="tg-bookscategories">
-													<li><a href="javascript:void(0);"><?= $newBook['name_cate'] ?></a></li>
+													<li><a href="<?= URL ?>/index.php?controller=cate&id_cate=<?=$newBook['id_cate']?>"><?= $newBook['name_cate'] ?></a></li>
 													<!-- <li><a href="javascript:void(0);">Fun</a></li> -->
 												</ul>
 												<div class="tg-booktitle" style="height: 80px;">
@@ -501,7 +501,7 @@
 									</div>
 									<div class="tg-hovercontent">
 										<div class="tg-description">
-											<p>Consectetur adipisicing elit sed do eiusmod tempor incididunt labore toloregna aliqua enim adia minim veniam, quis nostrud.</p>
+											<p><?=$randomBook_byNXB['des_b']?></p>
 										</div>
 										<strong class="tg-bookpage">Số trang:<?= $randomBook_byNXB['page_b'] ?></strong>
 										<strong class="tg-bookcategory">Thể loại: <?= $randomBook_byNXB['name_cate'] ?></strong>
@@ -655,7 +655,7 @@
 											</figure>
 											<div class="tg-postbookcontent">
 												<ul class="tg-bookscategories">
-													<li><a href="javascript:void(0);"><?= $newBook['name_cate'] ?></a></li>
+													<li><a href="<?= URL ?>/index.php?controller=cate&id_cate=<?=$newBook['id_cate']?>"><?= $newBook['name_cate'] ?></a></li>
 													<!-- <li><a href="javascript:void(0);">Fun</a></li> -->
 												</ul>
 												<div class="tg-booktitle" style="height: 80px;">
@@ -888,6 +888,22 @@
 				window.location.href = url + "controller=checkout"
 			}
 		})
+		// $('#btn_search').click(function(){
+		// 	val = $('#input_search').val();
+		   
+		// })
+		// function get_data_search(val){
+		// 	$.ajax({
+		// 		url:url+"controller=cate&action=search",
+		// 		method:"POST",
+		// 		data:{
+		// 			val_search:val
+		// 		},
+		// 		success:function(dt){
+
+		// 		}
+		// 	})
+		// }
 	</script>
 
 </body>

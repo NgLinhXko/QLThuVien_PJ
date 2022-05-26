@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     // alert('123')
     url = "http://localhost:88/QLThuVien_PJ/index.php?"
     check_email = false;
@@ -6,24 +6,24 @@ $(document).ready(function() {
     check_pass_again = false;
     passwd = 1;
     passwd_again = 2;
-    $('#btn_login').click(function() {
+    $('#btn_login').click(function () {
         $('#modalLogin').modal('show')
 
     })
-    $('#Register').click(function() {
+    $('#Register').click(function () {
         $('#modalLogin').modal('hide')
         $('#modalResign').modal('show')
     })
-    $('.closed').click(function() {
+    $('.closed').click(function () {
         $('#modal_signup_succes').modal('hide')
     })
-    $('#gmail').mouseover(function() {
+    $('#gmail').mouseover(function () {
         $(this).css("color", "rgb(226 201 63)")
     })
-    $('#gmail').mouseleave(function() {
+    $('#gmail').mouseleave(function () {
         $(this).css("color", "red")
     })
-    $('#btn_dangky').click(function() {
+    $('#btn_dangky').click(function () {
 
         name_u = $('#name_u').val();
         address_u = $('#address_u').val();
@@ -54,7 +54,7 @@ $(document).ready(function() {
                     mimeType: "multipart/form-data",
                     processData: false,
                     contentType: false,
-                    success: function(dt) {
+                    success: function (dt) {
                         $('#modalResign').modal('hide')
                         $('#modal_signup_succes').modal('show')
                         $('#formResign').trigger("reset")
@@ -66,7 +66,7 @@ $(document).ready(function() {
             }
         }
     })
-    $('#tg-minicart').click(function() {
+    $('#tg-minicart').click(function () {
         view_cart()
         // dis_btn_cart()
     })
@@ -76,9 +76,9 @@ $(document).ready(function() {
             url: url + "controller=cart&action=view_cart",
             method: "POST",
             data: {
-                actions:"total_cart"
+                actions: "total_cart"
             },
-            success: function(dt) {
+            success: function (dt) {
                 $('.tg-minicartbody').html(dt)
                 tong = $('#data_cart_get').attr("total");
                 $('.tg-subtotal strong').html(tong)
@@ -87,14 +87,14 @@ $(document).ready(function() {
         })
     }
     //click xóa
-    $('.tg-btnemptycart').click(function() {
+    $('.tg-btnemptycart').click(function () {
         $.ajax({
             url: url + "controller=cart&action=delete_cart",
             method: "POST",
             data: {
 
             },
-            success: function(dt) {
+            success: function (dt) {
                 view_cart()
 
                 load_msg(dt)
@@ -108,30 +108,34 @@ $(document).ready(function() {
         $.ajax({
             url: url + "controller=cart&action=check_cart",
             method: "POST",
-            success: function(dt) {
-                if(dt == 0){
-                    alert('rỗng')
-                    $('#btn_view_cart').prop("disabled",true)
-                    $('#btn_checkout').prop("disabled",true)
-                }else{
+            success: function (dt) {
+                if (dt == 0) {
+
+                    $('#btn_view_cart').prop("disabled", true)
+                    $('#btn_checkout').prop("disabled", true)
+                } else {
                     alert('ko rỗng')
-                    $('#btn_view_cart').prop("disabled",false)
-                    $('#btn_checkout').prop("disabled",false)
+                    $('#btn_view_cart').prop("disabled", false)
+                    $('#btn_checkout').prop("disabled", false)
                 }
             }
         })
     }
-    $('#btn_acc').click(function() {
+    $('#btn_acc').click(function () {
         $('.acc').addClass('show')
     })
-    $('#forgot_pass').click(function() {
+    $('#forgot_pass').click(function () {
         $('#modal_fg_pass').modal('show');
         $('#modalLogin').modal('hide')
     })
 
-    $('.tg-btnstyletwo').click(function() {
-        id_b = $(this).attr("id_b");
+    // $('.tg-btnstyletwo').click(function() {
+    //     id_b = $(this).attr("id_b");
 
+    //     add_cart(id_b)
+    // })
+    $(document).on("click", ".tg-btnstyletwo", function () {
+        id_b = $(this).attr("id_b");
         add_cart(id_b)
     })
 
@@ -142,21 +146,35 @@ $(document).ready(function() {
             data: {
                 id_b: id_b
             },
-            success: function(dt) {
-                // $('#msg_modal').modal('show')
-                // $('#text_msg').html(dt)
-                // setTimeout(function() {
-                //     $('#msg_modal').modal('hide')
-                // }, 3000)
+         
+            success: function (dt) {
+                // myArray = JSON.Parse(dt);
                 load_msg(dt)
-                // console.log(dt)
+                //  console.log(dt[0])
+                number_cart()
             }
 
         })
     }
+    number_cart()
+    function number_cart() {
+        $.ajax({
+            url: url + "controller=cart&action=number_cart",
+            method: "POST",
+            success: function (dt) {
+                console.log(dt)
+                if(dt>0){
+                    $('.number_cart').html(dt)
+                }else{
+                    $('.number_cart').html("")
+                }
+               
+            }
+        })
+    }
 
     //check email
-    $('#email_u').blur(function() {
+    $('#email_u').blur(function () {
         email = $(this).val();
         if (email != '') {
             $.ajax({
@@ -165,7 +183,7 @@ $(document).ready(function() {
                 data: {
                     email_u: email
                 },
-                success: function(dt) {
+                success: function (dt) {
                     // console.log(dt)
                     if (dt == 0) {
                         $('#msgThongBao').css("color", "green")
@@ -182,10 +200,10 @@ $(document).ready(function() {
             })
         }
     })
-    $('.btn-close').click(function() {
+    $('.btn-close').click(function () {
         $('.modal').modal('hide')
     })
-    $('#email_fg_pass').keyup(function() {
+    $('#email_fg_pass').keyup(function () {
         val = $(this).val();
         if (validateEmail(val) == true) {
             $.ajax({
@@ -194,7 +212,7 @@ $(document).ready(function() {
                 data: {
                     email_u: val
                 },
-                success: function(dt) {
+                success: function (dt) {
                     // console.log(dt)
                     if (dt == 0) {
                         $('#msg_fg_pass').css("color", "red")
@@ -209,7 +227,7 @@ $(document).ready(function() {
         }
 
     })
-    $('#btn_send_code').click(function() {
+    $('#btn_send_code').click(function () {
         code = $('#input_code').val();
         email = $('#datas_get').attr("email_u")
         if (code != "") {
@@ -220,7 +238,7 @@ $(document).ready(function() {
                     code: code,
                     email: email
                 },
-                success: function(dt) {
+                success: function (dt) {
                     console.log(dt)
                     if (dt != 1) {
                         $('#msg_err_code').html("Mã xác nhận không chính xác.")
@@ -236,7 +254,7 @@ $(document).ready(function() {
         }
 
     })
-    $('#intput_pass_again').keyup(function() {
+    $('#intput_pass_again').keyup(function () {
         pass_again = $(this).val();
         pass = $('#input_pass').val();
         if (pass != pass_again && pass != "") {
@@ -248,7 +266,7 @@ $(document).ready(function() {
         }
 
     })
-    $('#input_pass').blur(function() {
+    $('#input_pass').blur(function () {
         pass = $(this).val()
         strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})')
         if (pass != '') {
@@ -264,7 +282,7 @@ $(document).ready(function() {
         }
     })
 
-    $('#btn_change_pass').click(function() {
+    $('#btn_change_pass').click(function () {
         email = $('#datas_get').attr("email_u")
         pass = $('#input_pass').val();
         pass_again = $('#intput_pass_again').val()
@@ -276,12 +294,12 @@ $(document).ready(function() {
                     email: email,
                     pass: pass_again
                 },
-                success: function(dt) {
+                success: function (dt) {
                     console.log(dt)
                     $('#change_pass').modal("hide")
                     $('#msg_modal').modal('show')
                     $('#text_msg').html(dt)
-                    setTimeout(function() {
+                    setTimeout(function () {
                         $('#msg_modal').modal('hide')
                     }, 3000)
                 }
@@ -294,7 +312,7 @@ $(document).ready(function() {
     })
 
     //modal quên mật khẩu , click gửi email để lấy lại mk
-    $('#btn_fg_pas').click(function() {
+    $('#btn_fg_pas').click(function () {
         val = $('#email_fg_pass').val();
         if (val != "" && validateEmail(val) == true && val.length > 14) {
             $.ajax({
@@ -303,7 +321,7 @@ $(document).ready(function() {
                 data: {
                     email_u: val
                 },
-                success: function(dt) {
+                success: function (dt) {
                     $('#datas_get').attr("email_u", val)
                     $('#email_code').val("123");
                     $('#email_change').val("val")
@@ -317,7 +335,7 @@ $(document).ready(function() {
         }
 
     })
-    $('#pass_u').blur(function() {
+    $('#pass_u').blur(function () {
         passwd = $(this).val();
         strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})')
         if (passwd != '') {
@@ -333,7 +351,7 @@ $(document).ready(function() {
             }
         }
     })
-    $('#pass_u_again').blur(function() {
+    $('#pass_u_again').blur(function () {
         passwd_again = $(this).val();
         if (passwd == passwd_again) {
             $('#msgThongBao_pass_again').html("");
@@ -346,7 +364,7 @@ $(document).ready(function() {
             disb_dky()
         }
     })
-    $('#btnLogin').click(function() {
+    $('#btnLogin').click(function () {
         email = $('#email_login').val();
         pass = $('#pass_login').val();
         if (validateEmail(email) == true && email != "" && pass != "") {
@@ -357,7 +375,7 @@ $(document).ready(function() {
                     email: email,
                     pass: pass
                 },
-                success: function(dt) {
+                success: function (dt) {
                     console.log(dt)
                     if (dt == 0) {
                         $('#check_resign').html("Tài khoản mật khẩu không chính xác !")

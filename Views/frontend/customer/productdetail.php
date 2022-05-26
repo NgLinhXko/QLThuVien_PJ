@@ -128,9 +128,9 @@
 								</div>
 								<div class="dropdown tg-themedropdown tg-minicartdropdown">
 									<a href="javascript:void(0);" id="tg-minicart" class="tg-btnthemedropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										<span class="tg-themebadge">3</span>
+										<span class="tg-themebadge number_cart"></span>
 										<i class="icon-cart"></i>
-										<span>$123.00</span>
+										<!-- <span>$123.00</span> -->
 									</a>
 									<div class="dropdown-menu tg-themedropdownmenu" aria-labelledby="tg-minicart">
 										<div class="tg-minicartbody">
@@ -195,7 +195,7 @@
 													foreach ($all_cates as $all_cate) {
 													?>
 														<li role="presentation">
-															<a href="<?=URL?>/index.php?controller=cate&id_cate=<?=$all_cate['id_cate']?>"  role="tab" ><?= $all_cate['name_cate'] ?></a>
+															<a href="<?= URL ?>/index.php?controller=cate&id_cate=<?= $all_cate['id_cate'] ?>" role="tab"><?= $all_cate['name_cate'] ?></a>
 														</li>
 													<?php
 													}
@@ -263,11 +263,11 @@
 				<div class="row">
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div class="tg-innerbannercontent">
-							<h1>All Products</h1>
+							<h1>Tất cả sản phẩm</h1>
 							<ol class="tg-breadcrumb">
-								<li><a href="javascript:void(0);">Trang chủ</a></li>
-								<li><a href="javascript:void(0);">Thể loại</a></li>
-								<li class="tg-active"><?= $datas_book['name_cate'] ?></li>
+								<li><a href="<?= URL ?>">Trang chủ</a></li>
+								<li>Thể loại</li>
+								<li class="tg-active"><a href="<?= URL ?>/index.php?controller=cate&id_cate=<?=$datas_book['id_cate']?>"><?= $datas_book['name_cate'] ?></a></li>
 							</ol>
 						</div>
 					</div>
@@ -306,7 +306,7 @@
 														<div class="tg-featureditmcontent">
 															<div class="tg-themetagbox"><span class="tg-themetag"><?= $randomBook['name_cate'] ?></span></div>
 															<div class="tg-booktitle">
-																<h3><a href="javascript:void(0);"><?= $randomBook['name_b'] ?></a></h3>
+																<h3><a href="<?=URL?>/index.php?controller=product&id_b=<?=$randomBook['id_b']?>"><?= $randomBook['name_b'] ?></a></h3>
 															</div>
 															<span class="tg-bookwriter">NXB: <a href="javascript:void(0);"><?= $randomBook['nxb_b'] ?></a></span>
 															<span class="tg-stars"><span></span></span>
@@ -315,9 +315,9 @@
 																	<ins><?= ((float)$randomBook['price_b'] * 80 / 100) . "đ"; ?></ins>
 																	<del><?= $randomBook['price_b'] ?></del>
 																</span>
-																<a class="tg-btn tg-btnstyletwo tg-active" href="javascript:void(0);">
+																<a class="tg-btn tg-btnstyletwo tg-active" id_b=<?= $randomBook['id_b'] ?> href="javascript:void(0);">
 																	<i class="fa fa-shopping-basket"></i>
-																	<em>Add To Basket</em>
+																	<em>Thêm giỏ hàng</em>
 																</a>
 															</div>
 														</div>
@@ -358,9 +358,9 @@
 															<input type="number" min=1 max=1 class="result" value="1" readonly id="quantity1" name="quantity">
 															<em class="plus">+</em>
 														</div>
-														<a class="tg-btn tg-active tg-btn-lg" id="add_cart" id_b=<?= $datas_book['id_b'] ?> href="javascript:void(0);">Thêm vào giỏ hàng</a>
+														<a class="tg-btn tg-active tg-btnstyletwo tg-btn-lg" id="add_cart" id_b=<?= $datas_book['id_b'] ?> href="javascript:void(0);">Thêm vào giỏ hàng</a>
 														<a class="tg-btnaddtowishlist" href="javascript:void(0);">
-															<span>Thêm vào danh sách yêu thích</span>
+															<span>Thêm vào yêu thích</span>
 														</a>
 													</div>
 												</div>
@@ -368,7 +368,7 @@
 											<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
 												<div class="tg-productcontent">
 													<ul class="tg-bookscategories">
-														<li><a href="javascript:void(0);"><?= $datas_book['name_cate'] ?></a></li>
+														<li><a href="<?=URL?>/index.php?controller=cate&id_cate=<?=$datas_book['id_cate']?>"><?= $datas_book['name_cate'] ?></a></li>
 													</ul>
 													<div class="tg-themetagbox"><span class="tg-themetag">sale</span></div>
 													<div class="tg-booktitle">
@@ -376,7 +376,7 @@
 													</div>
 													<span class="tg-bookwriter">NXB:<a href="javascript:void(0);"><?= $datas_book['nxb_b'] ?></a></span>
 													<span class="tg-stars"><span></span></span>
-													<span class="tg-addreviews"><a href="javascript:void(0);">Add Your Review</a></span>
+													<span class="tg-addreviews"><a href="javascript:void(0);">Thêm đánh giá</a></span>
 													<div class="tg-share">
 														<span>Share:</span>
 														<ul class="tg-socialicons">
@@ -405,13 +405,13 @@
 														<li><span>Ngôn ngữ:</span><span>Tiếng Việt</span></li>
 														<li><span>Số lượng còn:</span><span><?= $datas_book['quantity_b'] ?></span></li>
 														<li><span>Số lượng mượn:</span><span><?= $datas_book['numBorr'] ?></span></li>
-														<li><span>Thuộc thể loại:</span><span><?= $datas_book['name_cate'] ?></span></li>
+														<li><span>Thuộc thể loại:</span><a href="<?=URL?>/index.php?controller=cate&id_cate=<?=$datas_book['id_cate']?>"><span><?= $datas_book['name_cate'] ?></a></span></li>
 														<!-- <li><span>Other Fomate:</span><span>CD-Audio, Paperback, E-Book</span></li> -->
 													</ul>
-													
+
 												</div>
 											</div>
-											
+
 											<div class="tg-aboutauthor">
 												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 													<div class="tg-sectionhead">
@@ -484,17 +484,17 @@
 																		</div>
 																		<a class="tg-btnaddtowishlist" href="javascript:void(0);">
 																			<i class="icon-heart"></i>
-																			<span>Thêm vào danh sách yêu thích</span>
+																			<span>Thêm vào yêu thích</span>
 																		</a>
 																	</figure>
 																	<div class="tg-postbookcontent">
 																		<ul class="tg-bookscategories">
-																			<li><a href="javascript:void(0);"><?= $book_by_cate['name_cate'] ?></a></li>
+																			<li><a href="<?=URL?>/index.php?controller=cate&id_cate=<?=$book_by_cate['id_cate']?>"><?= $book_by_cate['name_cate'] ?></a></li>
 
 																		</ul>
 																		<div class="tg-themetagbox"><span class="tg-themetag">sale</span></div>
 																		<div class="tg-booktitle" style="height:70px ;">
-																			<h3><a href="javascript:void(0);"><?= $book_by_cate['name_b'] ?></a></h3>
+																			<h3><a href="<?= URL ?>/index.php?controller=product&id_b=<?= $book_by_cate['id_b'] ?>"><?= $book_by_cate['name_b'] ?></a></h3>
 																		</div>
 																		<span class="tg-bookwriter">NXB: <a href="javascript:void(0);"><?= $book_by_cate['nxb_b'] ?></a></span>
 																		<span class="tg-stars"><span></span></span>
@@ -502,7 +502,7 @@
 																			<ins><?= ((float)$book_by_cate['price_b'] * 80 / 100) . "đ"; ?></ins>
 																			<del><?= $book_by_cate['price_b'] ?></del>
 																		</span>
-																		<a class="tg-btn tg-btnstyletwo" href="javascript:void(0);">
+																		<a class="tg-btn tg-btnstyletwo" id_b=<?= $book_by_cate['id_b'] ?> href="javascript:void(0);">
 																			<i class="fa fa-shopping-basket"></i>
 																			<em>Thêm giỏ hàng</em>
 																		</a>
@@ -539,7 +539,7 @@
 												<?php
 												foreach ($cates_book as $cate_book) {
 												?>
-													<li><a href="javascript:void(0);"><span><?= $cate_book['name_cate'] ?></span><em><?= $cate_book['SLuong'] ?></em></a></li>
+													<li><a href="<?=URL?>/index.php?controller=cate&id_cate=<?=$cate_book['id_cate']?>"><span><?= $cate_book['name_cate'] ?></span><em><?= $cate_book['SLuong'] ?></em></a></li>
 												<?php
 												}
 												?>
@@ -561,7 +561,7 @@
 															<figure><a href="javascript:void(0);"><img style="width:100%" src="./public/images/<?= $topnumBorr['img_b'] ?>" alt="image description"></a></figure>
 															<div class="tg-postcontent" style="width:80%">
 																<div class="tg-posttitle">
-																	<h3><a href="javascript:void(0);"><?= $topnumBorr['name_b'] ?></a></h3>
+																	<h3><a href="<?= URL ?>/index.php?controller=product&id_b=<?= $topnumBorr['id_b'] ?>"><?= $topnumBorr['name_b'] ?></a></h3>
 																</div>
 																<span class="tg-bookwriter">NXB: <a href="javascript:void(0);"><?= $topnumBorr['nxb_b'] ?></a></span>
 															</div>
@@ -652,7 +652,7 @@
 															<figure><a href="javascript:void(0);"><img style="width:100%" src="./public/images/<?= $newBook['img_b'] ?>" alt="image description"></a></figure>
 															<div class="tg-postcontent" style="width:80%">
 																<div class="tg-posttitle">
-																	<h3><a href="javascript:void(0);"><?= $newBook['name_b'] ?></a></h3>
+																	<h3><a href="<?= URL ?>/index.php?controller=product&id_b=<?= $newBook['id_b'] ?>"><?= $newBook['name_b'] ?></a></h3>
 																</div>
 																<span class="tg-bookwriter">NXB: <a href="javascript:void(0);"><?= $newBook['nxb_b'] ?></a></span>
 															</div>
@@ -861,30 +861,33 @@
 	?>
 	<script src="<?= URL ?>/Public/js/login/index.js"></script>
 	<script>
-		 url = "<?= URL ?>/index.php?"
-		$('#add_cart').click(function() {
-			id_b = $(this).attr("id_b")
-			add_cart(id_b)
+		url = "<?= URL ?>/index.php?"
+		// $('#add_cart').click(function() {
+		// 	id_b = $(this).attr("id_b")
+		// 	add_cart(id_b)
+		// })
+		$('.tg-quantityholder em').click(function(){
+			load_msg("Tối đa một sản phẩm");
 		})
 
-		function add_cart(id_b) {
-			$.ajax({
-				url: url + "controller=cart&action=add_cart",
-				method: "POST",
-				data: {
-					id_b: id_b
-				},
-				success: function(dt) {
-					$('#msg_modal').modal('show')
-					$('#text_msg').html(dt)
-					setTimeout(function() {
-						$('#msg_modal').modal('hide')
-					}, 6000)
-					// console.log(dt)
-				}
+		// function add_cart(id_b) {
+		// 	$.ajax({
+		// 		url: url + "controller=cart&action=add_cart",
+		// 		method: "POST",
+		// 		data: {
+		// 			id_b: id_b
+		// 		},
+		// 		success: function(dt) {
+		// 			$('#msg_modal').modal('show')
+		// 			$('#text_msg').html(dt)
+		// 			setTimeout(function() {
+		// 				$('#msg_modal').modal('hide')
+		// 			}, 6000)
+		// 			// console.log(dt)
+		// 		}
 
-			})
-		}
+		// 	})
+		// }
 	</script>
 </body>
 
