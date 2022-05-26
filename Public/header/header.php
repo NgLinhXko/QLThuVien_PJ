@@ -14,3 +14,4 @@ const URL = "http://localhost:88/QLThuVien_PJ";
 <link rel="stylesheet" href="<?= URL ?>/public/css/color.css">
 <link rel="stylesheet" href="<?= URL ?>/public/css/style.css">
 <link rel="stylesheet" href="<?= URL ?>/public/css/responsive.css">
+<link rel="stylesheet" href="<?= URL ?>/Public/CSS/style1.css" />

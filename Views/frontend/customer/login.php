@@ -39,7 +39,14 @@
                 <span style="color: red;cursor:pointer" id="Register">Đăng ký</span><br>
                 <br>
 
+                <div id="check_login" email=<?php
+                                            if (isset($_SESSION['email_u'])) {
+                                                echo $_SESSION['email_u'];
+                                            } else {
+                                                echo 'none';
+                                            }
 
+                                            ?>></div>
             </div>
         </div>
     </div>
@@ -116,6 +123,10 @@
         </div>
     </div>
 </div>
+
+
+
+<!-- modal quên mật khẩu -->
 <div class="modal fade" id="modal_fg_pass" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -128,7 +139,7 @@
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Nhập email</label>
                         <span style="font-size: 12px;" id="msg_fg_pass"></span>
-                        <input required type="email" name="email_u" class="form-control" id="email_fg_pass">
+                        <input required minlength="15" type="email" name="email_u" class="form-control" id="email_fg_pass">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -138,6 +149,9 @@
         </div>
     </div>
 </div>
+
+
+<!-- modal Mã xác nhận -->
 <div class="modal fade" id="modal_code" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -152,7 +166,7 @@
                         <label for="exampleInputPassword1" class="form-label">Nhập mã xác nhận</label>
                         <span style="font-size: 12px;color:red" id="msg_err_code"></span>
                         <input required type="text" name="code" class="form-control" id="input_code">
-                        <input type="text" id="email_code" name="email_u" hidden>
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -162,6 +176,7 @@
         </div>
     </div>
 </div>
+<!-- modal đổi pass -->
 <div class="modal fade" id="change_pass" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -172,18 +187,72 @@
             <form action="" onsubmit="return false;">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Nhập mật khẩu</label>
 
+                        <label for="exampleInputPassword1" class="form-label">Nhập mật khẩu</label>
+                        <span style="font-size: 12px;color:red" id="msg_check_pas"></span>
                         <input required type="password" name="code" class="form-control" id="input_pass">
                         <label for="exampleInputPassword1" class="form-label">Xác nhận mật khẩu</label>
                         <span style="font-size: 12px;color:red" id="msg_change_pas"></span>
                         <input required type="password" name="code" class="form-control" id="intput_pass_again">
-
                         <input type="text" id="email_change" name="email_u" hidden>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" disabled id="btn_change_pass" class="btn btn-primary " data-bs-dismiss="modal">Gửi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_rule" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="staticBackdropLabel">Quy chế mượn trả sách</h3>
+                <button type="button" class="btn-close closed" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" onsubmit="return false;">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <h4> - Giá mượn một cuốn sách/ ngày là 2.000Đ</h4>
+                        <h4> - Số dư tối thiểu trong tài khoản là 50.000Đ</h4>
+                        <h4> - Khi trả sách hoàn tiền = tổng tiền cọc - (Số cuốn mượn*số ngày*2000)</h4>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn_modal_rule" class="btn btn-primary closed" aria-label="Close" data-bs-dismiss="modal">Đã hiểu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_banking" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="staticBackdropLabel">Thông báo</h3>
+                <button type="button" class="btn-close closed" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" onsubmit="return false;">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <h4 class="text-danger">Số dư không đủ để thanh toán(<span id="now_money"></span>Đ)</h4>
+                        <h4>Vui lòng nạp thêm tiền vào tài khoản.</h4>
+                        <label for="exampleInputPassword1" class="form-label">Phương thức thanh toán</label>
+                        <button class="btn  choose">MoMo</button>
+                        <button class="btn  choose">Banking</button>
+                        <button class="btn  choose">ZaloPay</button>
+                        <br>
+                        <br>
+                        
+                        <input id="input_money" hidden type="number" style="width:100%" min=10000 placeholder="Nhập số tiền">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="ck_banking" disabled class="btn btn-primary closed" aria-label="Close" data-bs-dismiss="modal">Nạp</button>
                 </div>
             </form>
         </div>

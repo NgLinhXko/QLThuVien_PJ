@@ -14,6 +14,11 @@
 
 <body class="tg-home tg-homeone">
 
+	<?php
+	if (!isset($_SESSION['cart'])) {
+		$_SESSION['cart']  = [];
+	}
+	?>
 	<div id="tg-wrapper" class="tg-wrapper tg-haslayout">
 		<!--************************************
 				Header Start
@@ -122,36 +127,8 @@
 									</a>
 									<div class="dropdown-menu tg-themedropdownmenu" aria-labelledby="tg-minicart">
 										<div class="tg-minicartbody">
-											<div class="tg-minicarproduct">
-												<figure>
-													<img src="images/products/img-01.jpg" alt="image description">
 
-												</figure>
-												<div class="tg-minicarproductdata">
-													<h5><a href="javascript:void(0);">Our State Fair Is A Great Function</a></h5>
-													<h6><a href="javascript:void(0);">$ 12.15</a></h6>
-												</div>
-											</div>
-											<div class="tg-minicarproduct">
-												<figure>
-													<img src="images/products/img-02.jpg" alt="image description">
 
-												</figure>
-												<div class="tg-minicarproductdata">
-													<h5><a href="javascript:void(0);">Bring Me To Light</a></h5>
-													<h6><a href="javascript:void(0);">$ 12.15</a></h6>
-												</div>
-											</div>
-											<div class="tg-minicarproduct">
-												<figure>
-													<img src="images/products/img-03.jpg" alt="image description">
-
-												</figure>
-												<div class="tg-minicarproductdata">
-													<h5><a href="javascript:void(0);">Have Faith In Your Soul</a></h5>
-													<h6><a href="javascript:void(0);">$ 12.15</a></h6>
-												</div>
-											</div>
 										</div>
 										<div class="tg-minicartfoot">
 											<a class="tg-btnemptycart" href="javascript:void(0);">
@@ -160,8 +137,8 @@
 											</a>
 											<span class="tg-subtotal">Subtotal: <strong>35.78</strong></span>
 											<div class="tg-btns">
-												<a class="tg-btn tg-active" href="javascript:void(0);">View Cart</a>
-												<a class="tg-btn" href="javascript:void(0);">Checkout</a>
+												<a href="<?= URL ?>/index.php?&controller=cart" class="tg-btn tg-active" id="btn_view_cart">Xem giỏ hàng</a>
+												<a href="#" class="tg-btn" id="btn_checkout">Thanh Toán</a>
 											</div>
 										</div>
 									</div>
@@ -211,7 +188,7 @@
 													foreach ($all_cates as $all_cate) {
 													?>
 														<li role="presentation">
-															<a href="#biography" aria-controls="biography" role="tab" data-toggle="tab"><?= $all_cate['name_cate'] ?></a>
+															<a href="<?=URL?>/index.php?controller=cate&id_cate=<?=$all_cate['id_cate']?>"  role="tab" ><?= $all_cate['name_cate'] ?></a>
 														</li>
 													<?php
 													}
@@ -310,7 +287,7 @@
 
 											</ul>
 											<div class="tg-booktitle" style="height: 80px;">
-												<h3><a href="javascript:void(0);"><?= $topnumBorr['name_b'] ?></a></h3>
+												<h3><a href="<?= URL ?>/index.php?controller=product&id_b=<?= $topnumBorr['id_b'] ?>"><?= $topnumBorr['name_b'] ?></a></h3>
 											</div>
 											<span class="tg-bookwriter">NXB: <a href="javascript:void(0);"><?= $topnumBorr['nxb_b'] ?></a></span>
 											<span class="tg-stars"><span></span></span>
@@ -318,7 +295,7 @@
 												<!-- <ins><?= $topnumBorr['price_b'] ?>VNĐ</ins> -->
 												<!-- <del>$27.20</del> -->
 											</span>
-											<a class="tg-btn tg-btnstyletwo" href="javascript:void(0);">
+											<a class="tg-btn tg-btnstyletwo" id_b=<?= $topnumBorr['id_b'] ?> href="javascript:void(0);">
 												<i class="fa fa-shopping-basket"></i>
 												<em>Thêm giỏ hàng</em>
 											</a>
@@ -356,7 +333,7 @@
 							<div class="tg-featureditmcontent">
 								<div class="tg-themetagbox"><span class="tg-themetag"><?= $randomBook['name_cate'] ?></span></div>
 								<div class="tg-booktitle">
-									<h3><a href="javascript:void(0);"><?= $randomBook['name_b'] ?></a></h3>
+									<h3><a href="<?= URL ?>/index.php?controller=product&id_b=<?= $randomBook['id_b'] ?>"><?= $randomBook['name_b'] ?></a></h3>
 								</div>
 								<span class="tg-bookwriter">NXB: <a href="javascript:void(0);"><?= $randomBook['nxb_b'] ?></a></span>
 								<span class="tg-stars"><span></span></span>
@@ -365,7 +342,7 @@
 										<!-- <ins>$23.18</ins>
 										<del>$30.20</del> -->
 									</span>
-									<a class="tg-btn tg-btnstyletwo tg-active" href="javascript:void(0);">
+									<a class="tg-btn tg-btnstyletwo tg-active" id_b=<?= $randomBook['id_b'] ?> href="javascript:void(0);">
 										<i class="fa fa-shopping-basket"></i>
 										<em>Thêm giỏ hàng</em>
 									</a>
@@ -427,7 +404,7 @@
 													<!-- <li><a href="javascript:void(0);">Fun</a></li> -->
 												</ul>
 												<div class="tg-booktitle" style="height: 80px;">
-													<h3><a href="javascript:void(0);"><?= $newBook['name_b'] ?></a></h3>
+													<h3><a href="<?= URL ?>/index.php?controller=product&id_b=<?= $newBook['id_b'] ?>"><?= $newBook['name_b'] ?></a></h3>
 												</div>
 												<span class="tg-bookwriter">NXB: <a href="javascript:void(0);"><?= $newBook['name_cate'] ?></a></span>
 												<span class="tg-stars"><span></span></span>
@@ -534,10 +511,10 @@
 								</figure>
 								<div class="tg-postbookcontent">
 									<div class="tg-booktitle" style="height: 70px;">
-										<h3><a href="javascript:void(0);"><?= $randomBook_byNXB['name_b'] ?></a></h3>
+										<h3><a href="<?= URL ?>/index.php?controller=product&id_b=<?= $randomBook_byNXB['id_b'] ?>"><?= $randomBook_byNXB['name_b'] ?></a></h3>
 									</div>
 									<span class="tg-bookwriter">NXB: <a href="javascript:void(0);"><?= $randomBook_byNXB['nxb_b'] ?></a></span>
-									<a class="tg-btn tg-btnstyletwo" href="javascript:void(0);">
+									<a class="tg-btn tg-btnstyletwo" id_b=<?= $randomBook_byNXB['id_b'] ?> href="javascript:void(0);">
 										<i class="fa fa-shopping-basket"></i>
 										<em>Thêm giỏ hàng</em>
 									</a>
@@ -547,9 +524,6 @@
 					<?php
 					}
 					?>
-
-
-
 				</div>
 			</div>
 		</div>
@@ -631,7 +605,7 @@
 							<div class="tg-featureditmcontent">
 								<div class="tg-themetagbox"><span class="tg-themetag"><?= $randomBook['name_cate'] ?></span></div>
 								<div class="tg-booktitle">
-									<h3><a href="javascript:void(0);"><?= $randomBook['name_b'] ?></a></h3>
+									<h3><a href="<?= URL ?>/index.php?controller=product&id_b=<?= $randomBook['id_b'] ?>"><?= $randomBook['name_b'] ?></a></h3>
 								</div>
 								<span class="tg-bookwriter">NXB: <a href="javascript:void(0);"><?= $randomBook['nxb_b'] ?></a></span>
 								<span class="tg-stars"><span></span></span>
@@ -640,7 +614,7 @@
 										<!-- <ins>$23.18</ins>
 										<del>$30.20</del> -->
 									</span>
-									<a class="tg-btn tg-btnstyletwo tg-active" href="javascript:void(0);">
+									<a class="tg-btn tg-btnstyletwo tg-active" id_b=<?= $randomBook['id_b'] ?> href="javascript:void(0);">
 										<i class="fa fa-shopping-basket"></i>
 										<em>Thêm giỏ hàng</em>
 									</a>
@@ -685,7 +659,7 @@
 													<!-- <li><a href="javascript:void(0);">Fun</a></li> -->
 												</ul>
 												<div class="tg-booktitle" style="height: 80px;">
-													<h3><a href="javascript:void(0);"><?= $newBook['name_b'] ?></a></h3>
+													<h3><a href="<?= URL ?>/index.php?controller=product&id_b=<?= $newBook['id_b'] ?>"><?= $newBook['name_b'] ?></a></h3>
 												</div>
 												<span class="tg-bookwriter">NXB: <a href="javascript:void(0);"><?= $newBook['name_cate'] ?></a></span>
 												<span class="tg-stars"><span></span></span>
@@ -888,7 +862,7 @@
 				</div>
 			</div>
 		</div>
-
+		<div hidden id="datas_get" email_u></div>
 	</footer>
 	<!--************************************
 				Footer End
@@ -900,289 +874,19 @@
 
 	<?php
 	include('login.php');
-	include('Public/public/footer.php');
+
 	include('public/header/footer.php');
+	include('Public/public/footer.php');
 	?>
-
+	<script src="<?= URL ?>/Public/js/login/index.js"></script>
 	<script>
-		$(document).ready(function() {
-			// alert('123')
-			url = "<?= URL ?>/index.php?"
-			check_email = false;
-			check_pass = false;
-			check_pass_again = false;
-			passwd = 1;
-			passwd_again = 2;
-			$('#btn_login').click(function() {
+		$(document).on("click", '#btn_checkout', function() {
+			email_u = $("#check_login").attr("email");
+			if (email_u == "none") {
 				$('#modalLogin').modal('show')
-
-			})
-			$('#Register').click(function() {
-				$('#modalLogin').modal('hide')
-				$('#modalResign').modal('show')
-			})
-			$('.closed').click(function() {
-				$('#modal_signup_succes').modal('hide')
-			})
-			$('#gmail').mouseover(function() {
-				$(this).css("color", "rgb(226 201 63)")
-			})
-			$('#gmail').mouseleave(function() {
-				$(this).css("color", "red")
-			})
-			$('#btn_dangky').click(function() {
-
-				name_u = $('#name_u').val();
-				address_u = $('#address_u').val();
-				phone_u = $('#phone_u').val();
-				email_u = $('#email_u').val();
-				// pass_u = $('#pass_u').val();
-				// pass_u_again = $('#pass_u_again').val();
-				// if (name_u != '' && address_u != "" && phone_u != "" && email_u != "" && pass_u != "" && pass_u_again != "") {
-				// 	if (check_email == true && check_pass == true && check_pass_again == true) {
-				if (name_u.length > 1 && address_u.length > 9 && phone_u.length > 9 && email_u.length > 14) {
-					form = new FormData(formResign)
-					// alert('123')
-					check_form = true;
-					for (var value of form.values()) {
-
-						if (value == "") {
-							check_form = false;
-						}
-
-					}
-					check_form = validateEmail(email);
-					// console.log(check_form)
-					if (check_form == true) {
-						$.ajax({
-							url: url + "controller=Login&action=addUser",
-							method: "POST",
-							data: form,
-							mimeType: "multipart/form-data",
-							processData: false,
-							contentType: false,
-							success: function(dt) {
-								$('#modalResign').modal('hide')
-								$('#modal_signup_succes').modal('show')
-								$('#formResign').trigger("reset")
-								$('#msgThongBao').html("")
-								$('#msgThongBao_pass').html("")
-								$('#msgThongBao_pass_again').html("")
-							}
-						})
-					}
-				}
-			})
-			$('#btn_acc').click(function() {
-				$('.acc').addClass('show')
-			})
-			$('#forgot_pass').click(function() {
-				$('#modal_fg_pass').modal('show');
-				$('#modalLogin').modal('hide')
-			})
-
-			function validateEmail(email) {
-				var re = /\S+@\S+\.\S+/;
-				return re.test(email);
+			} else {
+				window.location.href = url + "controller=checkout"
 			}
-
-			//check email
-			$('#email_u').blur(function() {
-				email = $(this).val();
-				if (email != '') {
-					$.ajax({
-						url: url + "controller=login&action=check_mail_all",
-						method: "POST",
-						data: {
-							email_u: email
-						},
-						success: function(dt) {
-							// console.log(dt)
-							if (dt == 0) {
-								$('#msgThongBao').css("color", "green")
-								$('#msgThongBao').html("Tài khoản sẵn sàng")
-								check_email = true
-								disb_dky()
-							} else {
-								$('#msgThongBao').css("color", "red")
-								$('#msgThongBao').html("Tài khoản đã tồn tại!")
-								check_email = false
-								disb_dky()
-							}
-						}
-					})
-				}
-			})
-			$('.btn-close').click(function(){
-				$('.modal').modal('hide')
-			})
-			$('#email_fg_pass').keyup(function() {
-				val = $(this).val();
-				if (validateEmail(val) == true) {
-					$.ajax({
-						url: url + "controller=login&action=check_mail",
-						method: "POST",
-						data: {
-							email_u: val
-						},
-						success: function(dt) {
-							// console.log(dt)
-							if (dt == 0) {
-								$('#msg_fg_pass').css("color", "red")
-								$('#msg_fg_pass').html("Tài khoản không tồn tại")
-								$('#btn_fg_pas').prop("disabled", true);
-							} else {
-								$('#msg_fg_pass').html("")
-								$('#btn_fg_pas').prop("disabled", false);
-							}
-						}
-					})
-				}
-
-			})
-			$('#btn_send_code').click(function() {
-				code = $('#input_code').val();
-				email = $('#email_code').val();
-				$.ajax({
-					url: url + "controller=login&action=check_code",
-					method: "POST",
-					data: {
-						code: code,
-						email: email
-					},
-					success: function(dt) {
-						console.log(dt)
-						if (dt != 1) {
-							$('#msg_err_code').html("Mã xác nhận không chính xác.")
-						} else {
-							$('#change_pass').modal('show')
-							$('#modal_code').modal('hide')
-						}
-
-					}
-				})
-			})
-			$('#intput_pass_again').keyup(function() {
-				pass_again = $(this).val();
-				pass = $('#input_pass').val();
-				if (pass != pass_again && pass != "") {
-					$('#msg_change_pas').html("Mật khẩu không khớp!");
-					$('#btn_change_pass').prop("disabled", true)
-
-				} else {
-					$('#msg_change_pas').html("");
-					$('#btn_change_pass').prop("disabled", false)
-				}
-
-			})
-			$('#btn_change_pass').click(function() {
-				email = $('#email_change').val();
-				pass = $('#input_pass').val();
-				$.ajax({
-					url: url + "controller=login&action=change_pass",
-					method: "POST",
-					data: {
-						email: email,
-						pass: pass_again
-					},
-					success: function(dt) {
-						console.log(dt)
-						$('#change_pass').modal("hide")
-						$('#msg_modal').modal('show')
-						$('#text_msg').html(dt)
-						setTimeout(function() {
-							$('#msg_modal').modal('hide')
-						}, 3000)
-					}
-				})
-			})
-
-			$('#btn_fg_pas').click(function() {
-				val = $('#email_fg_pass').val();
-				$.ajax({
-					url: url + "controller=login&action=forgot_pass",
-					method: "POST",
-					data: {
-						email_u: val
-					},
-					success: function(dt) {
-						$('#email_code').val("123");
-						$('#email_change').val("val")
-						$('#modal_code').modal('show');
-						$('#modal_fg_pass').modal('hide')
-					}
-				})
-			})
-			$('#pass_u').blur(function() {
-				passwd = $(this).val();
-				strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})')
-				if (passwd != '') {
-					if (!strongPassword.test(passwd)) {
-						$('#msgThongBao_pass').css("color", "red")
-						$('#msgThongBao_pass').html("Mật khẩu dài ít nhất 8 ký tự , có chữ hoa , chữ thường ,số và ký tự đặc biệt!")
-						check_pass = false
-						disb_dky()
-					} else {
-						$('#msgThongBao_pass').html("")
-						check_pass = true;
-						disb_dky()
-					}
-				}
-			})
-			$('#pass_u_again').blur(function() {
-				passwd_again = $(this).val();
-				if (passwd == passwd_again) {
-					$('#msgThongBao_pass_again').html("");
-					check_pass_again = true
-					disb_dky()
-				} else {
-					check_pass_again = false;
-					$('#msgThongBao_pass_again').css("color", "red")
-					$('#msgThongBao_pass_again').html("Mật khẩu xác nhận không chính xác!")
-					disb_dky()
-				}
-			})
-			$('#btnLogin').click(function() {
-				email = $('#email_login').val();
-				pass = $('#pass_login').val();
-				if ( validateEmail(email) == true && email != "" && pass != "") {
-					$.ajax({
-						url: url + "controller=login&action=login",
-						method: "POST",
-						data: {
-							email: email,
-							pass: pass
-						},
-						success: function(dt) {
-							console.log(dt)
-							if (dt == 0) {
-								$('#check_resign').html("Tài khoản mật khẩu không chính xác !")
-								$('#check_resign').css("color", "red")
-							} else if (dt == 2) {
-								
-								window.location.href = url + "controller=admin"
-								alert('đăng nhập thành công');
-							} else {
-								window.location.href = url
-							}
-						}
-					})
-				}
-
-			})
-
-
-			function disb_dky() {
-				if (check_email == true && check_pass == true && check_pass_again == true) {
-					$('#btn_dangky').prop("disabled", false)
-				} else {
-					$('#btn_dangky').prop("disabled", true)
-				}
-
-
-			}
-
-
 		})
 	</script>
 

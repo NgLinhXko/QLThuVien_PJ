@@ -9,13 +9,15 @@ require 'Email/PHPMailer.php';
 require 'Email/SMTP.php';
 class LoginController extends BaseController
 {
-    const USERS = "USERS";
+
     public function __construct()
     {
         $this->loadModel('LoginModel');
         $this->LoginModel = new LoginModel;
         $this->loadModel('AdminModel');
         $this->AdminModel = new AdminModel;
+        $this->loadModel('CustomerModel');
+        $this->CustomerModel = new CustomerModel;
     }
 
     public function addUser()
@@ -90,7 +92,29 @@ class LoginController extends BaseController
             $data_update['code'] = 0;
             $value = $this->AdminModel->update_data(self::USERS, $ar, $data_update);
             if ($value == true) {
-                return $this->view("frontend.customer.index");
+
+                // return $this->view("frontend.customer.index");
+                // $topnumBorr = $this->CustomerModel->get_topBorr(self::BOOKS, "numborr", "DESC", 10);
+                // $randomBook = $this->CustomerModel->get_topBorr(self::BOOKS, "RAND", "()", 1);
+                // $randomBook1 = $this->CustomerModel->get_topBorr(self::BOOKS, "RAND", "()", 1);
+                // $randomBook2 = $this->CustomerModel->get_topBorr(self::BOOKS, "RAND", "()", 3);
+                // $newBook = $this->CustomerModel->get_topBorr(self::BOOKS, "id_b", "DESC", 3);
+                // $randomBook_byNXB = $this->CustomerModel->get_topBorr(self::BOOKS, "RAND", "()", 10);
+                // $all_cate = $this->AdminModel->getALL(self::CATE);
+                // $all_nxb = $this->AdminModel->All_nxb();
+                // return $this->view(
+                //     "frontend.customer.index",
+                //     [
+                //         "topnumBorrs" => $topnumBorr,
+                //         "randomBooks" => $randomBook,
+                //         "randomBooks1" => $randomBook1,
+                //         "randomBooks2" => $randomBook2,
+                //         'newBooks' => $newBook,
+                //         "randomBook_byNXBs" => $randomBook_byNXB,
+                //         "all_cates" => $all_cate,
+                //         "all_nxbs" => $all_nxb
+                //     ]
+                // );
             }
         } else {
             echo 'fail';
@@ -118,23 +142,23 @@ class LoginController extends BaseController
         } else {
             echo '1';
             $_SESSION['email_u'] = $email;
+            $_SESSION['id_u'] = $datas[0]['id_u'];
             // header('location:http://localhost:88/QLThuVien_Pj/index.php');
         }
     }
     public function check_mail()
     {
         $data = $_POST['email_u'];
-       
+
         $data = $this->LoginModel->checkEmail($data);
         echo sizeof($data);
     }
     public function check_mail_all()
     {
         $data = $_POST['email_u'];
-       
+
         $data = $this->LoginModel->checkEmail_all($data);
-         echo sizeof($data);
-        
+        echo sizeof($data);
     }
     public function logout()
     {
@@ -146,7 +170,7 @@ class LoginController extends BaseController
         $email = $_POST['email_u'];
         $_SESSION['email_code'] = $email;
         $code = mt_rand(1000, 9999);
-        $datas = $this->LoginModel->update_code($email,$code);
+        $datas = $this->LoginModel->update_code($email, $code);
         $mail = new PHPMailer(true);
         try {
             //Server settings
@@ -183,16 +207,18 @@ class LoginController extends BaseController
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
     }
-    public function check_code(){
+    public function check_code()
+    {
         $code = $_POST['code'];
         $email = $_POST['email'];
-        $check = $this->LoginModel-> check_code($email,$code);
+        $check = $this->LoginModel->check_code($email, $code);
         echo $check;
     }
-    public function change_pass(){
+    public function change_pass()
+    {
         $email = $_POST['email'];
         $pass = $_POST['pass'];
-        $data = $this-> LoginModel -> change_pass($email,$pass);
+        $data = $this->LoginModel->change_pass($email, $pass);
         echo $data;
     }
 }

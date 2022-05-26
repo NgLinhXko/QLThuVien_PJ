@@ -10,6 +10,11 @@ class BaseController
     const URL = "http://localhost:88/QLthuVien_PJ/index.php?";
     const VIEW_FOLDER_NAME = 'Views';
     const MODEL_FOLDER_NAME = 'Models';
+    const BOOKS = "books";
+    const CATE = "categories";
+    const USERS = "users";
+    const BILL = "bill";
+    const DETAILBILL = "detailbill";
     protected function view($viewPath, array $data = [])
     {
         foreach ($data as $key => $data) {
