@@ -22,9 +22,9 @@
                                     <h2>ADMIN</h2>
                                 </li>
 
-                                <li class="nav-item "> <a class="nav-link" href="#"><i class="fas fa-hospital-alt"></i></i>Quản Lý</a> </li>
+                                <li class="nav-item "> <a class="nav-link" href="<?= URL ?>/index.php?controller=admin"><i class="fas fa-hospital-alt"></i></i>Quản Lý</a> </li>
 
-                                <li class="nav-item "> <a class="nav-link" href="#"> <i class="fas fa-chalkboard-teacher"></i></i>Quản Lý Mượn trả</a> </li>
+                                <li class="nav-item "> <a class="nav-link" href="<?= URL ?>/index.php?controller=managebill"> <i class="fas fa-chalkboard-teacher"></i></i>Quản Lý Mượn trả</a> </li>
                                 <li class="nav-item "> <a class="nav-link" href="#"> <i class="fas fa-book"></i>Thống kê</a> </li>
 
                             </ul>
@@ -443,6 +443,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
         <?php
         include('Public/public/footer.php')
@@ -601,7 +602,7 @@
                         price_b = parseInt($('#price_b1').val())
                         page_b = parseInt($('#page_b1').val())
                         quantity_b = parseInt($('#quantity_b1').val())
-                        if (nxb_b >= 2 && name_b >= 2 && val_book > 1000 && val_book < 2023 && price_b > 10000 && page_b > 50 && quantity_b > 0) {
+                        if (nxb_b >= 2 && name_b >= 2 && val_book >= 1000 && val_book < 2023 && price_b >= 10000 && page_b >= 50 && quantity_b >= 0) {
                             form = new FormData(form_update_book)
                             update(form)
                         }
@@ -776,11 +777,7 @@
                             contentType: false,
                             success: function(dt) {
                                 load_data(action, table)
-                                $('#msg_modal').modal('show')
-                                $('#text_msg').html(dt)
-                                setTimeout(function() {
-                                    $('#msg_modal').modal('hide')
-                                }, 3000)
+                                load_msg(dt)
                                 $('.update').modal('hide')
 
                             }
@@ -813,11 +810,7 @@
                         },
                         success: function(dt) {
                             load_data(action, table)
-                            $('#msg_modal').modal('show')
-                            $('#text_msg').html(dt)
-                            setTimeout(function() {
-                                $('#msg_modal').modal('hide')
-                            }, 3000)
+                            load_msg(dt)
                             $('.delete').modal('hide');
                         }
                     })
@@ -842,11 +835,7 @@
                             contentType: false,
                             success: function(dt) {
                                 load_data(action, table)
-                                $('#msg_modal').modal('show')
-                                $('#text_msg').html(dt)
-                                setTimeout(function() {
-                                    $('#msg_modal').modal('hide')
-                                }, 3000)
+                                load_msg(dt)
                                 $('.add').modal('hide')
                                 // console.log(dt)
                             }

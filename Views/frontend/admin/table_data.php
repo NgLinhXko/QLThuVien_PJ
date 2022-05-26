@@ -214,17 +214,17 @@ if ($check_act == "users") {
 ?>
 <nav aria-label="Page navigation example" style="margin-left:35% ;">
     <ul class="pagination">
-        <li class="page-item <?php 
-        if($this_page == 1){
-            echo "disabled";
-        }
-        ?> " this_page=<?php
-            if($this_page == 1){
-                echo 1;
-            }else{
-                echo $this_page-1;
-            }
-        ?>>
+        <li class="page-item <?php
+                                if ($this_page == 1) {
+                                    echo "disabled";
+                                }
+                                ?> " this_page=<?php
+                        if ($this_page == 1) {
+                            echo 1;
+                        } else {
+                            echo $this_page - 1;
+                        }
+                        ?>>
             <a class="page-link" href="#" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
             </a>
@@ -240,17 +240,17 @@ if ($check_act == "users") {
         <?php
         }
         ?>
-        <li class="page-item <?php 
-        if($this_page == $total_page){
-            echo "disabled";
-        }
-        ?>" this_page=<?php
-            if($this_page == $total_page){
-                echo $total_page;
-            }else{
-                echo $this_page+1;
-            }
-        ?>>
+        <li class="page-item <?php
+                                if ($this_page == $total_page) {
+                                    echo "disabled";
+                                }
+                                ?>" this_page=<?php
+                        if ($this_page == $total_page) {
+                            echo $total_page;
+                        } else {
+                            echo $this_page + 1;
+                        }
+                        ?>>
             <a class="page-link" href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
             </a>

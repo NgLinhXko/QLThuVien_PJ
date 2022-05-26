@@ -9,13 +9,15 @@ require 'Email/PHPMailer.php';
 require 'Email/SMTP.php';
 class LoginController extends BaseController
 {
-    const USERS = "USERS";
+
     public function __construct()
     {
         $this->loadModel('LoginModel');
         $this->LoginModel = new LoginModel;
         $this->loadModel('AdminModel');
         $this->AdminModel = new AdminModel;
+        $this->loadModel('CustomerModel');
+        $this->CustomerModel = new CustomerModel;
     }
 
     public function addUser()
@@ -90,7 +92,29 @@ class LoginController extends BaseController
             $data_update['code'] = 0;
             $value = $this->AdminModel->update_data(self::USERS, $ar, $data_update);
             if ($value == true) {
-                return $this->view("frontend.customer.index");
+
+                // return $this->view("frontend.customer.index");
+                // $topnumBorr = $this->CustomerModel->get_topBorr(self::BOOKS, "numborr", "DESC", 10);
+                // $randomBook = $this->CustomerModel->get_topBorr(self::BOOKS, "RAND", "()", 1);
+                // $randomBook1 = $this->CustomerModel->get_topBorr(self::BOOKS, "RAND", "()", 1);
+                // $randomBook2 = $this->CustomerModel->get_topBorr(self::BOOKS, "RAND", "()", 3);
+                // $newBook = $this->CustomerModel->get_topBorr(self::BOOKS, "id_b", "DESC", 3);
+                // $randomBook_byNXB = $this->CustomerModel->get_topBorr(self::BOOKS, "RAND", "()", 10);
+                // $all_cate = $this->AdminModel->getALL(self::CATE);
+                // $all_nxb = $this->AdminModel->All_nxb();
+                // return $this->view(
+                //     "frontend.customer.index",
+                //     [
+                //         "topnumBorrs" => $topnumBorr,
+                //         "randomBooks" => $randomBook,
+                //         "randomBooks1" => $randomBook1,
+                //         "randomBooks2" => $randomBook2,
+                //         'newBooks' => $newBook,
+                //         "randomBook_byNXBs" => $randomBook_byNXB,
+                //         "all_cates" => $all_cate,
+                //         "all_nxbs" => $all_nxb
+                //     ]
+                // );
             }
         } else {
             echo 'fail';
@@ -114,11 +138,12 @@ class LoginController extends BaseController
 
             $_SESSION['email'] = $email;
             echo '2';
-            // echo 'http://localhost:/QLThuVien_Pj/index.php?controller=admin';
+            // echo 'http://localhost:88/QLThuVien_Pj/index.php?controller=admin';
         } else {
             echo '1';
             $_SESSION['email_u'] = $email;
-            // header('location:http://localhost:/QLThuVien_Pj/index.php');
+            $_SESSION['id_u'] = $datas[0]['id_u'];
+            // header('location:http://localhost:88/QLThuVien_Pj/index.php');
         }
     }
     public function check_mail()
@@ -131,10 +156,9 @@ class LoginController extends BaseController
     public function check_mail_all()
     {
         $data = $_POST['email_u'];
-       
+
         $data = $this->LoginModel->checkEmail_all($data);
-         echo sizeof($data);
-        
+        echo sizeof($data);
     }
     public function logout()
     {

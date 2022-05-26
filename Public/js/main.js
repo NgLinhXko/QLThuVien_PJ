@@ -258,12 +258,12 @@ jQuery(document).on('ready', function() {
 	/*------------------------------------------
 			PRODUCT INCREASE
 	------------------------------------------*/
-	jQuery('em.minus').on('click', function () {
-		jQuery('#quantity1').val(parseInt(jQuery('#quantity1').val(), 10) - 1);
-	});
-	jQuery('em.plus').on('click', function () {
-		jQuery('#quantity1').val(parseInt(jQuery('#quantity1').val(), 10) + 1);
-	});
+	// jQuery('em.minus').on('click', function () {
+	// 	jQuery('#quantity1').val(parseInt(jQuery('#quantity1').val(), 10) - 1);
+	// });
+	// jQuery('em.plus').on('click', function () {
+	// 	jQuery('#quantity1').val(parseInt(jQuery('#quantity1').val(), 10) + 1);
+	// });
 	
 	
 });

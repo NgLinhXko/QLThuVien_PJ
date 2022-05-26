@@ -2,6 +2,7 @@
 class AdminModel extends BaseModel
 {
     //lấy data về (SELECT *From tabel)
+    private $limit = 10;
     public function getALL($table)
     {
         return $this->get_all($table);
@@ -74,6 +75,7 @@ class AdminModel extends BaseModel
     }
     public function check_name($data)
     {
+        // $datas = trim(' ' FROM '      freetuts.net      ');
         $sql = "SELECT * from categories where name_cate like '$data' ";
         $query = $this->query($sql);
         $datar = [];
