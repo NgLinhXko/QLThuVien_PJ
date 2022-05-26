@@ -483,13 +483,14 @@
                         }
                     }
                     if (table == "books") {
+
                         name_b = $('#name_b').val().length
                         nxb_b = $('#nxb_b').val().length
                         val_book = parseInt($('#year_b').val())
                         price_b = parseInt($('#price_b').val())
                         page_b = parseInt($('#page_b').val())
                         quantity_b = parseInt($('#quantity_b').val())
-                        if (nxb_b >= 2 && name_b >= 2 && val_book > 1000 && val_book < 2023 && price_b > 10000 && page_b > 50 && quantity_b > 0) {
+                        if (nxb_b >= 2 && name_b >= 2 && val_book > 1000 && val_book < 2023 && price_b >= 10000 && page_b > 50 && quantity_b > 0) {
                             form = new FormData(form_add_book)
                             add(form)
                         }
@@ -757,7 +758,6 @@
                     })
                 }
 
-
                 function update(form) {
                     check_form = true;
                     for (var value of form.values()) {
@@ -786,9 +786,7 @@
                             }
                         })
                     }
-
                 }
-
 
                 function search_fc(table, data, this_page) {
                     $.ajax({
