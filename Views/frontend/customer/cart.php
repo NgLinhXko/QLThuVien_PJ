@@ -141,10 +141,10 @@
 								</div>
 							</div>
 							<div class="tg-searchbox">
-								<form class="tg-formtheme tg-formsearch">
+								<form class="tg-formtheme tg-formsearch" method="POST" action="<?=URL?>/index.php?controller=cate&action=search">
 									<fieldset>
 										<input type="text" name="search" class="typeahead form-control" placeholder="Nhập tên sách">
-										<button type="button"><i class="icon-magnifier"></i></button>
+										<button type="submit"><i class="icon-magnifier"></i></button>
 									</fieldset>
 									<a href="javascript:void(0);">+ Advanced Search</a>
 								</form>
