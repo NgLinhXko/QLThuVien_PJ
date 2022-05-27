@@ -76,7 +76,7 @@ if (isset($modal)) {
 
 
     if (sizeof($datas) > 0) {
-        if ($act == 0 || $act == 1 || $act = 2) {
+        if ($act == 0 || $act == 1 || $act == 2  || $act == 3 || $act == 4 || $act == 5) {
     ?>
             <table class="table table-striped">
                 <thead>
@@ -112,7 +112,7 @@ if (isset($modal)) {
                                     <button style="width:100%" class="btn btn-secondary btn-sm btn_detail" id_bi=<?= $data['id_bi'] ?>>Chi tiết </button>
                                     <br>
                                     <br>
-                                    <button style="width:100%" class="btn btn-outline-warning  btn-sm" id_bi=<?= $data['id_bi'] ?>>Hủy</button>
+                                    <button style="width:100%" class="btn btn-outline-warning  btn-sm btn_cancel" id_bi=<?= $data['id_bi'] ?>>Hủy</button>
                                     <br><br>
                                     <button style="width:100%" class="btn btn-success btn-sm  btn_xacnhan" act=<?= $act ?> id_bi=<?= $data['id_bi'] ?>>Xác nhận</button>
 
@@ -122,7 +122,7 @@ if (isset($modal)) {
                                     <button style="width:100%" class="btn btn-secondary btn-sm btn_detail" id_bi=<?= $data['id_bi'] ?>>Chi tiết </button>
                                     <br>
                                     <br>
-                                    <button style="width:100%" class="btn btn-outline-warning  btn-sm" id_bi=<?= $data['id_bi'] ?>>Hủy</button>
+                                    <button style="width:100%" class="btn btn-outline-warning  btn-sm btn_cancel" id_bi=<?= $data['id_bi'] ?>>Hủy</button>
                                     <br><br>
                                     <button style="width:100%" class="btn btn-primary btn-sm  btn_xacnhan" act=<?= $act ?> id_bi=<?= $data['id_bi'] ?>>Đã lấy hàng</button>
 
@@ -132,13 +132,14 @@ if (isset($modal)) {
                                     <button style="width:100%" disabled class="btn btn-primary btn-sm  btn_xacnhan" act=<?= $act ?> id_bi=<?= $data['id_bi'] ?>>Đang vận chuyển</button>
                                 <?php
                                 } else if ($act == 3) { ?>
-                                    <button style="width:100%" disabled class="btn btn-danger btn-sm " id_bi=<?= $data['id_bi'] ?>>Liên hệ khách hàng</button>
-                                    <button style="width:100%" class="btn btn-secondary btn-sm btn_detail" id_bi=<?= $data['id_bi'] ?>>Chi tiết </button>
-                                    <button style="width:100%" disabled class="btn btn-primary btn-sm  btn_xacnhan" act=<?= $act ?> id_bi=<?= $data['id_bi'] ?>>Đang Mượn</button>
+                                    <button style="width:100%" disabled class="btn btn-danger btn-sm " id_bi=<?= $data['id_bi'] ?>>Liên hệ khách hàng</button><br><br>
+                                    <button style="width:100%" class="btn btn-secondary btn-sm btn_detail" id_bi=<?= $data['id_bi'] ?>>Chi tiết </button><br><br>
+                                    <button style="width:100%" disabled class="btn btn-primary btn-sm  btn_xacnhan" act=<?= $act ?> id_bi=<?= $data['id_bi'] ?>>Đang Mượn</button><br><br>
 
                                 <?php
                                 } else if ($act == 4) {
                                 ?>
+                                    <button style="width:100%" class="btn btn-secondary btn-sm btn_detail" id_bi=<?= $data['id_bi'] ?>>Chi tiết </button><br><br>
                                     <button style="width:100%" class="btn btn-primary btn-sm  btn_xacnhan" act=<?= $act ?> id_bi=<?= $data['id_bi'] ?>>Xác nhận trả sách</button>
                                 <?php
                                 } else if ($act == 5) {

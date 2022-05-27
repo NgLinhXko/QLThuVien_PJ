@@ -71,4 +71,9 @@ class CartController extends BaseController
         array_splice($_SESSION['cart'], $id_b, 1);
         echo 'Xóa thành công';
     }
+    public function check_slbook(){
+        $id_b = $_POST['id_b'];
+        $data_book = $this->AdminModel->load_update(self::BOOKS, ["id_b" => $id_b]);
+        echo ($data_book[0]['quantity_b']) ;
+    }
 }
