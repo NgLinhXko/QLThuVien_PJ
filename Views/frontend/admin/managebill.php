@@ -59,7 +59,7 @@
     </div>
     <div class="modal" id="modal_detail_bill" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-lg" id="dialog_detail">
-            
+
         </div>
     </div>
 </body>
@@ -68,7 +68,7 @@ include('Public/public/footer.php')
 ?>
 <script>
     $(document).ready(function() {
-        url1 = "http://localhost:88/QLThuVien_PJ/index.php?"
+        url1 = "http://localhost:8080/QLThuVien_PJ/index.php?"
         load_act(0)
         $('.choose').mouseover(function() {
             $('.choose').removeClass("text-danger")
@@ -85,25 +85,26 @@ include('Public/public/footer.php')
             load_act(act)
         })
 
-     
+
         $(document).on("click", ".btn_xacnhan", function() {
             id_bi = $(this).attr("id_bi");
             status = $(this).attr("act");
             update_bill(status)
             // alert(status)
         })
-        $(document).on("click",".btn_detail",function(){
-            id_bi= $(this).attr("id_bi");
+        $(document).on("click", ".btn_detail", function() {
+            id_bi = $(this).attr("id_bi");
             data_detail(id_bi)
         })
-        function data_detail(id_bi){
+
+        function data_detail(id_bi) {
             $.ajax({
-                url:url1+"controller=managebill&action=data_detail",
-                method:"POST",
-                data:{
+                url: url1 + "controller=managebill&action=data_detail",
+                method: "POST",
+                data: {
                     id_bi: id_bi,
                 },
-                success:function(dt){
+                success: function(dt) {
                     $('#modal_detail_bill').modal('show')
                     $('#dialog_detail').html(dt)
                 }
@@ -121,7 +122,7 @@ include('Public/public/footer.php')
                 success: function(dt) {
                     load_act(status)
                     load_msg(dt)
-                    
+
                 }
             })
         }
@@ -140,6 +141,7 @@ include('Public/public/footer.php')
                 }
             })
         }
+
         function count_bill() {
             $.ajax({
                 url: url1 + "controller=managebill&action=count_bill",

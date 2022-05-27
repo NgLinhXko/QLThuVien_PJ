@@ -3,7 +3,7 @@ class  AdminController extends BaseController
 {
     public function __construct()
     {
-        //requai  file
+        //require  file
         if (isset($_SESSION['email'])) {
             $this->loadModel('AdminModel');
             // khởi tạo đối tượng
@@ -80,12 +80,11 @@ class  AdminController extends BaseController
                 // $data['status'] = 1;
                 $data_get['pass_u'] = $_POST['email_u'];
                 $data_get['table'] = "users";
-            }else{
+            } else {
                 array_pop($data_get);
                 $data_get['pass_u'] = $_POST['email_u'];
                 $data_get['table'] = "users";
             }
-
         }
         $table = array_pop($data_get); //xóa tên bảng
         $data = $this->AdminModel->add_data($table, $data_get);
@@ -132,18 +131,18 @@ class  AdminController extends BaseController
         $data_s = [];
         if ($table == "categories") {
             $data_s['name_cate'] = $data;
-            $datas = $this->AdminModel->get_cate_search($data,$start);
+            $datas = $this->AdminModel->get_cate_search($data, $start);
         }
         if ($table == "books") {
             $data_s['name_b'] = $data;
-            $datas = $this->AdminModel->search_data($table, $data_s,$start);
+            $datas = $this->AdminModel->search_data($table, $data_s, $start);
         }
         if ($table == "users") {
             $data_s['name_u'] = $data;
-            
-            $datas = $this->AdminModel->search_User($table, $data_s,$start);
+
+            $datas = $this->AdminModel->search_User($table, $data_s, $start);
         }
-        $total_page = $this->AdminModel->total_page_search($table,$data_s);
+        $total_page = $this->AdminModel->total_page_search($table, $data_s);
         // $datas = $this->AdminModel->search_data($table, $data_s);
         return $this->view("frontend.admin.table_data", [
             "check_act" =>  $table,

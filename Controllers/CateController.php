@@ -1,6 +1,6 @@
 <?php
 class CateController extends BaseController
-{   
+{
     // public $id_cate = $_GET['id_cate'];
     public function __construct()
     {
@@ -57,11 +57,11 @@ class CateController extends BaseController
         $data_by_page =  $this->CateModel->data_cate($id_cate, $column, $order, $start);
         $total_book = $this->CateModel->total_book_cate($id_cate);
         $total_page = ceil($total_book / 8);
-        return $this->view("frontend.customer.data_cate",[
+        return $this->view("frontend.customer.data_cate", [
             "URL" => self::URL,
             "datas_by_page" => $data_by_page,
-            "total_page"=>$total_page,
-            "this_page" =>$this_page
+            "total_page" => $total_page,
+            "this_page" => $this_page
         ]);
     }
 
