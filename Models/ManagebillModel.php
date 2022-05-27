@@ -60,5 +60,19 @@ class ManagebillModel extends BaseModel{
         $this -> query($sql);
         
     }
+    public function update_numBorr($sl,$id_b){
+        $sql = "UPDATE Books SET numBorr = $sl where id_b = $id_b";
+        $this -> query($sql);
+    }
+    public function update_day_back($day,$id_b){
+        $sql = "UPDATE bill SET date_back= '$day' where id_bi = $id_b";
+        $this -> query($sql);
+        // echo $sql;
+        
+    }
+    public function back_money($money,$id_u){
+        $sql="UPDATE users set money = $money where id_u = $id_u";
+        $this->query($sql);
+    }
+
 }
-?>

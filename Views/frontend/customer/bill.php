@@ -257,7 +257,7 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="tg-innerbannercontent">
-                            <h1>Giỏ hàng</h1>
+                            <h1>Đơn hàng của tôi</h1>
 
                         </div>
                     </div>
@@ -272,7 +272,17 @@
 		*************************************-->
         <main id="tg-main" class="tg-main tg-haslayout">
             <div id="data" style="margin-left: 15%;margin-right:15%">
+                <div class="row" style="text-align: center;">
+                    <span class="col-2 choose choose_border" act="0">Chờ xác nhận<span class="text-danger sl_bill0"></span></span>
+                    <span class="col-2 choose" act="1">Chờ lấy hàng<span class="text-danger sl_bill1"></span></span>
+                    <span class="col-2 choose" act="2">Đang vận chuyển<span class="text-danger sl_bill2"></span></span>
+                    <span class="col-2 choose" act="3">Đang mượn<span class="text-danger sl_bill3"></span></span>
+                    <span class="col-2 choose" act="5">Đã trả<span class="text-danger sl_bill5"></span></span>
+                    <span class="col-2 choose" act="-1">Đã hủy<span class="text-danger sl_bill-1"></span></span>
+                </div>
+                <div id="data_show_bill">
 
+                </div>
             </div>
         </main>
 
@@ -458,64 +468,107 @@
     ?>
     <script src="<?= URL ?>/Public/js/login/index.js"></script>
     <script>
-        url = "<?= URL ?>/index.php?"
-        load_table_cart()
-        $(document).on("click", ".delete_cart_id", function() {
-            id_b = $(this).attr("id_b")
+        act = 0;
+        url2 = "<?= URL ?>/index.php?"
+        $('.choose').mouseover(function() {
+            $('.choose').removeClass("text-danger")
+            $(this).addClass("text-danger")
+        })
+        $('.choose').mouseleave(function() {
+            $('.choose').removeClass("text-danger")
+        })
+        load_data_bill(act)
+        $('.choose').click(function() {
+            $(".choose").removeClass("choose_border")
+            $(this).addClass("choose_border")
+            act = $(this).attr("act")
+            // alert(act)
+            // load_act(act)
+            load_data_bill(act)
+        })
+        $(document).on("click", ".cancel_bill, .btn_check_bill", function() {
+            status = $(this).attr("status")
+            act = $(this).attr('act')
+            id_bi = $(this).attr("id_bi")
+            update_bill(status, id_bi)
+          
+
+        })
+        $(document).on("click",".borr_again",function(){
+            id_bi = $(this).attr("id_bi");
             $.ajax({
-                url: url + "controller=cart&action=delete_cart_id",
-                method: "POST",
-                data: {
-                    id_b: id_b,
+                url:url2+"controller=bill&action=borr_again",
+                method:"POST",
+                data:{
+                    id_bi:id_bi
                 },
-                success: function(dt) {
-                    $('#msg_modal').modal('show')
-                    $('#text_msg').html(dt)
-                    setTimeout(function() {
-                        $('#msg_modal').modal('hide')
-                    }, 3000)
-                    
-                    load_table_cart()
+                success:function(dt){
+                    load_msg(dt)
                 }
             })
         })
 
-        function load_table_cart() {
+        function load_data_bill(act) {
             $.ajax({
-                url: url + "controller=cart&action=view_cart",
+                url: url2 + "controller=bill&action=get_data",
                 method: "POST",
                 data: {
-                    actions: "table_cart"
+                    act: act
                 },
                 success: function(dt) {
-                    $('#data').html(dt)
-                    number_cart()
+                    $('#data_show_bill').html(dt)
+                    count_bill()
                 }
             })
         }
-        function number_cart() {
-        $.ajax({
-            url: url + "controller=cart&action=number_cart",
-            method: "POST",
-            success: function (dt) {
-            
-                if(dt>0){
-                    $('.number_cart').html(dt)
-                }else{
-                    $('.number_cart').html("")
+
+        function update_bill(status, id_bi) {
+            $.ajax({
+                url: url2 + "controller=managebill&action=update_bill",
+                method: "POST",
+                data: {
+                    id_bi: id_bi,
+                    status: status
+                },
+                success: function(dt) {
+                    load_data_bill(act)
+                    load_msg(dt)
+                  
+
                 }
-               
-            }
-        })
-    }
-        $(document).on("click",'#btn_checkout',function(){
-            email_u = $("#check_login").attr("email");
-            if(email_u == "none"){
-                $('#modalLogin').modal('show')
-            }else{
-                window.location.href = url + "controller=checkout"
-            }
-        })
+            })
+        }
+        count_bill()
+
+        function count_bill() {
+            $.ajax({
+                url: url2 + "controller=bill&action=count_bill",
+                method: "POST",
+                data: {
+
+                },
+                dataType: 'json',
+                success: function(dt) {
+
+                    // console.log(dt)
+                    // $('.sl_bill-1').html(dt[0])
+                    // $('.sl_bill0').html(dt[1])
+                    // $('.sl_bill1').html(dt[2])
+                    // $('.sl_bill2').html(dt[3])
+                    // $('.sl_bill3').html(dt[4])
+                    // $('.sl_bill5').html(dt[6])
+                    for (i = 0; i <= 6; i++) {
+                        if (dt[i] > 0) {
+                            $('.sl_bill' + (i-1)).html("(" + dt[i] + ")")
+                        } else {
+                            $('.sl_bill' + (i-1)).html("")
+                        }
+
+                    }
+
+                }
+            })
+        }
     </script>
 </body>
 

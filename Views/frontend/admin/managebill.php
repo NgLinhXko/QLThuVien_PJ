@@ -68,7 +68,7 @@ include('Public/public/footer.php')
 ?>
 <script>
     $(document).ready(function() {
-        url1 = "http://localhost:8080/QLThuVien_PJ/index.php?"
+        url1 = "http://localhost:88/QLThuVien_PJ/index.php?"
         load_act(0)
         $('.choose').mouseover(function() {
             $('.choose').removeClass("text-danger")
@@ -81,7 +81,7 @@ include('Public/public/footer.php')
             $(".choose").removeClass("choose_border")
             $(this).addClass("choose_border")
             act = $(this).attr("act")
-            // alert(act)
+            //  alert(act)
             load_act(act)
         })
 
@@ -91,6 +91,23 @@ include('Public/public/footer.php')
             status = $(this).attr("act");
             update_bill(status)
             // alert(status)
+        })
+        $(document).on("click", ".btn_cancel", function() {
+            id_bi = $(this).attr("id_bi");
+            $.ajax({
+                url: url1 + "controller=managebill&action=update_bill",
+                method: "POST",
+                data: {
+                    id_bi: id_bi,
+                    status: -2
+                },
+                success: function(dt) {
+                    
+                    load_act(act)
+                    load_msg(dt)
+
+                }
+            })
         })
         $(document).on("click", ".btn_detail", function() {
             id_bi = $(this).attr("id_bi");
@@ -120,6 +137,7 @@ include('Public/public/footer.php')
                     status: status
                 },
                 success: function(dt) {
+                    console.log(dt)
                     load_act(status)
                     load_msg(dt)
 

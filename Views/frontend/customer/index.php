@@ -14,16 +14,17 @@
 
 <body class="tg-home tg-homeone">
 
-	<?php
-	if (!isset($_SESSION['cart'])) {
-		$_SESSION['cart']  = [];
-	}
-	?>
+
 	<div id="tg-wrapper" class="tg-wrapper tg-haslayout">
 		<!--************************************
 				Header Start
 		*************************************-->
 		<header id="tg-header" class="tg-header tg-haslayout">
+			<?php
+			if (!isset($_SESSION['cart'])) {
+				$_SESSION['cart']  = [];
+			}
+			?>
 			<div class="tg-topbar">
 				<div class="container">
 					<div class="row">
@@ -93,7 +94,7 @@
 								?>
 								<ul class="dropdown-menu acc" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 36px);" data-popper-placement="bottom-start" aria-labelledby="dropdownMenuButton1">
 									<li style="list-style: none;"><a class="dropdown-item" href="#">Thông tin tài khoản</a></li>
-									<li style="list-style: none;"><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
+									<li style="list-style: none;"><a class="dropdown-item" href="<?= URL ?>/index.php?controller=bill">Đơn hàng</a></li>
 									<li style="list-style: none;"><a class="dropdown-item" href="<?= URL ?>/index.php?controller=login&action=logout">Đăng xuất</a></li>
 							</div>
 
@@ -145,10 +146,10 @@
 								</div>
 							</div>
 							<div class="tg-searchbox">
-								<form class="tg-formtheme tg-formsearch" method="POST" action="<?=URL?>/index.php?controller=cate&action=search">
+								<form class="tg-formtheme tg-formsearch" method="POST" action="<?= URL ?>/index.php?controller=cate&action=search">
 									<fieldset>
-										<input type="text" id="input_search" name="search" class="typeahead form-control" placeholder="Nhập tên sách">
-										<button type="submit" id="btn_search"><i class="icon-magnifier"></i></button>
+										<input type="text" name="search" class="typeahead form-control" placeholder="Nhập tên sách">
+										<button type="submit"><i class="icon-magnifier"></i></button>
 									</fieldset>
 									<a href="javascript:void(0);">+ Advanced Search</a>
 								</form>
@@ -188,7 +189,7 @@
 													foreach ($all_cates as $all_cate) {
 													?>
 														<li role="presentation">
-															<a href="<?=URL?>/index.php?controller=cate&id_cate=<?=$all_cate['id_cate']?>"  role="tab" ><?= $all_cate['name_cate'] ?></a>
+															<a href="<?= URL ?>/index.php?controller=cate&id_cate=<?= $all_cate['id_cate'] ?>" role="tab"><?= $all_cate['name_cate'] ?></a>
 														</li>
 													<?php
 													}
@@ -283,7 +284,7 @@
 										</figure>
 										<div class="tg-postbookcontent">
 											<ul class="tg-bookscategories">
-												<li><a href="<?= URL ?>/index.php?controller=cate&id_cate=<?=$topnumBorr['id_cate']?>"><?= $topnumBorr['name_cate'] ?></a></li>
+												<li><a href="<?= URL ?>/index.php?controller=cate&id_cate=<?= $topnumBorr['id_cate'] ?>"><?= $topnumBorr['name_cate'] ?></a></li>
 
 											</ul>
 											<div class="tg-booktitle" style="height: 80px;">
@@ -400,7 +401,7 @@
 											</figure>
 											<div class="tg-postbookcontent">
 												<ul class="tg-bookscategories">
-													<li><a href="<?= URL ?>/index.php?controller=cate&id_cate=<?=$newBook['id_cate']?>"><?= $newBook['name_cate'] ?></a></li>
+													<li><a href="<?= URL ?>/index.php?controller=cate&id_cate=<?= $newBook['id_cate'] ?>"><?= $newBook['name_cate'] ?></a></li>
 													<!-- <li><a href="javascript:void(0);">Fun</a></li> -->
 												</ul>
 												<div class="tg-booktitle" style="height: 80px;">
@@ -501,7 +502,7 @@
 									</div>
 									<div class="tg-hovercontent">
 										<div class="tg-description">
-											<p><?=$randomBook_byNXB['des_b']?></p>
+											<p><?= $randomBook_byNXB['des_b'] ?></p>
 										</div>
 										<strong class="tg-bookpage">Số trang:<?= $randomBook_byNXB['page_b'] ?></strong>
 										<strong class="tg-bookcategory">Thể loại: <?= $randomBook_byNXB['name_cate'] ?></strong>
@@ -655,7 +656,7 @@
 											</figure>
 											<div class="tg-postbookcontent">
 												<ul class="tg-bookscategories">
-													<li><a href="<?= URL ?>/index.php?controller=cate&id_cate=<?=$newBook['id_cate']?>"><?= $newBook['name_cate'] ?></a></li>
+													<li><a href="<?= URL ?>/index.php?controller=cate&id_cate=<?= $newBook['id_cate'] ?>"><?= $newBook['name_cate'] ?></a></li>
 													<!-- <li><a href="javascript:void(0);">Fun</a></li> -->
 												</ul>
 												<div class="tg-booktitle" style="height: 80px;">
@@ -890,7 +891,7 @@
 		})
 		// $('#btn_search').click(function(){
 		// 	val = $('#input_search').val();
-		   
+
 		// })
 		// function get_data_search(val){
 		// 	$.ajax({

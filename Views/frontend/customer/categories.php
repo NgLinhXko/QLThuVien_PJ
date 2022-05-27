@@ -19,6 +19,11 @@
 				Header Start
 		*************************************-->
 		<header id="tg-header" class="tg-header tg-haslayout">
+			<?php
+			if (!isset($_SESSION['cart'])) {
+				$_SESSION['cart']  = [];
+			}
+			?>
 			<div class="tg-topbar">
 				<div class="container">
 					<div class="row">
@@ -88,7 +93,7 @@
 								?>
 								<ul class="dropdown-menu acc" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 36px);" data-popper-placement="bottom-start" aria-labelledby="dropdownMenuButton1">
 									<li style="list-style: none;"><a class="dropdown-item" href="#">Thông tin tài khoản</a></li>
-									<li style="list-style: none;"><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
+									<li style="list-style: none;"><a class="dropdown-item" href="<?= URL ?>/index.php?controller=bill">Đơn hàng</a></li>
 									<li style="list-style: none;"><a class="dropdown-item" href="<?= URL ?>/index.php?controller=login&action=logout">Đăng xuất</a></li>
 							</div>
 
@@ -140,7 +145,7 @@
 								</div>
 							</div>
 							<div class="tg-searchbox">
-								<form class="tg-formtheme tg-formsearch">
+								<form class="tg-formtheme tg-formsearch" method="POST" action="<?= URL ?>/index.php?controller=cate&action=search">
 									<fieldset>
 										<input type="text" name="search" class="typeahead form-control" placeholder="Nhập tên sách">
 										<button type="submit"><i class="icon-magnifier"></i></button>
@@ -693,10 +698,18 @@
 		var url_string = window.location.href; //window.location.href
 		var url = new URL(url_string);
 		var id_cate = url.searchParams.get("id_cate");
+		val="";
+		if(id_cate >0){
+			actionn  = "get_cate"
+		}else{
+			actionn="search";
+			val=$('#input_search').val()
+		}
+		
 		col = "id_b"
 		order = "DESC"
 		this_page = 1
-		load_cate_book(col, order, this_page)
+		load_cate_book(actionn,col, order, this_page,val)
 
 		$(document).on("click", ".page-item", function() {
 			this_page = $(this).attr("this_page")
@@ -709,7 +722,9 @@
 					this_page: this_page,
 					col: col,
 					order: order,
-					id_cate: id_cate
+					id_cate: id_cate,
+					actionn:actionn,
+					search:val
 				},
 				success: function(dt) {
 					$('#data_cate').hide().html(dt).fadeIn("slow")
@@ -723,11 +738,11 @@
 			order = $(this).val()
 			col = $('option:selected', this).attr('colum');
 		
-			 load_cate_book(col, order, this_page)
-			alert(option)
+			 load_cate_book(actionn,col, order, this_page,val)
+			// alert(option)
 		})
 
-		function load_cate_book(column, order, this_page) {
+		function load_cate_book(actionn,column, order, this_page,val) {
 			$.ajax({
 				url: url + "controller=cate&action=cate_by_page",
 				method: "POSt",
@@ -735,7 +750,9 @@
 					this_page: this_page,
 					col: column,
 					order: order,
-					id_cate: id_cate
+					id_cate: id_cate,
+					actionn:actionn,
+					search:val
 				},
 				success: function(dt) {
 					$('#data_cate').html(dt)

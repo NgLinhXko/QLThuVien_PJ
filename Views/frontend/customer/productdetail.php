@@ -31,6 +31,11 @@
 				Header Start
 		*************************************-->
 		<header id="tg-header" class="tg-header tg-haslayout">
+			<?php
+			if (!isset($_SESSION['cart'])) {
+				$_SESSION['cart']  = [];
+			}
+			?>
 			<div class="tg-topbar">
 				<div class="container">
 					<div class="row">
@@ -100,7 +105,7 @@
 								?>
 								<ul class="dropdown-menu acc" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 36px);" data-popper-placement="bottom-start" aria-labelledby="dropdownMenuButton1">
 									<li style="list-style: none;"><a class="dropdown-item" href="#">Thông tin tài khoản</a></li>
-									<li style="list-style: none;"><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
+									<li style="list-style: none;"><a class="dropdown-item" href="<?= URL ?>/index.php?controller=bill">Đơn hàng</a></li>
 									<li style="list-style: none;"><a class="dropdown-item" href="<?= URL ?>/index.php?controller=login&action=logout">Đăng xuất</a></li>
 							</div>
 
@@ -152,9 +157,9 @@
 								</div>
 							</div>
 							<div class="tg-searchbox">
-								<form class="tg-formtheme tg-formsearch">
+								<form class="tg-formtheme tg-formsearch" method="POST" action="<?= URL ?>/index.php?controller=cate&action=search">
 									<fieldset>
-										<input type="text" name="search" class="typeahead form-control" placeholder="Search by title, author, keyword, ISBN...">
+										<input type="text" name="search" class="typeahead form-control" placeholder="Nhập tên sách">
 										<button type="submit"><i class="icon-magnifier"></i></button>
 									</fieldset>
 									<a href="javascript:void(0);">+ Advanced Search</a>

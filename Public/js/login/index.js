@@ -96,7 +96,7 @@ $(document).ready(function () {
             },
             success: function (dt) {
                 view_cart()
-
+                number_cart()
                 load_msg(dt)
                 dis_btn_cart()
 
@@ -114,7 +114,7 @@ $(document).ready(function () {
                     $('#btn_view_cart').prop("disabled", true)
                     $('#btn_checkout').prop("disabled", true)
                 } else {
-                    alert('ko rỗng')
+                    // alert('ko rỗng')
                     $('#btn_view_cart').prop("disabled", false)
                     $('#btn_checkout').prop("disabled", false)
                 }
@@ -123,6 +123,12 @@ $(document).ready(function () {
     }
     $('#btn_acc').click(function () {
         $('.acc').addClass('show')
+    })
+    // $(window).click(function(e) {
+    //     $('.acc').addClass('hide')
+    // });
+    $(document).on("click","window",function(){
+        $('.acc').addClass('hide')
     })
     $('#forgot_pass').click(function () {
         $('#modal_fg_pass').modal('show');
@@ -136,7 +142,23 @@ $(document).ready(function () {
     // })
     $(document).on("click", ".tg-btnstyletwo", function () {
         id_b = $(this).attr("id_b");
-        add_cart(id_b)
+        $.ajax({
+            url: url + "controller=cart&action=check_slbook",
+            method: "POST",
+            data: {
+                id_b: id_b
+            },
+
+            success: function (dt) {
+                
+                if(dt >0){
+                    add_cart(id_b)
+                }else{
+                    load_msg("Sản phẩm đã hết !")
+                }
+            }
+        })
+        
     })
 
     function add_cart(id_b) {
@@ -146,7 +168,7 @@ $(document).ready(function () {
             data: {
                 id_b: id_b
             },
-         
+
             success: function (dt) {
                 // myArray = JSON.Parse(dt);
                 load_msg(dt)
@@ -163,12 +185,12 @@ $(document).ready(function () {
             method: "POST",
             success: function (dt) {
                 console.log(dt)
-                if(dt>0){
+                if (dt > 0) {
                     $('.number_cart').html(dt)
-                }else{
+                } else {
                     $('.number_cart').html("")
                 }
-               
+
             }
         })
     }
