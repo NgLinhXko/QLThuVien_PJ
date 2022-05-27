@@ -273,7 +273,7 @@
                     <span class="col-2 choose" act="2">Đang vận chuyển<span class="text-danger sl_bill2"></span></span>
                     <span class="col-2 choose" act="3">Đang mượn<span class="text-danger sl_bill3"></span></span>
                     <span class="col-2 choose" act="5">Đã trả<span class="text-danger sl_bill5"></span></span>
-                    <span class="col-2 choose" act="-1">Đã hủy<span class="text-danger sl_bill4"></span></span>
+                    <span class="col-2 choose" act="-1">Đã hủy<span class="text-danger sl_bill-1"></span></span>
                 </div>
                 <div id="data_show_bill">
 
@@ -463,6 +463,8 @@
     ?>
     <script src="<?= URL ?>/Public/js/login/index.js"></script>
     <script>
+        act = 0;
+        url2 = "<?= URL ?>/index.php?"
         $('.choose').mouseover(function() {
             $('.choose').removeClass("text-danger")
             $(this).addClass("text-danger")
@@ -470,6 +472,7 @@
         $('.choose').mouseleave(function() {
             $('.choose').removeClass("text-danger")
         })
+        load_data_bill(act)
         $('.choose').click(function() {
             $(".choose").removeClass("choose_border")
             $(this).addClass("choose_border")
@@ -478,15 +481,86 @@
             // load_act(act)
             load_data_bill(act)
         })
-        function load_data_bill(act){
+        $(document).on("click", ".cancel_bill, .btn_check_bill", function() {
+            status = $(this).attr("status")
+            act = $(this).attr('act')
+            id_bi = $(this).attr("id_bi")
+            update_bill(status, id_bi)
+          
+
+        })
+        $(document).on("click",".borr_again",function(){
+            id_bi = $(this).attr("id_bi");
             $.ajax({
-                url:"<?=URL?>/index.php?controller=bill&action=get_data",
+                url:url2+"controller=bill&action=borr_again",
                 method:"POST",
                 data:{
-                    act :act
+                    id_bi:id_bi
                 },
                 success:function(dt){
+                    load_msg(dt)
+                }
+            })
+        })
+
+        function load_data_bill(act) {
+            $.ajax({
+                url: url2 + "controller=bill&action=get_data",
+                method: "POST",
+                data: {
+                    act: act
+                },
+                success: function(dt) {
                     $('#data_show_bill').html(dt)
+                    count_bill()
+                }
+            })
+        }
+
+        function update_bill(status, id_bi) {
+            $.ajax({
+                url: url2 + "controller=managebill&action=update_bill",
+                method: "POST",
+                data: {
+                    id_bi: id_bi,
+                    status: status
+                },
+                success: function(dt) {
+                    load_data_bill(act)
+                    load_msg(dt)
+                  
+
+                }
+            })
+        }
+        count_bill()
+
+        function count_bill() {
+            $.ajax({
+                url: url2 + "controller=bill&action=count_bill",
+                method: "POST",
+                data: {
+
+                },
+                dataType: 'json',
+                success: function(dt) {
+
+                    // console.log(dt)
+                    // $('.sl_bill-1').html(dt[0])
+                    // $('.sl_bill0').html(dt[1])
+                    // $('.sl_bill1').html(dt[2])
+                    // $('.sl_bill2').html(dt[3])
+                    // $('.sl_bill3').html(dt[4])
+                    // $('.sl_bill5').html(dt[6])
+                    for (i = 0; i <= 6; i++) {
+                        if (dt[i] > 0) {
+                            $('.sl_bill' + (i-1)).html("(" + dt[i] + ")")
+                        } else {
+                            $('.sl_bill' + (i-1)).html("")
+                        }
+
+                    }
+
                 }
             })
         }

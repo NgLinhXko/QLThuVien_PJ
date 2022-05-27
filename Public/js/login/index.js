@@ -96,7 +96,7 @@ $(document).ready(function () {
             },
             success: function (dt) {
                 view_cart()
-
+                number_cart()
                 load_msg(dt)
                 dis_btn_cart()
 
@@ -114,7 +114,7 @@ $(document).ready(function () {
                     $('#btn_view_cart').prop("disabled", true)
                     $('#btn_checkout').prop("disabled", true)
                 } else {
-                    alert('ko rỗng')
+                    // alert('ko rỗng')
                     $('#btn_view_cart').prop("disabled", false)
                     $('#btn_checkout').prop("disabled", false)
                 }

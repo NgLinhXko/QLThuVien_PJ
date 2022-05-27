@@ -451,7 +451,7 @@
     include('Public/public/footer.php');
     include('public/header/footer.php');
     ?>
-    	<script src="<?= URL ?>/Public/js/login/index.js"></script>
+    <script src="<?= URL ?>/Public/js/login/index.js"></script>
     <script>
         url = "<?= URL ?>/index.php?"
         load_table_cart()
@@ -469,6 +469,7 @@
                     setTimeout(function() {
                         $('#msg_modal').modal('hide')
                     }, 3000)
+                    
                     load_table_cart()
                 }
             })
@@ -483,9 +484,25 @@
                 },
                 success: function(dt) {
                     $('#data').html(dt)
+                    number_cart()
                 }
             })
         }
+        function number_cart() {
+        $.ajax({
+            url: url + "controller=cart&action=number_cart",
+            method: "POST",
+            success: function (dt) {
+            
+                if(dt>0){
+                    $('.number_cart').html(dt)
+                }else{
+                    $('.number_cart').html("")
+                }
+               
+            }
+        })
+    }
         $(document).on("click",'#btn_checkout',function(){
             email_u = $("#check_login").attr("email");
             if(email_u == "none"){

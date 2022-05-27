@@ -127,12 +127,25 @@ if (isset($modal)) {
                                     <button style="width:100%" class="btn btn-primary btn-sm  btn_xacnhan" act=<?= $act ?> id_bi=<?= $data['id_bi'] ?>>Đã lấy hàng</button>
 
                                 <?php
-                                } else {
+                                } else if ($act == 2) {
                                 ?>
                                     <button style="width:100%" disabled class="btn btn-primary btn-sm  btn_xacnhan" act=<?= $act ?> id_bi=<?= $data['id_bi'] ?>>Đang vận chuyển</button>
                                 <?php
-                                }
+                                } else if ($act == 3) { ?>
+                                    <button style="width:100%" disabled class="btn btn-danger btn-sm " id_bi=<?= $data['id_bi'] ?>>Liên hệ khách hàng</button>
+                                    <button style="width:100%" class="btn btn-secondary btn-sm btn_detail" id_bi=<?= $data['id_bi'] ?>>Chi tiết </button>
+                                    <button style="width:100%" disabled class="btn btn-primary btn-sm  btn_xacnhan" act=<?= $act ?> id_bi=<?= $data['id_bi'] ?>>Đang Mượn</button>
 
+                                <?php
+                                } else if ($act == 4) {
+                                ?>
+                                    <button style="width:100%" class="btn btn-primary btn-sm  btn_xacnhan" act=<?= $act ?> id_bi=<?= $data['id_bi'] ?>>Xác nhận trả sách</button>
+                                <?php
+                                } else if ($act == 5) {
+                                ?>
+                                    <button style="width:100%" class="btn btn-secondary btn-sm btn_detail" id_bi=<?= $data['id_bi'] ?>>Chi tiết </button>
+                                <?php
+                                }
                                 ?>
                             </td>
                         </tr>
