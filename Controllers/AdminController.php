@@ -139,12 +139,7 @@ class  AdminController extends BaseController
         }
         if ($table == "users") {
             $data_s['name_u'] = $data;
-<<<<<<< HEAD
-
-            $datas = $this->AdminModel->search_User($table, $data_s, $start);
-=======
             $datas = $this->AdminModel->search_data($table, $data_s, $start);
->>>>>>> main
         }
         $total_page = $this->AdminModel->total_page_search($table, $data_s);
         // $datas = $this->AdminModel->search_data($table, $data_s);

@@ -20,7 +20,8 @@ class ProductModel extends BaseModel
         }
         return $datar;
     }
-    public function  book_by_cate($name_cate){
+    public function  book_by_cate($name_cate)
+    {
         $sql = "SELECT * from books,categories where books.id_cate = categories.id_cate and name_cate like '$name_cate'";
         $query = $this->query($sql);
         $datar = [];
@@ -29,14 +30,15 @@ class ProductModel extends BaseModel
         }
         return $datar;
     }
-    public function cate_book(){
+    public function cate_book()
+    {
         $sql = "SELECT categories.id_cate,name_cate,(SELECT COUNT(id_b) FROM books
         where id_cate =  categories.id_cate) as SLuong from categories order by SLuong DESC";
-       $query = $this->query($sql);
-       $datar = [];
-       while ($row = mysqli_fetch_assoc($query)) {
-           array_push($datar, $row);
-       }
-       return $datar;
+        $query = $this->query($sql);
+        $datar = [];
+        while ($row = mysqli_fetch_assoc($query)) {
+            array_push($datar, $row);
+        }
+        return $datar;
     }
 }

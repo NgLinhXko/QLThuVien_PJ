@@ -272,7 +272,7 @@
 							<ol class="tg-breadcrumb">
 								<li><a href="<?= URL ?>">Trang chủ</a></li>
 								<li>Thể loại</li>
-								<li class="tg-active"><a href="<?= URL ?>/index.php?controller=cate&id_cate=<?=$datas_book['id_cate']?>"><?= $datas_book['name_cate'] ?></a></li>
+								<li class="tg-active"><a href="<?= URL ?>/index.php?controller=cate&id_cate=<?= $datas_book['id_cate'] ?>"><?= $datas_book['name_cate'] ?></a></li>
 							</ol>
 						</div>
 					</div>
@@ -311,7 +311,7 @@
 														<div class="tg-featureditmcontent">
 															<div class="tg-themetagbox"><span class="tg-themetag"><?= $randomBook['name_cate'] ?></span></div>
 															<div class="tg-booktitle">
-																<h3><a href="<?=URL?>/index.php?controller=product&id_b=<?=$randomBook['id_b']?>"><?= $randomBook['name_b'] ?></a></h3>
+																<h3><a href="<?= URL ?>/index.php?controller=product&id_b=<?= $randomBook['id_b'] ?>"><?= $randomBook['name_b'] ?></a></h3>
 															</div>
 															<span class="tg-bookwriter">NXB: <a href="javascript:void(0);"><?= $randomBook['nxb_b'] ?></a></span>
 															<span class="tg-stars"><span></span></span>
@@ -373,7 +373,7 @@
 											<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
 												<div class="tg-productcontent">
 													<ul class="tg-bookscategories">
-														<li><a href="<?=URL?>/index.php?controller=cate&id_cate=<?=$datas_book['id_cate']?>"><?= $datas_book['name_cate'] ?></a></li>
+														<li><a href="<?= URL ?>/index.php?controller=cate&id_cate=<?= $datas_book['id_cate'] ?>"><?= $datas_book['name_cate'] ?></a></li>
 													</ul>
 													<div class="tg-themetagbox"><span class="tg-themetag">sale</span></div>
 													<div class="tg-booktitle">
@@ -410,7 +410,7 @@
 														<li><span>Ngôn ngữ:</span><span>Tiếng Việt</span></li>
 														<li><span>Số lượng còn:</span><span><?= $datas_book['quantity_b'] ?></span></li>
 														<li><span>Số lượng mượn:</span><span><?= $datas_book['numBorr'] ?></span></li>
-														<li><span>Thuộc thể loại:</span><a href="<?=URL?>/index.php?controller=cate&id_cate=<?=$datas_book['id_cate']?>"><span><?= $datas_book['name_cate'] ?></a></span></li>
+														<li><span>Thuộc thể loại:</span><a href="<?= URL ?>/index.php?controller=cate&id_cate=<?= $datas_book['id_cate'] ?>"><span><?= $datas_book['name_cate'] ?></a></span></li>
 														<!-- <li><span>Other Fomate:</span><span>CD-Audio, Paperback, E-Book</span></li> -->
 													</ul>
 
@@ -494,7 +494,7 @@
 																	</figure>
 																	<div class="tg-postbookcontent">
 																		<ul class="tg-bookscategories">
-																			<li><a href="<?=URL?>/index.php?controller=cate&id_cate=<?=$book_by_cate['id_cate']?>"><?= $book_by_cate['name_cate'] ?></a></li>
+																			<li><a href="<?= URL ?>/index.php?controller=cate&id_cate=<?= $book_by_cate['id_cate'] ?>"><?= $book_by_cate['name_cate'] ?></a></li>
 
 																		</ul>
 																		<div class="tg-themetagbox"><span class="tg-themetag">sale</span></div>
@@ -544,7 +544,7 @@
 												<?php
 												foreach ($cates_book as $cate_book) {
 												?>
-													<li><a href="<?=URL?>/index.php?controller=cate&id_cate=<?=$cate_book['id_cate']?>"><span><?= $cate_book['name_cate'] ?></span><em><?= $cate_book['SLuong'] ?></em></a></li>
+													<li><a href="<?= URL ?>/index.php?controller=cate&id_cate=<?= $cate_book['id_cate'] ?>"><span><?= $cate_book['name_cate'] ?></span><em><?= $cate_book['SLuong'] ?></em></a></li>
 												<?php
 												}
 												?>
@@ -871,7 +871,7 @@
 		// 	id_b = $(this).attr("id_b")
 		// 	add_cart(id_b)
 		// })
-		$('.tg-quantityholder em').click(function(){
+		$('.tg-quantityholder em').click(function() {
 			load_msg("Tối đa một sản phẩm");
 		})
 

@@ -47,7 +47,7 @@
                                     <select class="form-select" id="inputGroupSelect01">
                                         <option value="0" selected>Thống kê đơn hàng</option>
                                         <option value="1">Thống kê sách</option>
-                                       
+
                                     </select>
                                 </div>
                                 <div class="form-floating mb-3" style="margin-left: 10%;">
@@ -85,7 +85,7 @@ include('Public/public/footer.php')
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script> -->
 <script>
     $(document).ready(function() {
-        url1 = "http://localhost:88/QLThuVien_PJ/index.php?";
+        url1 = "http://localhost:8080/QLThuVien_PJ/index.php?";
         now = new Date().toLocaleDateString()
         today = Date.parse(now);
         date_s = ""

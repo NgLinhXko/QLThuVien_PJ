@@ -40,6 +40,7 @@ class StatistiController extends BaseController
 
                 $second_date = strtotime($bill['date_borr']);
                 $num_book = $this->ManagebillModel->data_detail_book($bill['id_bi']);
+                //chua huy don
                 if ($bill['status'] != "-1") {
                     if ($bill['date_back'] == "") {
                         $first_date = strtotime(date("Y/m/d"));
@@ -48,7 +49,7 @@ class StatistiController extends BaseController
                     }
                     $datediff = abs($first_date - $second_date);
                     $days = floor($datediff / (60 * 60 * 24));
-                    
+
                     $tong = (int)$days * 2000 * (int)sizeof($num_book);
 
                     //echo $tong."đ --- ";
