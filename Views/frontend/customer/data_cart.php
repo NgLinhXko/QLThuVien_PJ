@@ -1,5 +1,5 @@
 <?php
-const URL1 = "http://localhost:88/QLthuVien_PJ/index.php?";
+const URL1 = "http://localhost:8080/QLthuVien_PJ/index.php?";
 $index = sizeof($_SESSION['cart']);
 $tong = 0;
 for ($i = 0; $i < $index; $i++) {
@@ -31,7 +31,7 @@ if ($actions == "total_cart") {
         if ($index > 4) {
         ?>
             <div id="data_cart_get" total=<?= $tong ?> style="text-align:center ;">
-                <a href="<?=URL1?>&controller=cart" style="color:red;font-size:13px">Còn <?= $index - 4 ?> sản phẩm nữa</a>
+                <a href="<?= URL1 ?>&controller=cart" style="color:red;font-size:13px">Còn <?= $index - 4 ?> sản phẩm nữa</a>
             </div>
         <?php
         } else {

@@ -68,7 +68,7 @@ include('Public/public/footer.php')
 ?>
 <script>
     $(document).ready(function() {
-        url1 = "http://localhost:88/QLThuVien_PJ/index.php?"
+        url1 = "http://localhost:8080/QLThuVien_PJ/index.php?"
         load_act(0)
         $('.choose').mouseover(function() {
             $('.choose').removeClass("text-danger")
@@ -102,7 +102,7 @@ include('Public/public/footer.php')
                     status: -2
                 },
                 success: function(dt) {
-                    
+
                     load_act(act)
                     load_msg(dt)
 

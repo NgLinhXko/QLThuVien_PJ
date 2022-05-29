@@ -1,6 +1,6 @@
 $(document).ready(function () {
     // alert('123')
-    url = "http://localhost:88/QLThuVien_PJ/index.php?"
+    url = "http://localhost:8080/QLThuVien_PJ/index.php?"
     check_email = false;
     check_pass = false;
     check_pass_again = false;

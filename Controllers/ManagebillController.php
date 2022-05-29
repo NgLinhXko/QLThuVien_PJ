@@ -37,7 +37,7 @@ class ManagebillController extends BaseController
     }
     public function update_bill()
     {
-      
+
         $status =  (int)$_POST['status'] + 1;
         $id_bi = $_POST['id_bi'];
         $data_bi_user = $this->ManagebillModel->data_bi_user($id_bi);
@@ -49,16 +49,15 @@ class ManagebillController extends BaseController
         if ($status == 1) {
             $check_quanty_b = 1;
             foreach ($data_detail_book as $sluongSach) {
-               if((int)$sluongSach['quantity_b'] <=0){
-                    $check_quanty_b =0;
-                    $string = "Sách - ".$sluongSach['name_b']." đã hết";
-               }
+                if ((int)$sluongSach['quantity_b'] <= 0) {
+                    $check_quanty_b = 0;
+                    $string = "Sách - " . $sluongSach['name_b'] . " đã hết";
+                }
             }
-            if($check_quanty_b == 1){
+            if ($check_quanty_b == 1) {
                 $data = $this->ManagebillModel->update_bill($status, $id_bi);
-                $string =  "Xác nhận hàng ". $data;
+                $string =  "Xác nhận hàng " . $data;
             }
-
         }
         if ($status == 2) {
 
@@ -66,7 +65,7 @@ class ManagebillController extends BaseController
                 $this->ManagebillModel->update_quantity_b((int)$sluongSach['quantity_b'] - 1, $sluongSach['id_b']);
             }
             $data = $this->ManagebillModel->update_bill($status, $id_bi);
-            $string ="Lấy hàng " . $data;
+            $string = "Lấy hàng " . $data;
         }
         if ($status == -1) {
 
@@ -74,6 +73,7 @@ class ManagebillController extends BaseController
             $data = $this->ManagebillModel->update_bill($status, $id_bi);
             $string = "Hủy đơn hàng " . $data;
         }
+        //uc6
         if ($status  == 5) {
             $first_date = strtotime(date("Y/m/d"));
             $second_date = strtotime($data_bi_user['date_borr']);
@@ -86,25 +86,23 @@ class ManagebillController extends BaseController
             foreach ($data_detail_book as $sluongSach) {
                 $this->ManagebillModel->update_quantity_b((int)$sluongSach['quantity_b'] + 1, $sluongSach['id_b']);
                 $this->ManagebillModel->update_numBorr((int)$sluongSach['numBorr'] + 1, $sluongSach['id_b']);
-
             }
             $data = $this->ManagebillModel->update_bill($status, $id_bi);
             $string = "Xác nhận trả sách " . $data;
         }
- 
+
         if ($status == 3) {
             $data = $this->ManagebillModel->update_bill($status, $id_bi);
             $string = "Nhận hàng " . $data;
-           
         }
         if ($status == 4) {
             $data = $this->ManagebillModel->update_bill($status, $id_bi);
             $string = "Vui lòng đợi hệ thống xác nhận";
-           
         }
 
         echo $string;
     }
+    //uc5
     public function data_detail()
     {
         $id_bi = $_POST['id_bi'];

@@ -123,6 +123,7 @@ class LoginController extends BaseController
     //status = 0 người dùng chưa kích hoạt tài khoản
     //status = 1 người dũng đã kích hoạt tài khoản
     //status =2 admin
+    //uc1
     public function login()
     {
         $email = $_POST['email'];
@@ -165,6 +166,7 @@ class LoginController extends BaseController
         session_destroy();
         header('location: ' . self::URL);
     }
+    //uc2
     public function forgot_pass()
     {
         $email = $_POST['email_u'];
@@ -198,11 +200,6 @@ class LoginController extends BaseController
             $bodyContent .= '<p><b>Thân mến!</b></p>';
             $mail->Body = $bodyContent;
             // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-            if ($mail->send()) {
-                return $datas;
-            } else {
-                return $datas;
-            }
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }

@@ -27,6 +27,7 @@ class BillController extends BaseController
             "all_nxbs" => $all_nxb,
         ]);
     }
+    //uc9
     public function get_data()
     {
         $id_u = $_SESSION['id_u'];

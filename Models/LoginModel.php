@@ -18,12 +18,12 @@ class LoginModel extends BaseModel
         // return $this-> find(self::TABLE,$data);
         $sql = "SELECT * from users where email_u = '$email_u'";
         $query = $this->query($sql);
-       
-            $data = [];
-            while ($row = mysqli_fetch_assoc($query)) {
-                array_push($data, $row);
-            }
-            return $data;
+
+        $data = [];
+        while ($row = mysqli_fetch_assoc($query)) {
+            array_push($data, $row);
+        }
+        return $data;
     }
 
     public function add_user($data)
@@ -31,22 +31,23 @@ class LoginModel extends BaseModel
         return $this->create(self::TABLE, $data);
     }
     //tìm kiếm tài khoản
-    public function find_acc($table,$email, $pass)
+    public function find_acc($table, $email, $pass)
     {
         $sql = "SELECT * from users where email_u = '$email' and pass_u = '$pass' ";
         $query = $this->query($sql);
-        if($query){
+        if ($query) {
             $data = [];
             while ($row = mysqli_fetch_assoc($query)) {
                 array_push($data, $row);
             }
             return $data;
-        }else{
+        } else {
             return false;
         }
-       
+
         // echo $sql;
     }
+    //uc2
     public function update_code($email, $code)
     {
         $sql = "Update Users set code = $code where email_u = '$email'";
