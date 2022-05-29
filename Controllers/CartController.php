@@ -21,9 +21,10 @@ class CartController extends BaseController
             "all_nxbs" => $all_nxb,
         ]);
     }
+    //UC
     public function add_cart()
     {
-        $data = [];
+        // $data = [];
         if (isset($_POST['id_b'])) {
             $id_b = $_POST['id_b'];
             $dem = 0;
@@ -41,8 +42,7 @@ class CartController extends BaseController
             array_push($_SESSION['cart'], $data_book);
             $string = "Thêm thành công";
         }
-        // array_push($data, $string);
-        // array_push($data, sizeof($_SESSION['cart']));
+
         echo $string;
     }
     public function number_cart(){

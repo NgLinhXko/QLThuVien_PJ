@@ -147,7 +147,11 @@
 							<div class="tg-searchbox">
 								<form class="tg-formtheme tg-formsearch" method="POST" action="<?= URL ?>/index.php?controller=cate&action=search">
 									<fieldset>
-										<input type="text" name="search" class="typeahead form-control" placeholder="Nhập tên sách">
+										<input type="text" id="input_search" value="<?php
+										if(isset($val)){
+											echo $val;
+										}
+										?>" name="search" class="typeahead form-control" placeholder="Nhập tên sách">
 										<button type="submit"><i class="icon-magnifier"></i></button>
 									</fieldset>
 									<a href="javascript:void(0);">+ Advanced Search</a>
@@ -358,7 +362,7 @@
 										<form class="tg-formtheme tg-formsearch">
 											<div class="form-group">
 												<button type="submit"><i class="icon-magnifier"></i></button>
-												<input type="search" name="search" class="form-group" placeholder="Nhập tên sách">
+												<input  type="search" name="search" class="form-group" placeholder="Nhập tên sách">
 											</div>
 										</form>
 									</div>
@@ -756,7 +760,7 @@
 				},
 				success: function(dt) {
 					$('#data_cate').html(dt)
-					console.log(dt)
+					// console.log(dt)
 				}
 			})
 		}

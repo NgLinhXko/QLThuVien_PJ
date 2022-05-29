@@ -11,6 +11,7 @@ class ProductController extends BaseController
         $this->loadModel('ProductModel');
         $this->ProductModel = new ProductModel;
     }
+    //us 3
     public function index()
     {
         $id_b = $_GET['id_b'];

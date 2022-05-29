@@ -61,7 +61,6 @@ class ManagebillController extends BaseController
 
         }
         if ($status == 2) {
-
             foreach ($data_detail_book as $sluongSach) {
                 $this->ManagebillModel->update_quantity_b((int)$sluongSach['quantity_b'] - 1, $sluongSach['id_b']);
             }
@@ -86,7 +85,6 @@ class ManagebillController extends BaseController
             foreach ($data_detail_book as $sluongSach) {
                 $this->ManagebillModel->update_quantity_b((int)$sluongSach['quantity_b'] + 1, $sluongSach['id_b']);
                 $this->ManagebillModel->update_numBorr((int)$sluongSach['numBorr'] + 1, $sluongSach['id_b']);
-
             }
             $data = $this->ManagebillModel->update_bill($status, $id_bi);
             $string = "Xác nhận trả sách " . $data;

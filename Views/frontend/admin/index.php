@@ -23,9 +23,8 @@
                                 </li>
 
                                 <li class="nav-item "> <a class="nav-link" href="<?= URL ?>/index.php?controller=admin"><i class="fas fa-hospital-alt"></i></i>Quản Lý</a> </li>
-
                                 <li class="nav-item "> <a class="nav-link" href="<?= URL ?>/index.php?controller=managebill"> <i class="fas fa-chalkboard-teacher"></i></i>Quản Lý Mượn trả</a> </li>
-                                <li class="nav-item "> <a class="nav-link" href="#"> <i class="fas fa-book"></i>Thống kê</a> </li>
+                                <li class="nav-item "> <a class="nav-link" href="<?= URL ?>/index.php?controller=statisti"> <i class="fas fa-book"></i>Thống kê</a> </li>
 
                             </ul>
                         </div>
