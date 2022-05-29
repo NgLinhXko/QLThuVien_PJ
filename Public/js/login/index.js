@@ -135,11 +135,7 @@ $(document).ready(function () {
         $('#modalLogin').modal('hide')
     })
 
-    // $('.tg-btnstyletwo').click(function() {
-    //     id_b = $(this).attr("id_b");
 
-    //     add_cart(id_b)
-    // })
     $(document).on("click", ".tg-btnstyletwo", function () {
         id_b = $(this).attr("id_b");
         $.ajax({

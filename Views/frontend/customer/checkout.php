@@ -509,10 +509,7 @@
                 $('#modal_banking').modal('show')
                 $('#now_money').html(money)
                 $('.choose').click(function() {
-                    // $('.choose').each(function(){
-                    //     // $('.choose').removeClass("btn-success")
-                    //     if($(this))
-                    // })
+                    
                     $('.choose').removeClass("btn-success")
                     $(this).removeClass("btn-secondary")
                     $(this).addClass("btn-success")

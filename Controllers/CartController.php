@@ -11,6 +11,7 @@ class CartController extends BaseController
         $this->loadModel('ProductModel');
         $this->ProductModel = new ProductModel;
     }
+
     public function index()
     {
         $all_cate = $this->AdminModel->getALL(self::CATE);
@@ -20,10 +21,10 @@ class CartController extends BaseController
             "all_nxbs" => $all_nxb,
         ]);
     }
-    //thêm gh
+    //UC
     public function add_cart()
     {
-        $data = [];
+        // $data = [];
         if (isset($_POST['id_b'])) {
             $id_b = $_POST['id_b'];
             $dem = 0;
@@ -41,16 +42,12 @@ class CartController extends BaseController
             array_push($_SESSION['cart'], $data_book);
             $string = "Thêm thành công";
         }
-        // array_push($data, $string);
-        // array_push($data, sizeof($_SESSION['cart']));
+
         echo $string;
     }
-    //slg sp in cart
-    public function number_cart()
-    {
+    public function number_cart(){
         echo sizeof($_SESSION['cart']);
     }
-    //view giỏ hàng
     public function view_cart()
     {
         $actions = $_POST['actions'];
@@ -59,7 +56,6 @@ class CartController extends BaseController
         ]);
         // print_r($_SESSION['cart']);
     }
-    //xoa all gh
     public function delete_cart()
     {
         $_SESSION['cart'] = [];
@@ -69,18 +65,15 @@ class CartController extends BaseController
     {
         return sizeof($_SESSION['cart']);
     }
-    //xoa theo id
     public function delete_cart_id()
     {
         $id_b = $_POST['id_b'];
         array_splice($_SESSION['cart'], $id_b, 1);
         echo 'Xóa thành công';
     }
-    //chcek slg in db
-    public function check_slbook()
-    {
+    public function check_slbook(){
         $id_b = $_POST['id_b'];
         $data_book = $this->AdminModel->load_update(self::BOOKS, ["id_b" => $id_b]);
-        echo ($data_book[0]['quantity_b']);
+        echo ($data_book[0]['quantity_b']) ;
     }
 }

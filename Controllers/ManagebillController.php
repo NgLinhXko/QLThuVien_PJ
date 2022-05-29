@@ -60,7 +60,6 @@ class ManagebillController extends BaseController
             }
         }
         if ($status == 2) {
-
             foreach ($data_detail_book as $sluongSach) {
                 $this->ManagebillModel->update_quantity_b((int)$sluongSach['quantity_b'] - 1, $sluongSach['id_b']);
             }
