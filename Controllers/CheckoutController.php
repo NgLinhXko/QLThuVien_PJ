@@ -38,6 +38,8 @@ class CheckoutController extends BaseController
        
         $datas_user = $this->AdminModel->load_update(self::USERS, ["id_u" => $_SESSION['id_u']]);
         $money =  $datas_user[0]['money'];
+        $datas_admin = $this->AdminModel->load_update(self::USERS, ["id_u" => 33]);
+        $money_admin =  $datas_admin[0]['money'];
         $data = [
             "date_borr" => date("Y/m/d"),
              "id_u" => $_SESSION['id_u'],
@@ -56,6 +58,7 @@ class CheckoutController extends BaseController
             ]);
         }
         $msg = $this->AdminModel -> update_data(self::USERS,["id_u" => $_SESSION['id_u']],['money'=> $money-$tong]);
+        $this->AdminModel -> update_data(self::USERS,["id_u" => 33],['money'=> $money_admin+$tong]);
         $_SESSION['cart'] = [];
          echo "Bạn đã đặt hàng thành công";
         

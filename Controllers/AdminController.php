@@ -190,7 +190,7 @@ class  AdminController extends BaseController
     }
     public function check_name_cate()
     {
-        $name_cate = $_POST['name_cate'];
+        $name_cate = trim($_POST['name_cate']);
         $datas = $this->AdminModel->check_name($name_cate);
         echo sizeof($datas);
     }

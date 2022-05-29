@@ -37,7 +37,7 @@ class ManagebillController extends BaseController
     }
     public function update_bill()
     {
-      
+
         $status =  (int)$_POST['status'] + 1;
         $id_bi = $_POST['id_bi'];
         $data_bi_user = $this->ManagebillModel->data_bi_user($id_bi);
@@ -49,23 +49,22 @@ class ManagebillController extends BaseController
         if ($status == 1) {
             $check_quanty_b = 1;
             foreach ($data_detail_book as $sluongSach) {
-               if((int)$sluongSach['quantity_b'] <=0){
-                    $check_quanty_b =0;
-                    $string = "Sách - ".$sluongSach['name_b']." đã hết";
-               }
+                if ((int)$sluongSach['quantity_b'] <= 0) {
+                    $check_quanty_b = 0;
+                    $string = "Sách - " . $sluongSach['name_b'] . " đã hết";
+                }
             }
-            if($check_quanty_b == 1){
+            if ($check_quanty_b == 1) {
                 $data = $this->ManagebillModel->update_bill($status, $id_bi);
-                $string =  "Xác nhận hàng ". $data;
+                $string =  "Xác nhận hàng " . $data;
             }
-
         }
         if ($status == 2) {
             foreach ($data_detail_book as $sluongSach) {
                 $this->ManagebillModel->update_quantity_b((int)$sluongSach['quantity_b'] - 1, $sluongSach['id_b']);
             }
             $data = $this->ManagebillModel->update_bill($status, $id_bi);
-            $string ="Lấy hàng " . $data;
+            $string = "Lấy hàng " . $data;
         }
         if ($status == -1) {
 
@@ -82,6 +81,10 @@ class ManagebillController extends BaseController
             $money_back = (int)$money_get + (int)$money_user - (int)$days * 2000 * sizeof($data_detail_book);
             $this->ManagebillModel->back_money($money_back, $id_u);
             $this->ManagebillModel->update_day_back(date("Y/m/d"), $id_bi);
+
+            $datas_admin = $this->AdminModel->load_update(self::USERS, ["id_u" => 33]);
+            $money_admin =  $datas_admin[0]['money'];
+            $this->AdminModel->update_data(self::USERS, ["id_u" => 33], ['money' => (int)$money_admin - (int)$money_get+(int)$days * 2000 * sizeof($data_detail_book)]);
             foreach ($data_detail_book as $sluongSach) {
                 $this->ManagebillModel->update_quantity_b((int)$sluongSach['quantity_b'] + 1, $sluongSach['id_b']);
                 $this->ManagebillModel->update_numBorr((int)$sluongSach['numBorr'] + 1, $sluongSach['id_b']);
@@ -89,16 +92,14 @@ class ManagebillController extends BaseController
             $data = $this->ManagebillModel->update_bill($status, $id_bi);
             $string = "Xác nhận trả sách " . $data;
         }
- 
+
         if ($status == 3) {
             $data = $this->ManagebillModel->update_bill($status, $id_bi);
             $string = "Nhận hàng " . $data;
-           
         }
         if ($status == 4) {
             $data = $this->ManagebillModel->update_bill($status, $id_bi);
             $string = "Vui lòng đợi hệ thống xác nhận";
-           
         }
 
         echo $string;

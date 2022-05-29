@@ -31,7 +31,7 @@ if ($actions == "total_cart") {
         if ($index > 4) {
         ?>
             <div id="data_cart_get" total=<?= $tong ?> style="text-align:center ;">
-                <a href="<?=URL1?>&controller=cart" style="color:red;font-size:13px">Còn <?= $index - 4 ?> sản phẩm nữa</a>
+                <a href="<?= URL1 ?>&controller=cart" style="color:red;font-size:13px">Còn <?= $index - 4 ?> sản phẩm nữa</a>
             </div>
         <?php
         } else {
@@ -165,10 +165,17 @@ if ($actions == "total_cart") {
     </div>
     <br>
     <br>
-    <div style=" margin-left:20%; margin-right:20%">
-        <br>
-        <button style="float:right ;" id="btn_bank" tong=<?= $tong ?> money=<?= $datas_user[0]['money'] ?> class="btn btn-success btn-lg">Xác nhận thanh toán</button>
-    </div><br><br><br>
+    <div class="row">
+        <span class="col-6">
+            <a href="<?=URL1?>controller=cart"> <button class="btn btn-primary btn-lg">Quay lại giỏ hàng</button></a>
+        </span>
+        <span  class="col-6">
+
+            <button style="float:right ;" id="btn_bank" tong=<?= $tong ?> money=<?= $datas_user[0]['money'] ?> class="btn btn-success btn-lg">Xác nhận thanh toán</button>
+        </span>
+    </div>
+
+    <br><br><br>
 <?php
 }
 
