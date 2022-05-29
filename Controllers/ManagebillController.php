@@ -82,6 +82,10 @@ class ManagebillController extends BaseController
             $money_back = (int)$money_get + (int)$money_user - (int)$days * 2000 * sizeof($data_detail_book);
             $this->ManagebillModel->back_money($money_back, $id_u);
             $this->ManagebillModel->update_day_back(date("Y/m/d"), $id_bi);
+
+            $datas_admin = $this->AdminModel->load_update(self::USERS, ["id_u" => 33]);
+            $money_admin =  $datas_admin[0]['money'];
+            $this->AdminModel->update_data(self::USERS, ["id_u" => 33], ['money' => (int)$money_admin - (int)$money_get+(int)$days * 2000 * sizeof($data_detail_book)]);
             foreach ($data_detail_book as $sluongSach) {
                 $this->ManagebillModel->update_quantity_b((int)$sluongSach['quantity_b'] + 1, $sluongSach['id_b']);
                 $this->ManagebillModel->update_numBorr((int)$sluongSach['numBorr'] + 1, $sluongSach['id_b']);

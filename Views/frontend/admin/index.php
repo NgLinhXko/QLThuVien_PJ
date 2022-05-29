@@ -678,6 +678,8 @@
                 }
                 $('#txtTLoai_a').keyup(function() {
                     value_cate = $(this).val();
+                    // value_cate1 = value_cate.replace(/\s+/g, '');
+                    // value_cate= value_cate.split(' ').join('')
                     check_cate(value_cate)
                 })
 
@@ -698,6 +700,7 @@
                             name_cate: value_cate,
                         },
                         success: function(dt) {
+                            console.log(dt)
                             if (dt == 0) {
                                 $('#message_cate_err').html("")
                                 $("#add_cate").attr("disabled", false)

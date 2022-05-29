@@ -76,12 +76,15 @@ class AdminModel extends BaseModel
     public function check_name($data)
     {
         // $datas = trim(' ' FROM '      freetuts.net      ');
+        $data = preg_replace('/\s+/', ' ', $data);
+        // $data1 = trim($data);
         $sql = "SELECT * from categories where name_cate like '$data' ";
         $query = $this->query($sql);
         $datar = [];
         while ($row = mysqli_fetch_assoc($query)) {
             array_push($datar, $row);
         }
+        // echo $sql;
         return $datar;
     }
     public function pagination($table, $colum, $start,)

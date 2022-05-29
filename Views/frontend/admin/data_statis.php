@@ -24,6 +24,12 @@ if ($act_tt == 0) {
                     <div class="col-6">
                         <span>Tổng số tiền lãi : <b><?= $tienlai ?>đ</b></span>
                     </div>
+                </div><br><br>
+                <div class="row">
+                    <div style="width:100px;background:#f8d7da;height:50px;text-align:center;line-height:50px ;"><span>Đã hủy</span></div>
+                    <div style="width:100px;background:#d1e7dd;height:50px;text-align:center ;line-height:50px ;"><span>Đã trả</span></div>
+                    <div style="width:100px;background:#fff3cd;height:50px;text-align:center ;line-height:50px ;"><span>Đơn cảnh báo</span></div>
+
                 </div>
                 <table class="table">
                     <thead>
@@ -52,7 +58,10 @@ if ($act_tt == 0) {
                                     <option value="3" <?php if ($status == 3) {
                                                             echo "selected";
                                                         } ?>>Đang mượn</option>
-                                    <option value="5" <?php if ($status == 4) {
+                                    <option value="4" <?php if ($status == 4) {
+                                                            echo "selected";
+                                                        } ?>>Chờ xác nhận trả</option>
+                                    <option value="5" <?php if ($status == 5) {
                                                             echo "selected";
                                                         } ?>>Đã trả</option>
                                     <option value="-1" <?php if ($status == -1) {
@@ -94,18 +103,17 @@ if ($act_tt == 0) {
                                 }
 
                                 ?> class="<?php
-                                        if ($bill['status'] != -1) {
-                                            if($bill['status'] == 5){
-                                                echo "table-success";
-                                            }else if ($check_money > $bill['total']) {
-                                                echo "table-Warning";
+                                            if ($bill['status'] != -1) {
+                                                if ($bill['status'] == 5) {
+                                                    echo "table-success";
+                                                } else if ($check_money > $bill['total']) {
+                                                    echo "table-Warning";
+                                                }
+                                            } else {
+                                                echo "table-danger";
                                             }
-                                            
-                                        }else{
-                                            echo "table-danger";
-                                        }
 
-                                        ?>">
+                                            ?>">
                                 <th scope="row"><?= $i++ ?></th>
                                 <td><?= $bill['id_bi'] ?></td>
                                 <td><?= $sldon ?></td>
@@ -143,7 +151,7 @@ if ($act_tt == 0) {
                                             break;
                                     }
                                     ?></td>
-                                <td><button id_bi=<?=$bill['id_bi']?> class="btn btn-info btn_detail">Chi tiết đơn hàng</button></td>
+                                <td><button id_bi=<?= $bill['id_bi'] ?> class="btn btn-info btn_detail">Chi tiết đơn hàng</button></td>
                             </tr>
                         <?php
                         }
