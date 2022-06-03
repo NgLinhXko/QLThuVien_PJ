@@ -17,6 +17,7 @@ class CateController extends BaseController
         $this->loadModel('CateModel');
         $this->CateModel = new CateModel;
     }
+    //
     public function index()
     {
         if (isset($_GET['id_cate']) && is_numeric($_GET['id_cate']) == true) {
@@ -50,7 +51,7 @@ class CateController extends BaseController
         $topnumBorr = $this->CustomerModel->get_topBorr(self::BOOKS, "numborr", "DESC", 5);
         $newBook = $this->CustomerModel->get_topBorr(self::BOOKS, "id_b", "DESC", 5);
         $randomBook = $this->CustomerModel->get_topBorr(self::BOOKS, "RAND", "()", 1);
-         $total_book = $this->CateModel->total_book_search($val);
+        $total_book = $this->CateModel->total_book_search($val);
         // $total_page = ceil($total_book / 8);
         return  $this->view("frontend.customer.categories", [
             "all_cates" => $all_cate,
@@ -60,9 +61,10 @@ class CateController extends BaseController
             "newBooks" => $newBook,
             "randomBooks" => $randomBook,
             "total_book_cate" => $total_book,
-            "val"=>$val
+            "val" => $val
         ]);
     }
+    //content
     public function cate_by_page()
     {
         if (!isset($_POST['this_page'])) {
@@ -73,11 +75,11 @@ class CateController extends BaseController
         $start = ($this_page - 1) * 8;
         $column = $_POST['col'];
         $order = $_POST['order'];
-        if($_POST['actionn']  == "get_cate"){
+        if ($_POST['actionn']  == "get_cate") {
             $id_cate = $_POST['id_cate'];
             $data_by_page =  $this->CateModel->data_cate($id_cate, $column, $order, $start);
             $total_book = $this->CateModel->total_book_cate($id_cate);
-        }else{
+        } else {
             $val = $_POST['search'];
             $data_by_page =  $this->CateModel->data_search($val, $column, $order, $start);
             $total_book = $this->CateModel->total_book_search($val);

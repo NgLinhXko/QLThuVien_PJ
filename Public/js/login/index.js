@@ -401,7 +401,7 @@ $(document).ready(function () {
                     } else if (dt == 2) {
 
                         window.location.href = url + "controller=admin"
-                        //alert('bạn đã đăng nhập với tư cách admin thành công');
+                        
                     } else {
                         window.location.href = url
                     }

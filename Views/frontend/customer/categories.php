@@ -148,10 +148,10 @@
 								<form class="tg-formtheme tg-formsearch" method="POST" action="<?= URL ?>/index.php?controller=cate&action=search">
 									<fieldset>
 										<input type="text" id="input_search" value="<?php
-										if(isset($val)){
-											echo $val;
-										}
-										?>" name="search" class="typeahead form-control" placeholder="Nhập tên sách">
+																					if (isset($val)) {
+																						echo $val;
+																					}
+																					?>" name="search" class="typeahead form-control" placeholder="Nhập tên sách">
 										<button type="submit"><i class="icon-magnifier"></i></button>
 									</fieldset>
 									<a href="javascript:void(0);">+ Advanced Search</a>
@@ -362,7 +362,7 @@
 										<form class="tg-formtheme tg-formsearch">
 											<div class="form-group">
 												<button type="submit"><i class="icon-magnifier"></i></button>
-												<input  type="search" name="search" class="form-group" placeholder="Nhập tên sách">
+												<input type="search" name="search" class="form-group" placeholder="Nhập tên sách">
 											</div>
 										</form>
 									</div>
@@ -702,18 +702,18 @@
 		var url_string = window.location.href; //window.location.href
 		var url = new URL(url_string);
 		var id_cate = url.searchParams.get("id_cate");
-		val="";
-		if(id_cate >0){
-			actionn  = "get_cate"
-		}else{
-			actionn="search";
-			val=$('#input_search').val()
+		val = "";
+		if (id_cate > 0) {
+			actionn = "get_cate"
+		} else {
+			actionn = "search";
+			val = $('#input_search').val()
 		}
-		
+
 		col = "id_b"
 		order = "DESC"
 		this_page = 1
-		load_cate_book(actionn,col, order, this_page,val)
+		load_cate_book(actionn, col, order, this_page, val)
 
 		$(document).on("click", ".page-item", function() {
 			this_page = $(this).attr("this_page")
@@ -727,8 +727,8 @@
 					col: col,
 					order: order,
 					id_cate: id_cate,
-					actionn:actionn,
-					search:val
+					actionn: actionn,
+					search: val
 				},
 				success: function(dt) {
 					$('#data_cate').hide().html(dt).fadeIn("slow")
@@ -741,12 +741,12 @@
 		$('.form-select').change(function() {
 			order = $(this).val()
 			col = $('option:selected', this).attr('colum');
-		
-			 load_cate_book(actionn,col, order, this_page,val)
+
+			load_cate_book(actionn, col, order, this_page, val)
 			// alert(option)
 		})
 
-		function load_cate_book(actionn,column, order, this_page,val) {
+		function load_cate_book(actionn, column, order, this_page, val) {
 			$.ajax({
 				url: url + "controller=cate&action=cate_by_page",
 				method: "POSt",
@@ -755,8 +755,8 @@
 					col: column,
 					order: order,
 					id_cate: id_cate,
-					actionn:actionn,
-					search:val
+					actionn: actionn,
+					search: val
 				},
 				success: function(dt) {
 					$('#data_cate').html(dt)

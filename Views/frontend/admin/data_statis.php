@@ -168,7 +168,13 @@ if ($act_tt == 0) {
         <div class="noBill" id="status" value="0">
             Không có đơn hàng <span class="mualai"></span>
         </div>
-<?php
+    <?php
     }
 } else {
+    ?>
+    <div class="noBill" id="status" value="0">
+        Chức năng chưa hoàn thiện <span class="mualai"></span>
+    </div>
+<?php
+
 }

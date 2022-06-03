@@ -28,7 +28,9 @@ class StatistiController extends BaseController
     {
         $date_s = $_POST['date_s'];
         $date_e = $_POST['date_e'];
+        //loc thống kê
         $act_tt = $_POST['act_tt'];
+        //doi tt loc
         $status = $_POST['status'];
         // print_r($_POST);
         $tienlai = 0;
@@ -39,6 +41,7 @@ class StatistiController extends BaseController
             foreach ($all_bills as $bill) {
 
                 $second_date = strtotime($bill['date_borr']);
+                //lay slg sách don hang
                 $num_book = $this->ManagebillModel->data_detail_book($bill['id_bi']);
                 //chua huy don
                 if ($bill['status'] != "-1") {
@@ -49,12 +52,12 @@ class StatistiController extends BaseController
                     }
                     $datediff = abs($first_date - $second_date);
                     $days = floor($datediff / (60 * 60 * 24));
-
+                    //tien lai 1 đơn
                     $tong = (int)$days * 2000 * (int)sizeof($num_book);
-
-                    //echo $tong."đ --- ";
+                    //tiền lãi all
                     $tienlai += $tong;
                 }
+                //push detail đh vào mảng datail_bill
                 array_push($datail_bill, $num_book);
 
                 // $money_back = (int)$money_get + (int)$money_user - (int)$days * 2000 * sizeof($data_detail_book);
