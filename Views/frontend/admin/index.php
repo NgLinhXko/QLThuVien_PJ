@@ -41,8 +41,8 @@
                             <br>
                             <div class="row">
                                 <button type="button" class="btn btn-warning quanly col-3" table="books" id="qlSach">Quản lý Sách</button>
-                                <button type="button" style="margin-left: 10%" table="categories" class="btn btn-success quanly  col-3" id="qlTheLoai">Quản lý Thể Loại</button>
-                                <button type="button" style="margin-left: 10%" table="users" class="btn btn-info quanly  col-3" id="qlUser">Quản lý Người Dùng</button>
+                                <button type="button" style="margin-left: 10%" table="categories" class="btn btn-success quanly  col-3" id="qlTheLoai">Quản lý thể loại</button>
+                                <button type="button" style="margin-left: 10%" table="users" class="btn btn-info quanly  col-3" id="qlUser">Quản lý Users</button>
 
                             </div>
 
@@ -439,6 +439,72 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="modal fade" id="detail_book" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="title_detail_book">Modal title</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table table-striped">
+
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">Tên sách</th>
+                                                    <td>
+                                                        <img style="width:100px;float:left ;" id="detail_img" src="" alt="">
+                                                       
+                                                        <span id="detail_name_b" ></span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Giá nhập</th>
+                                                    <td id="detail_price_b">Mark</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Tên Nhà xuất bản</th>
+                                                    <td id="detail_nxb_b">Mark</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Năm xuất bản</th>
+                                                    <td id="detail_year_b">Mark</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Số trang</th>
+                                                    <td id="detail_page_b">Mark</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Số lượng còn</th>
+
+                                                    <td id="detail_quantity_b">
+
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Số lượng mượn</th>
+                                                    <td id="detail_numBorr">Mark</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Miêu tả</th>
+                                                    <td id="detail_des_b">Mark</td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -457,7 +523,8 @@
                     e.preventDefault();
                     $("#wrapper").toggleClass("toggled");
                 });
-                url = "http://localhost:8080/QLThuVien_PJ/index.php?controller=admin&action="
+                url1 = "http://localhost:88/QLThuVien_PJ/index.php?"
+                url = "http://localhost:88/QLThuVien_PJ/index.php?controller=admin&action="
                 let action = "",
                     table = "";
                 this_page = 1;
@@ -468,29 +535,28 @@
 
                     load_data(action, table)
                 })
-
-
                 //click thêm thể loại , form hiện lân , nhấn save
-
                 $('.btn_add_suces').click(function(dt) {
                     // alert(table)
                     if (table == "categories") {
+
                         name_cate = $('#txtTLoai_a').val()
+
                         if (name_cate.length > 3) {
                             form = new FormData(form_add_cate)
                             add(form)
 
                         }
+
                     }
                     if (table == "books") {
-
                         name_b = $('#name_b').val().length
                         nxb_b = $('#nxb_b').val().length
                         val_book = parseInt($('#year_b').val())
                         price_b = parseInt($('#price_b').val())
                         page_b = parseInt($('#page_b').val())
                         quantity_b = parseInt($('#quantity_b').val())
-                        if (nxb_b >= 2 && name_b >= 2 && val_book > 1000 && val_book < 2023 && price_b >= 10000 && page_b > 50 && quantity_b > 0) {
+                        if (nxb_b >= 2 && name_b >= 2 && val_book > 1000 && val_book < 2023 && price_b > 10000 && page_b > 50 && quantity_b > 0) {
                             form = new FormData(form_add_book)
                             add(form)
                         }
@@ -505,9 +571,9 @@
                             form = new FormData(form_add_user)
                         add(form)
                     }
-                })
 
-                //delete
+                    // alert(name_form)
+                })
                 $(document).on("click", '.btn_delete', function() {
                     action = "get_data";
                     if (table == "categories") {
@@ -534,12 +600,11 @@
 
 
                 })
-                //check mail
                 $('#email_u').keyup(function() {
                     val = $(this).val();
                     if (val != "") {
                         $.ajax({
-                            url: "http://localhost:8080/QLThuVien_PJ/index.php?controller=login&action=check_mail_all",
+                            url: url1 + "controller=login&action=check_mail_all",
                             method: "POST",
                             data: {
                                 email_u: val
@@ -563,8 +628,7 @@
                     var re = /\S+@\S+\.\S+/;
                     return re.test(email);
                 }
-
-                //load data view form update
+                //loadupdate
                 $(document).on("click", '.btn_update1', function() {
                     if (table == "categories") {
                         $('#update_cate').modal('show')
@@ -585,7 +649,7 @@
                         load_update3(table, id)
                     }
                 })
-                //update back database
+                //update
                 $('.btn-updatee').click(function(dt) {
                     if (table == "categories") {
                         name_cate = $('#txtTL').val()
@@ -684,14 +748,7 @@
                 })
 
                 function check_cate(value_cate) {
-                    // strongName_cate = new RegExp('(?!=.*[a-z])(?!=.*[A-Z])');
-                    // console.log( strongName_cate.test(value_cate))
-                    // if (!strongName_cate.test(value_cate)) {
-                    //     $('#message_cate_err').html("Tên  thể loại không có số hoặc ký tự đặc biệt!")
-                    //     $("#add_cate").attr("disabled", true)
-                    // } else {
-                    //     $('#message_cate_err').html("")
-                    //     $("#add_cate").attr("disabled", false)
+
                     $.ajax({
                         url: url + "check_name_cate",
                         method: 'post',
@@ -761,6 +818,7 @@
                     })
                 }
 
+
                 function update(form) {
                     check_form = true;
                     for (var value of form.values()) {
@@ -785,7 +843,9 @@
                             }
                         })
                     }
+
                 }
+
 
                 function search_fc(table, data, this_page) {
                     $.ajax({
@@ -843,6 +903,8 @@
                             }
                         })
                     }
+
+
                 }
                 //load bảng data
                 function load_data(action, table, this_page) {
@@ -861,6 +923,35 @@
 
 
                 }
+                $(document).on("click", ".btn_detail_book", function() {
+                    id_b = $(this).attr("id_get");
+
+                    $.ajax({
+                        url: url1 + "controller=admin&action=load_update",
+                        method: "POST",
+                        data: {
+                            table: table,
+                            id: id_b
+                        },
+                        dataType: "json",
+                        success: function(dt) {
+                            $('#detail_book').modal('show')
+                            $('#title_detail_book').html(dt[0]['name_b'])
+                            // console.log(dt)
+                            $('#detail_img').attr("src", "./public/images/" + dt[0]["img_b"])
+                            $('#detail_name_b').html(dt[0]['name_b'])
+
+                            $('#detail_price_b').html(dt[0]['price_b'])
+                            $('#detail_nxb_b').html(dt[0]['nxb_b'])
+                            $('#detail_year_b').html(dt[0]['year_b'])
+                            $('#detail_page_b').html(dt[0]['page_b'])
+                            $('#detail_quantity_b').html(dt[0]['quantity_b'])
+                            $('#detail_numBorr').html(dt[0]['numBorr'])
+                            $('#detail_des_b').html(nl2br(dt[0]['des_b']))
+                         
+                        }
+                    })
+                })
             })
         </script>
 </body>
