@@ -122,7 +122,7 @@ if ($check_act == "books") {
 
                         <td>
                             <div class="d-grid">
-                                <button id_get="<?= $book['id_b'] ?>" id="btn_detail" class="btn btn-sm btn-warning btn_detail">Chi Tiết</button><br>
+                                <button id_get="<?= $book['id_b'] ?>" id="btn_detail" class="btn btn-sm btn-warning btn_detail_book">Chi Tiết</button><br>
                                 <button id_get="<?= $book['id_b'] ?>" id="btn_update1" class="btn btn-sm btn-secondary btn_update1">Sửa</button><br>
                                 <button id_get="<?= $book['id_b'] ?>" id="btn_delete" class="btn btn-sm btn-danger btn_delete">Xóa</button><br>
                             </div>

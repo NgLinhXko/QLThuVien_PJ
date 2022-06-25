@@ -149,6 +149,7 @@ class LoginController extends BaseController
         $email = $_POST['email_u'];
         $_SESSION['email_code'] = $email;
         $code = mt_rand(1000, 9999);
+        // $_COOKIE['maxn'] =setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/")
         $datas = $this->LoginModel->update_code($email, $code);
         $mail = new PHPMailer(true);
         try {

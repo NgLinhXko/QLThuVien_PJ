@@ -36,11 +36,13 @@ class BillController extends BaseController
 
         // }
         $data = $this->BillModel->data_bill($id_u, $act);
+       
         $detail_bill = [];
         foreach ($data as $dt) {
             $dt_detail = $this->BillModel->detail_bill($dt['id_bi']);
             array_push($detail_bill, $dt_detail);
         }
+        
         return $this->view("frontend.customer.data_bill", [
             "detail_bills" => $detail_bill,
             "datas_bill" => $data,
